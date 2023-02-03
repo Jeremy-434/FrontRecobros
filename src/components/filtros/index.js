@@ -1,3 +1,3 @@
 export * from './FiltrosAplicaciones';
 export * from './FiltrosServicios';
-export * from './FiltrosLayout';
+export * from './layout/FiltrosLayout';

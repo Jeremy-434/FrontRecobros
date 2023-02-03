@@ -29,7 +29,7 @@ export const DrawerLeft = () => {
                 <AcordionPortafolio
                     Icon={<ImportContacts sx={fontIcon} />}
                     text="Portafolio"
-                    linksAcordion={['Servicios', 'Aplicaciones']}
+                    linksAcordion={['Aplicaciones', 'Servicios']}
                 />
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}

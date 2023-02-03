@@ -1,10 +1,10 @@
-import { Logout, Menu as MenuIcon } from '@mui/icons-material';
+import { Logout} from '@mui/icons-material';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
 
 export const Header = () => {
 
   return (
-    <Box sx={{ flexGrow: 1, zIndex: 0, }}>
+    <Box sx={{ flexGrow: 1}} position='fixed' width='100%' zIndex={10}>
       <AppBar position="static">
         <Toolbar>
           <IconButton

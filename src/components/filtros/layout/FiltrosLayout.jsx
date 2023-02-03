@@ -1,6 +1,8 @@
 import { ArrowBackIos, CleaningServices, Search } from '@mui/icons-material';
 import { Box } from '@mui/system';
-import { Container, Typography, TextField, Stack, Chip, Button, IconButton } from '@mui/material';
+import { Container, Typography, TextField, Stack, Chip, Button, IconButton, Modal } from '@mui/material';
+import { ModalAplicaciones } from '../ModalAplicaciones';
+import { ModalServicios } from '../ModalServicios';
 
 const ArrowBackIosStyle = {
   bgcolor: 'transparent',
@@ -12,9 +14,13 @@ const ArrowBackIosStyle = {
   cursor: 'pointer'
 }
 
+
 export const FiltrosLayout = ({ children, title }) => {
+
+
+
   return (
-    <Container component='div' >
+    <Container component='div' sx={{ marginTop: 4 }} >
 
       <Box component='div' display='flex' alignItems='center' marginBottom={4}>
 
@@ -45,10 +51,10 @@ export const FiltrosLayout = ({ children, title }) => {
 
         <TextField
           label="Generar filtros"
-          SelectProps={'asd'}
           fullWidth
           select
           size="small"
+          value={10}
         >
           {children}
         </TextField>
@@ -59,15 +65,14 @@ export const FiltrosLayout = ({ children, title }) => {
           borderRadius={2}
           border='2px solid #2222'
           marginY={2}
-          fullWidth
         >
           <Typography fontSize='12px' marginBottom={2} >Criterios de Busqueda</Typography>
           <Stack direction="row" spacing={1}>
             <Chip
-              label="Clickable Deletable"
+              label="ACT"
             />
             <Chip
-              label="Clickable Deletable"
+              label="INACT"
             />
           </Stack>
         </Box>
@@ -77,6 +82,15 @@ export const FiltrosLayout = ({ children, title }) => {
             <CleaningServices sx={{ fontSize: '16px' }} />
             <Typography marginLeft={1} fontSize='12px'>Limpiar</Typography>
           </Button>
+
+ 
+          {(title === 'Aplicaciones')
+            ?
+            <ModalAplicaciones />
+            :
+            <ModalServicios/>
+          }
+
           <Button variant="contained" color='secondary' sx={{ height: '30px' }} >
             <Search sx={{ fontSize: '16px' }} />
             <Typography marginLeft={1} fontSize='12px'>Buscar</Typography>

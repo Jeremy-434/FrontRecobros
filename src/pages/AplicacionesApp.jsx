@@ -8,7 +8,7 @@ export const AplicacionesApp = () => {
       flexDirection='column'
       marginX='auto'
       width='75%'
-      marginTop={'180px'}
+      marginTop={'71px'}
       marginBottom={2}>
       <FiltrosAplicaciones />
       <TablaAplicaciones />

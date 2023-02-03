@@ -10,8 +10,9 @@ export const ServiciosApp = () => {
         flexDirection='column'
         marginX='auto'
         width='75%'
-        marginTop={'180px'}
-        marginBottom={2}>
+        marginTop={'71px'}
+        marginBottom={2}
+      >
         <FiltrosServicios />
         <TablaServicios />
       </Grid>
