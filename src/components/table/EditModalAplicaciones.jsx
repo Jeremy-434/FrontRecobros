@@ -2,7 +2,7 @@ import { Edit } from '@mui/icons-material';
 import { Box, Button, IconButton, MenuItem, Modal, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from '../../hooks';
-import { useGetAplicacionesQuery, useUpdateAplicacionMutation } from '../../store/apis/aplicacionesApi';
+import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
 
 const styleBoxForm = {
     borderRadius: '10px',
@@ -18,11 +18,11 @@ const styleBoxForm = {
 
 export const EditModalAplicaciones = ({
     idAplicacion,
-    nombreDeAplicación,
-    estadoDeAplicación,
-    nombreDeSegmento,
-    aliadoResponsable,
-    oServicio,
+    nombreAplicacion,
+    estado,
+    nombreSegmento,
+    idAliadoNavigation,
+    idServicioNavigation,
 }) => {
 
     const {
@@ -34,30 +34,29 @@ export const EditModalAplicaciones = ({
         onInputChange,
         onResetForm
     } = useForm({
-        'nombreDeAplicacionInput': nombreDeAplicación,
-        'estadoDeAplicacionInput': estadoDeAplicación,
-        'nombreDeSegmentoInput': nombreDeSegmento,
-        'aliadoResponsableInput': aliadoResponsable,
-        'servicioInput': oServicio.servicio1,
+        'nombreDeAplicacionInput': nombreAplicacion,
+        'estadoDeAplicacionInput': estado,
+        'nombreDeSegmentoInput': nombreSegmento,
+        'servicioInput': idServicioNavigation.idServicio,
+        'aliadoResponsableInput': idAliadoNavigation.idAliado
     });
 
-    const [updateAplicacion] = useUpdateAplicacionMutation();
+    const {aplicaciones, editAplicaciones} = useCrudAplicaciones()
+    
     const editarAplicaciones = () => {
-        updateAplicacion({
-            "idAplicaciones": idAplicacion,
-            "nombreDeAplicación": nombreDeAplicacionInput,
-            "estadoDeAplicación": estadoDeAplicacionInput,
-            "nombreDeSegmento": nombreDeSegmentoInput,
-            "aliadoResponsable": aliadoResponsableInput,
-            "idServicio": servicioInput
-        });
+        editAplicaciones(
+            idAplicacion,
+            nombreDeAplicacionInput,
+            estadoDeAplicacionInput,
+            nombreDeSegmentoInput,
+            servicioInput,
+            aliadoResponsableInput,
+        )
     }
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const {data} = useGetAplicacionesQuery();
 
     return (
         <>
@@ -84,7 +83,7 @@ export const EditModalAplicaciones = ({
                     />
                     <TextField
                         label="Nombre de aplicación"
-                        name='nombreDeAplicaciónInput'
+                        name='nombreDeAplicacionInput'
                         value={nombreDeAplicacionInput}
                         onChange={onInputChange}
                         size="small"
@@ -98,9 +97,13 @@ export const EditModalAplicaciones = ({
                         onChange={onInputChange}
                         size="small"
                         fullWidth
+                        select
                         sx={{ mb: 2 }}
 
-                    />
+                    >
+                        <MenuItem value={"Activo"} >Activo</MenuItem>
+                        <MenuItem value={"Inactivo"} >Inactivo</MenuItem>
+                    </TextField>
                     <TextField
                         label="Nombre de segmento"
                         name='nombreDeSegmentoInput'
@@ -112,15 +115,26 @@ export const EditModalAplicaciones = ({
 
                     />
                     <TextField
-                        label="Aliado responsable"
-                        name='aliadoResponsableInput'
+                        name="aliadoResponsableInput"
+                        label="Aliado Responsable"
                         value={aliadoResponsableInput}
                         onChange={onInputChange}
                         size="small"
                         fullWidth
                         sx={{ mb: 2 }}
-
-                    />
+                        select
+                    >
+                        {
+                            aplicaciones.map(({ idAliadoNavigation }) => (
+                                <MenuItem
+                                    key={idAliadoNavigation.idAliado}
+                                    value={idAliadoNavigation.idAliado}
+                                >
+                                    {idAliadoNavigation.nombreAliado}
+                                </MenuItem>
+                            ))
+                        }
+                    </TextField>
                     <TextField
                         name="servicioInput"
                         label="Servicio"
@@ -131,8 +145,13 @@ export const EditModalAplicaciones = ({
                         select
                     >
                         {
-                            data.response.map(({ oServicio }) => (
-                                <MenuItem key={oServicio.idServicio} value={oServicio.idServicio}>{oServicio.servicio1}</MenuItem>
+                            aplicaciones.map(({ idServicioNavigation }) => (
+                                <MenuItem
+                                    key={idServicioNavigation.idServicio}
+                                    value={idServicioNavigation.idServicio}
+                                >
+                                    {idServicioNavigation.nombreServicio}
+                                </MenuItem>
                             ))
                         }
                     </TextField>

@@ -17,9 +17,10 @@ const encabezadoDeTabla = [
 ]
 
 export const TablaAplicaciones = () => {
-
-  const { aplicaciones, borrarAplicacion, error, isLoading, data} = useCrudAplicaciones();
-
+  
+  const { aplicaciones, borrarAplicacion, error, isLoading } = useCrudAplicaciones();
+  // const aplicaciones = data ? data.response : [];
+  
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1200} >
       {
@@ -33,26 +34,26 @@ export const TablaAplicaciones = () => {
                 </TableCell>
               </TableRow>
             </TableBody>
-            : data ?
+            : aplicaciones ?
               <TableBody>
                 {aplicaciones.map((apli) => (
                   <TableRow
-                    key={apli.idAplicaciones}
+                    key={apli.idAplicacion}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <StyledTableCell component="th" scope="row">
-                      {apli.nombreDeAplicación}
+                      {apli.nombreAplicacion}
                     </StyledTableCell>
-                    <StyledTableCell >{apli.estadoDeAplicación}</StyledTableCell>
-                    <StyledTableCell >{apli.nombreDeSegmento}</StyledTableCell>
-                    <StyledTableCell >{apli.aliadoResponsable}</StyledTableCell>
-                    <StyledTableCell >{apli.oServicio.servicio1}</StyledTableCell>
+                    <StyledTableCell >{apli.estado}</StyledTableCell>
+                    <StyledTableCell >{apli.nombreSegmento}</StyledTableCell>
+                    <StyledTableCell >{apli.idAliadoNavigation.nombreAliado}</StyledTableCell>
+                    <StyledTableCell >{apli.idServicioNavigation.nombreServicio}</StyledTableCell>
                     <StyledTableCell sx={{ display: 'flex' }} >
-                      <EditModalAplicaciones idAplicacion={apli.idAplicaciones} {...apli} />
+                      <EditModalAplicaciones idAplicacion={apli.idAplicacion} {...apli} />
                       <IconButton
                         color="error"
                         title='Borrar'
-                        onClick={() => { borrarAplicacion(apli.idAplicaciones) }}
+                        onClick={() => { borrarAplicacion(apli.idAplicacion) }}
                       >
                         <Delete />
                       </IconButton>

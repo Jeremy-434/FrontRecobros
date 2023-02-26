@@ -3,6 +3,7 @@ import { Box, Button, IconButton, MenuItem, Modal, TextField, Typography, Link }
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useForm } from '../../hooks';
+import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
 import { useCreateAplicacionMutation, useGetAplicacionesQuery } from '../../store/apis/aplicacionesApi';
 
 const styleBoxForm = {
@@ -20,39 +21,37 @@ const styleBoxForm = {
 export const ModalAplicaciones = () => {
 
     const {
-        nombreDeAplicación,
+        nombreDeAplicacion,
         estadoDeAplicacion,
         nombreDeSegmento,
-        aliadoResponsable,
         servicio,
+        aliado,
         onInputChange,
         onResetForm
     } = useForm({
-        'nombreDeAplicación': '',
-        'estadoDeAplicación': '',
+        'nombreDeAplicacion': '',
+        'estadoDeAplicacion': '',
         'nombreDeSegmento': '',
-        'aliadoResponsable': '',
         'servicio': '',
+        'aliado': ''
     });
-    
-    const [createAplicacion] = useCreateAplicacionMutation();
+
+    const { aplicaciones, addAplicacion } = useCrudAplicaciones();
+
     const agregarAplicacion = () => {
-        createAplicacion({
-            "nombreDeAplicación": nombreDeAplicación,
-            "estadoDeAplicación": estadoDeAplicacion,
-            "nombreDeSegmento": nombreDeSegmento,
-            "aliadoResponsable": aliadoResponsable,
-            "idServicio": servicio,
-        });
+        addAplicacion(
+            nombreDeAplicacion,
+            estadoDeAplicacion,
+            nombreDeSegmento,
+            servicio,
+            aliado
+        )
         onResetForm();
     }
-    
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const { data } = useGetAplicacionesQuery();
-    const aplicaciones = data ? data.response : [];
 
     return (
         <>
@@ -71,37 +70,30 @@ export const ModalAplicaciones = () => {
                     </Typography>
                     <TextField
                         label="Nombre de aplicación"
-                        name='nombreDeAplicación'
-                        value={nombreDeAplicación}
+                        name='nombreDeAplicacion'
+                        value={nombreDeAplicacion}
                         onChange={onInputChange}
                         size="small"
                         fullWidth
                         sx={{ mb: 2 }}
                     />
                     <TextField
-                        label="Estado de aplicacion"
-                        name='estadoDeAplicacion'
+                        name="estadoDeAplicacion"
                         value={estadoDeAplicacion}
                         onChange={onInputChange}
+                        label="Estado de aplicacion"
                         size="small"
                         fullWidth
                         sx={{ mb: 2 }}
-
-                    />
+                        select
+                    >
+                        <MenuItem value={"Activo"} >Activo</MenuItem>
+                        <MenuItem value={"Inactivo"} >Inactivo</MenuItem>
+                    </TextField>
                     <TextField
                         label="Nombre de segmento"
                         name='nombreDeSegmento'
                         value={nombreDeSegmento}
-                        onChange={onInputChange}
-                        size="small"
-                        fullWidth
-                        sx={{ mb: 2 }}
-
-                    />
-                    <TextField
-                        label="Aliado responsable"
-                        name='aliadoResponsable'
-                        value={aliadoResponsable}
                         onChange={onInputChange}
                         size="small"
                         fullWidth
@@ -115,11 +107,37 @@ export const ModalAplicaciones = () => {
                         label="Servicio"
                         size="small"
                         fullWidth
+                        sx={{ mb: 2 }}
                         select
                     >
                         {
-                            aplicaciones.map(({ oServicio }) => (
-                                <MenuItem key={oServicio.idServicio} value={oServicio.idServicio}>{oServicio.servicio1}</MenuItem>
+                            aplicaciones.map(({ idServicioNavigation }) => (
+                                <MenuItem
+                                    key={idServicioNavigation.idServicio}
+                                    value={idServicioNavigation.idServicio}
+                                >
+                                    {idServicioNavigation.nombreServicio}
+                                </MenuItem>
+                            ))
+                        }
+                    </TextField>
+                    <TextField
+                        name="aliado"
+                        value={aliado}
+                        onChange={onInputChange}
+                        label="Aliado"
+                        size="small"
+                        fullWidth
+                        select
+                    >
+                        {
+                            aplicaciones.map(({ idAliadoNavigation }) => (
+                                <MenuItem
+                                    key={idAliadoNavigation.idAliado}
+                                    value={idAliadoNavigation.idAliado}
+                                >
+                                    {idAliadoNavigation.nombreAliado}
+                                </MenuItem>
                             ))
                         }
                     </TextField>

@@ -21,6 +21,7 @@ export const TablaServicios = () => {
   const [processedIds, setProcessedIds] = useState([]);
 
   const { aplicaciones, borrarAplicacion, error, isLoading, data } = useCrudAplicaciones();
+  console.log("🚀 ~ data:", data)
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} >
@@ -39,12 +40,12 @@ export const TablaServicios = () => {
               <TableBody>
                 {aplicaciones.map(({ oServicio, idServicio }) => {
                   {/* console.log(!processedIds.includes(idServicio))
-                  console.log("se ejecuto");
-                  console.log(processedIds);
-                  if (!processedIds.includes(idServicio)) {
-                    setProcessedIds([...processedIds, idServicio]); */}
+            console.log("se ejecuto");
+            console.log(processedIds);
+            if (!processedIds.includes(idServicio)) {
+              setProcessedIds([...processedIds, idServicio]); */}
                   if (idServicio) {
-                    return (
+                    {/* return (
                       <TableRow
                         key={idServicio}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -71,7 +72,7 @@ export const TablaServicios = () => {
                           </IconButton>
                         </StyledTableCell>
                       </TableRow>
-                    )
+                    ) */}
                   } else {
                     return (
                       <>No se encontro ningun id de servicio</>
