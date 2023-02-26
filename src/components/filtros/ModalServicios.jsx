@@ -1,36 +1,53 @@
+import { Add } from '@mui/icons-material';
 import { MenuItem, TextField, Typography } from '@mui/material';
 import { useForm } from '../../hooks';
+import { useCrudServicios } from '../../hooks/useCrudServicios';
 import { ModalForm } from './layout/ModalForm';
 
 export const ModalServicios = () => {
     const {
-        servicio1,
-        descripciónDelServicio,
-        driverNoDeUsuarios,
-        responsableDelReporte,
-        claseDeActividad,
-        claseDeCosto,
-        líderDeServicio,
+        nombreServicio,
+        descripcion,
+        driver,
+        claseActividad,
+        claseCosto,
+        porcentajeComparacion,
+        responsableReporte,
         onInputChange,
         onResetForm
     } = useForm({
-        'servicio1': '',
-        'descripciónDelServicio': '',
-        'driverNoDeUsuarios': '',
-        'responsableDelReporte': '',
-        'claseDeActividad': '',
-        'claseDeCosto': '',
-        'líderDeServicio': '',
+        'nombreServicio': '',
+        'descripcion': '',
+        'driver': '',
+        'claseActividad': '',
+        'claseCosto': '',
+        'porcentajeComparacion': '',
+        'responsableReporte': '',
     });
+
+    const { addServicio } = useCrudServicios();
+    const agregarServicio = () => {
+        addServicio(
+            nombreServicio,
+            descripcion,
+            driver,
+            claseActividad,
+            claseCosto,
+            porcentajeComparacion,
+            responsableReporte,
+        )
+        onResetForm();
+    }
+
     return (
-        <ModalForm>
+        <ModalForm funtion={agregarServicio} nameButton={"agregar"} styleButton={<Add/>}>
             <Typography variant="h4" color="inherit" mb={2}>
                 Agregar Servicio
             </Typography>
             <TextField
                 label="Nombre del servicio"
-                name='servicio1'
-                value={servicio1}
+                name='nombreServicio'
+                value={nombreServicio}
                 onChange={onInputChange}
                 size="small"
                 fullWidth
@@ -38,8 +55,8 @@ export const ModalServicios = () => {
             />
             <TextField
                 label="Descripción del servicio"
-                name='descripciónDelServicio'
-                value={descripciónDelServicio}
+                name='descripcion'
+                value={descripcion}
                 onChange={onInputChange}
                 size="small"
                 fullWidth
@@ -48,8 +65,38 @@ export const ModalServicios = () => {
             />
             <TextField
                 label="Driver No. de usuarios"
-                name='driverNoDeUsuarios'
-                value={driverNoDeUsuarios}
+                name='driver'
+                value={driver}
+                onChange={onInputChange}
+                size="small"
+                fullWidth
+                sx={{ mb: 2 }}
+
+            />
+            <TextField
+                label="Clase de actividad"
+                name='claseActividad'
+                value={claseActividad}
+                onChange={onInputChange}
+                size="small"
+                fullWidth
+                sx={{ mb: 2 }}
+
+            />
+            <TextField
+                label="Clase de costo"
+                name='claseCosto'
+                value={claseCosto}
+                onChange={onInputChange}
+                size="small"
+                fullWidth
+                sx={{ mb: 2 }}
+
+            />
+            <TextField
+                label="Porcentaje de comparacion"
+                name='porcentajeComparacion'
+                value={porcentajeComparacion}
                 onChange={onInputChange}
                 size="small"
                 fullWidth
@@ -59,42 +106,11 @@ export const ModalServicios = () => {
             />
             <TextField
                 label="Responsable del reporte"
-                name='responsableDelReporte'
-                value={responsableDelReporte}
+                name='responsableReporte'
+                value={responsableReporte}
                 onChange={onInputChange}
                 size="small"
                 fullWidth
-                sx={{ mb: 2 }}
-
-            />
-            <TextField
-                label="Clase de actividad"
-                name='claseDeActividad'
-                value={claseDeActividad}
-                onChange={onInputChange}
-                size="small"
-                fullWidth
-                sx={{ mb: 2 }}
-
-            />
-            <TextField
-                label="Clase de costo"
-                name='claseDeCosto'
-                value={claseDeCosto}
-                onChange={onInputChange}
-                size="small"
-                fullWidth
-                sx={{ mb: 2 }}
-
-            />
-            <TextField
-                label="Lider del servicio"
-                name='líderDeServicio'
-                value={líderDeServicio}
-                onChange={onInputChange}
-                size="small"
-                fullWidth
-                sx={{ mb: 2 }}
 
             />
         </ModalForm>

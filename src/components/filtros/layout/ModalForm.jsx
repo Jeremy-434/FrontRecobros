@@ -1,5 +1,4 @@
-import { Add } from '@mui/icons-material';
-import { IconButton, Modal, Box } from '@mui/material';
+import { IconButton, Modal, Box, Button } from '@mui/material';
 import { useState } from 'react';
 
 const styleBoxForm = {
@@ -15,8 +14,8 @@ const styleBoxForm = {
 };
 
 
-export const ModalForm = ({children}) => {
-    
+export const ModalForm = ({ children, funtion, nameButton, styleButton }) => {
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -24,7 +23,7 @@ export const ModalForm = ({children}) => {
     return (
         <>
             <IconButton onClick={handleOpen} title='Agregar' color='secondary'>
-                <Add />
+                {styleButton}
             </IconButton>
             <Modal
                 open={open}
@@ -34,6 +33,14 @@ export const ModalForm = ({children}) => {
             >
                 <Box sx={{ ...styleBoxForm, width: 400 }}>
                     {children}
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+                        <Button variant="contained" color="primary" onClick={handleClose}>
+                            Cancelar
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={() => { funtion(), handleClose() }}>
+                            {nameButton}
+                        </Button>
+                    </Box>
                 </Box>
             </Modal>
         </>

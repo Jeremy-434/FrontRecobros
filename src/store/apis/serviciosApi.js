@@ -2,15 +2,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Define a service using a base URL and expected endpoints
-export const aplicacionesApi = createApi({
-    reducerPath: 'aplicaciones',
+export const serviciosApi = createApi({
+    reducerPath: 'servicios',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Aplicaciones'
+        baseUrl: 'http://localhost:5054/api/Servicios'
     }),
     endpoints: (builder) => ({
 
-        getAplicaciones: builder.query({
+        getServicios: builder.query({
             query: () => {
                 return {
                     url: '/listar',
@@ -21,24 +21,24 @@ export const aplicacionesApi = createApi({
                 }
             }
         }),
-        getAplicacionById: builder.query({
-            query: (id) => `/obtener/${id}`
+        getServicioById: builder.query({
+            query: (id) => `/listar/${id}`
         }),
-        createAplicacion: builder.mutation({
+        createServicio: builder.mutation({
             query: (body) => ({
                 url: '/guardar',
                 method: 'POST',
                 body,
             }),
         }),
-        updateAplicacion: builder.mutation({
+        updateServicio: builder.mutation({
             query: ({ id, ...rest }) => ({
                 url: '/editar',
                 method: 'PUT',
                 body: rest
             })
         }),
-        deleteAplicacion: builder.mutation({
+        deleteServicio: builder.mutation({
             query: (id) => ({
                 url: `/eliminar/${id}`,
                 method: 'DELETE',
@@ -48,9 +48,9 @@ export const aplicacionesApi = createApi({
 })
 
 export const {
-    useGetAplicacionesQuery,
-    useGetAplicacionByIdQuery,
-    useCreateAplicacionMutation,
-    useUpdateAplicacionMutation,
-    useDeleteAplicacionMutation
-} = aplicacionesApi;
+    useGetServiciosQuery,
+    useGetServicioByIdQuery,
+    useCreateServicioMutation,
+    useUpdateServicioMutation,
+    useDeleteServicioMutation
+} = serviciosApi;

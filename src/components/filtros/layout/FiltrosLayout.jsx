@@ -15,9 +15,7 @@ const ArrowBackIosStyle = {
 }
 
 
-export const FiltrosLayout = ({ children, title }) => {
-
-
+export const FiltrosLayout = ({ children, modal }) => {
 
   return (
     <Container component='div' sx={{ marginTop: 4 }} >
@@ -36,7 +34,7 @@ export const FiltrosLayout = ({ children, title }) => {
           fontWeight="400"
           marginLeft={2}
         >
-          {title}
+          {modal}
         </Typography>
 
       </Box>
@@ -84,7 +82,7 @@ export const FiltrosLayout = ({ children, title }) => {
           </Button>
 
  
-          {(title === 'Aplicaciones')
+          {(modal === 'Aplicaciones')
             ?
             <ModalAplicaciones />
             :

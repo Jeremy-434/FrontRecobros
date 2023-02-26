@@ -1,8 +1,7 @@
 import { Delete, Edit } from '@mui/icons-material';
 import { IconButton, LinearProgress, TableBody, TableCell, TableRow } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
-import { useDeleteAplicacionMutation, useGetAplicacionesQuery } from '../../store/apis/aplicacionesApi';
+import { useCrudServicios } from '../../hooks/useCrudServicios';
+import { EditModalServicios } from './EditModalServicios';
 import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
 const encabezadoDeTabla = [
@@ -12,16 +11,12 @@ const encabezadoDeTabla = [
   'Responsable del reporte',
   'Clase de actividad',
   'Clase de costo',
-  'Líder de servicio',
   ''
 ]
 
 export const TablaServicios = () => {
 
-  const [processedIds, setProcessedIds] = useState([]);
-
-  const { aplicaciones, borrarAplicacion, error, isLoading, data } = useCrudAplicaciones();
-  console.log("🚀 ~ data:", data)
+  const { servicios, error, isLoading, borrarServicio } = useCrudServicios();
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} >
@@ -36,43 +31,35 @@ export const TablaServicios = () => {
                 </TableCell>
               </TableRow>
             </TableBody>
-            : data ?
+            : servicios ?
               <TableBody>
-                {aplicaciones.map(({ oServicio, idServicio }) => {
-                  {/* console.log(!processedIds.includes(idServicio))
-            console.log("se ejecuto");
-            console.log(processedIds);
-            if (!processedIds.includes(idServicio)) {
-              setProcessedIds([...processedIds, idServicio]); */}
-                  if (idServicio) {
-                    {/* return (
+                {servicios.map(( servicio ) => {
+                  if (servicio.idServicio) {
+                    return (
                       <TableRow
-                        key={idServicio}
+                        key={servicio.idServicio}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
                         <StyledTableCell component="th" scope="row">
-                          {oServicio.servicio1}
+                          {servicio.nombreServicio}
                         </StyledTableCell>
-                        <StyledTableCell >{oServicio.descripciónDelServicio}</StyledTableCell>
-                        <StyledTableCell >{oServicio.driverNoDeUsuarios}</StyledTableCell>
-                        <StyledTableCell >{oServicio.responsableDelReporte}</StyledTableCell>
-                        <StyledTableCell >{oServicio.claseDeActividad}</StyledTableCell>
-                        <StyledTableCell >{oServicio.claseDeCosto}</StyledTableCell>
-                        <StyledTableCell >{oServicio.líderDeServicio}</StyledTableCell>
+                        <StyledTableCell >{servicio.descripcion}</StyledTableCell>
+                        <StyledTableCell >{servicio.driver}</StyledTableCell>
+                        <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
+                        <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
+                        <StyledTableCell >{servicio.claseCosto}</StyledTableCell>
                         <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }} >
-                          <IconButton color="primary" title='Editar'>
-                            <Edit sx={{}} />
-                          </IconButton>
+                          <EditModalServicios idServicio={servicio.idServicio} {...servicio} />
                           <IconButton
                             color="error"
                             title='Borrar'
-                            onClick={() => { borrarAplicacion(idServicio) }}
+                            onClick={() => { borrarServicio(servicio.idServicio) }}
                           >
                             <Delete />
                           </IconButton>
                         </StyledTableCell>
                       </TableRow>
-                    ) */}
+                    )
                   } else {
                     return (
                       <>No se encontro ningun id de servicio</>
