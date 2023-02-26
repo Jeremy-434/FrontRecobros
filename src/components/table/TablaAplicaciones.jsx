@@ -1,9 +1,6 @@
-import { Delete, Edit } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 import { LinearProgress, TableBody, TableCell, TableRow, IconButton } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { getAplicacion } from '../../helper/fetchRecobros';
 import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
-import { useGetAplicacionesQuery, useDeleteAplicacionMutation } from '../../store/apis/aplicacionesApi';
 import { EditModalAplicaciones } from './EditModalAplicaciones';
 import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
@@ -19,7 +16,6 @@ const encabezadoDeTabla = [
 export const TablaAplicaciones = () => {
   
   const { aplicaciones, borrarAplicacion, error, isLoading } = useCrudAplicaciones();
-  // const aplicaciones = data ? data.response : [];
   
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1200} >
