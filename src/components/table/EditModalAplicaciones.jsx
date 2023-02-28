@@ -10,8 +10,8 @@ export const EditModalAplicaciones = ({
     nombreAplicacion,
     estado,
     nombreSegmento,
-    idAliadoNavigation,
-    idServicioNavigation,
+    idAliado,
+    idServicio,
 }) => {
 
     const {
@@ -26,8 +26,8 @@ export const EditModalAplicaciones = ({
         'nombreDeAplicacionInput': nombreAplicacion,
         'estadoDeAplicacionInput': estado,
         'nombreDeSegmentoInput': nombreSegmento,
-        'servicioInput': idServicioNavigation.idServicio,
-        'aliadoResponsableInput': idAliadoNavigation.idAliado
+        'aliadoResponsableInput': idAliado,
+        'servicioInput': idServicio,
     });
 
     const { aplicaciones, editAplicaciones } = useCrudAplicaciones();
@@ -39,8 +39,8 @@ export const EditModalAplicaciones = ({
             nombreDeAplicacionInput,
             estadoDeAplicacionInput,
             nombreDeSegmentoInput,
-            servicioInput,
             aliadoResponsableInput,
+            servicioInput,
         )
     }
 

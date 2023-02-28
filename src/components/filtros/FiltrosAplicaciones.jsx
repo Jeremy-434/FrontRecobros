@@ -1,6 +1,6 @@
 import { MenuItem } from '@mui/material';
 import { FiltrosLayout } from './';
-import { ModalAplicaciones } from './ModalAplicaciones';
+import { ModalAplicaciones } from '../table/addModals/ModalAplicaciones';
 
 export const FiltrosAplicaciones = () => {
   return (

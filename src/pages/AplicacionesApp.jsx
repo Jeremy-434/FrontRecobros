@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { FiltrosAplicaciones, TablaAplicaciones } from '../components/';
+import { ModalAplicaciones } from '../components/table/addModals';
 
 export const AplicacionesApp = () => {
   return (
@@ -12,6 +13,7 @@ export const AplicacionesApp = () => {
       marginBottom={2}>
       <FiltrosAplicaciones />
       <TablaAplicaciones />
+      <ModalAplicaciones />
     </Grid>
   )
 }

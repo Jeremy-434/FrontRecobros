@@ -1,7 +1,9 @@
 import { Edit } from '@mui/icons-material';
 import { TextField, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks';
 import { useCrudServicios } from '../../hooks/useCrudServicios';
+import { handleMessageOpen, setMessage } from '../../store/slices/messageCreated/messageCreatedSlice';
 import { ModalForm } from '../filtros/layout/ModalForm';
 
 export const EditModalServicios = ({
@@ -36,6 +38,7 @@ export const EditModalServicios = ({
     });
 
     const { editServicio } = useCrudServicios();
+    const dispatch = useDispatch();
 
     const editarServicios = () => {
         editServicio(
@@ -48,6 +51,10 @@ export const EditModalServicios = ({
             porcentajeComparacionInput,
             responsableReporteInput,
         )
+        dispatch( setMessage("Servicio actualizado correctamente") );
+        dispatch( handleMessageOpen() );
+
+        return true;
     }
 
     return (
@@ -55,14 +62,14 @@ export const EditModalServicios = ({
             <Typography variant="h4" color="inherit" mb={2}>
                 Editar servicio
             </Typography>
-            <TextField
+            {/* <TextField
                 label="Id"
                 value={idServicio}
                 size="small"
                 disabled
                 fullWidth
                 sx={{ mb: 2 }}
-            />
+            /> */}
             <TextField
                 label="Nombre de servicio"
                 name='nombreServicioInput'
@@ -115,6 +122,7 @@ export const EditModalServicios = ({
                 onChange={onInputChange}
                 size="small"
                 fullWidth
+                type="number"
                 sx={{ mb: 2 }}
             />
             <TextField

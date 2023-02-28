@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { FiltrosServicios } from '../components';
+import { ModalServicios } from '../components/table/addModals';
 import { TablaServicios } from '../components/table/TablaServicios';
 
 export const ServiciosApp = () => {
@@ -15,6 +16,7 @@ export const ServiciosApp = () => {
       >
         <FiltrosServicios />
         <TablaServicios />
+        <ModalServicios />
       </Grid>
     </>
   )

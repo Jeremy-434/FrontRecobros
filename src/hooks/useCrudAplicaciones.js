@@ -32,16 +32,16 @@ export const useCrudAplicaciones = () => {
         nombreDeAplicacionInput,
         estadoDeAplicacionInput,
         nombreDeSegmentoInput,
-        servicioInput,
         aliadoResponsableInput,
+        servicioInput,
     ) => {
         updateAplicacion({
             "idAplicacion": idAplicacion,
             "nombreAplicacion": nombreDeAplicacionInput,
             "estado": estadoDeAplicacionInput,
             "nombreSegmento": nombreDeSegmentoInput,
+            "idAliado": aliadoResponsableInput,
             "idServicio": servicioInput,
-            "idAliado": aliadoResponsableInput
         }).then( () => refetch() );
     };
 

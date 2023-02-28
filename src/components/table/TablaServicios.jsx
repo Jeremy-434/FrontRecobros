@@ -1,6 +1,8 @@
 import { Delete, Edit } from '@mui/icons-material';
 import { IconButton, LinearProgress, TableBody, TableCell, TableRow } from '@mui/material';
 import { useCrudServicios } from '../../hooks/useCrudServicios';
+import { useFiltrosServicios } from '../filtros/hooks';
+import { ModalServicios } from './addModals';
 import { EditModalServicios } from './EditModalServicios';
 import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
@@ -8,15 +10,17 @@ const encabezadoDeTabla = [
   'Servicio',
   'Descripción del servicio',
   'Driver (No. de usuarios)',
-  'Responsable del reporte',
   'Clase de actividad',
   'Clase de costo',
+  'Responsable del reporte',
+  'Porcentaje de comparacion',
   ''
 ]
 
 export const TablaServicios = () => {
 
   const { servicios, error, isLoading, borrarServicio } = useCrudServicios();
+  const { filteredData } = useFiltrosServicios();
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} >
@@ -33,7 +37,7 @@ export const TablaServicios = () => {
             </TableBody>
             : servicios ?
               <TableBody>
-                {servicios.map(( servicio ) => {
+                {servicios.map((servicio) => {
                   if (servicio.idServicio) {
                     return (
                       <TableRow
@@ -45,9 +49,10 @@ export const TablaServicios = () => {
                         </StyledTableCell>
                         <StyledTableCell >{servicio.descripcion}</StyledTableCell>
                         <StyledTableCell >{servicio.driver}</StyledTableCell>
-                        <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
                         <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
                         <StyledTableCell >{servicio.claseCosto}</StyledTableCell>
+                        <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
+                        <StyledTableCell >{servicio.porcentajeComparacion}</StyledTableCell>
                         <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }} >
                           <EditModalServicios idServicio={servicio.idServicio} {...servicio} />
                           <IconButton

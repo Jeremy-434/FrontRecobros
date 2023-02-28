@@ -10,22 +10,22 @@ export const useCrudServicios = () => {
     // * GUARDAR UNA SERVICIO
     const [createServicio] = useCreateServicioMutation();
     const addServicio = (
-        nombreServicio,
-        descripcion,
-        driver,
-        claseActividad,
-        claseCosto,
-        porcentajeComparacion,
-        responsableReporte,
+        nombreServicioInput,
+        descripcionInput,
+        driverInput,
+        claseActividadInput,
+        claseCostoInput,
+        porcentajeComparacionInput,
+        responsableReporteInput,
     ) => {
         createServicio({
-            "nombreServicio": nombreServicio,
-            "descripcion": descripcion,
-            "driver": driver,
-            "claseActividad": claseActividad,
-            "claseCosto": claseCosto,
-            "porcentajeComparacion": porcentajeComparacion,
-            "responsableReporte": responsableReporte,
+            "nombreServicio": nombreServicioInput,
+            "descripcion": descripcionInput,
+            "driver": driverInput,
+            "claseActividad": claseActividadInput,
+            "claseCosto": claseCostoInput,
+            "porcentajeComparacion": porcentajeComparacionInput,
+            "responsableReporte": responsableReporteInput,
         }).then( () => refetch());
     }
 

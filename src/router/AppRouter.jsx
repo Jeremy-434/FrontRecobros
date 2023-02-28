@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { DrawerLeft, Header } from '../components/';
+import { DrawerLeft, Header, MessagesComponent } from '../components/';
 import { AplicacionesApp, ServiciosApp } from '../pages';
 
 const drawerWidth = 240;
@@ -23,9 +23,9 @@ export const AppRouter = () => {
 
       <Container
         sx={styles}
-        // sx={{
-        //   marginLeft
-        // }}
+      // sx={{
+      //   marginLeft
+      // }}
       >
         <Routes>
 
@@ -34,6 +34,9 @@ export const AppRouter = () => {
           <Route path="/*" element={<Navigate to="servicios" />} />
 
         </Routes>
+
+        <MessagesComponent />
+
       </Container>
     </>
   )

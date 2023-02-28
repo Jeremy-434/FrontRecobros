@@ -2,11 +2,20 @@ import { Add } from '@mui/icons-material';
 import { Box, Button, IconButton, MenuItem, Modal, TextField, Typography, Link } from '@mui/material';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useForm } from '../../hooks';
-import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
-import { useCrudServicios } from '../../hooks/useCrudServicios';
-import { useCreateAplicacionMutation, useGetAplicacionesQuery } from '../../store/apis/aplicacionesApi';
-import { ModalForm } from './layout/ModalForm';
+import { useForm } from '../../../hooks';
+import { useCrudAplicaciones } from '../../../hooks/useCrudAplicaciones';
+import { useCrudServicios } from '../../../hooks/useCrudServicios';
+import { useCreateAplicacionMutation, useGetAplicacionesQuery } from '../../../store/apis/aplicacionesApi';
+import { ModalForm } from '../../filtros/layout/ModalForm';
+
+const styleIconButton = {
+    color: 'white',
+    backgroundColor: 'primary.main',
+    ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
+    position: 'fixed',
+    right: 90,
+    bottom: 50,
+}
 
 export const ModalAplicaciones = () => {
 
@@ -41,7 +50,12 @@ export const ModalAplicaciones = () => {
     }
 
     return (
-        <ModalForm funtion={agregarAplicacion} nameButton={"agregar"} styleButton={<Add/>}>
+        <ModalForm
+            funtion={agregarAplicacion}
+            nameButton={"agregar"}
+            styleButton={<Add />}
+            styleIconButton={styleIconButton}
+        >
             <Typography variant="h4" color="inherit" mb={2}>
                 Agregar aplicacion
             </Typography>
