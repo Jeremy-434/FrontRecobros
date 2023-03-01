@@ -4,11 +4,11 @@ import { handleMessageClose } from '../../store/slices/messageCreated';
 
 export const MessagesComponent = () => {
 
-    const {message, messageBool } = useSelector(state => state.messageCreated);
+    const { message, messageBool, severity } = useSelector(state => state.messageCreated);
     const dispatch = useDispatch();
-    
+
     const handleClose = () => {
-        dispatch( handleMessageClose() )
+        dispatch(handleMessageClose())
     }
 
     return (
@@ -16,7 +16,12 @@ export const MessagesComponent = () => {
             {
                 (message != "") ?
                     <Snackbar open={messageBool} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        <Alert
+                            onClose={handleClose}
+                            severity={severity}
+                            // severity={severity != undefined ? severity : 'success'}
+                            sx={{ width: '100%' }}
+                        >
                             {message}
                         </Alert>
                     </Snackbar> : null

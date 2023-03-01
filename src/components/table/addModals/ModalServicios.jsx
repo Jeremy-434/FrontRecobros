@@ -1,10 +1,10 @@
+import { useState } from 'react';
+
 import { Add } from '@mui/icons-material';
 import { TextField, Typography } from '@mui/material';
-import { useState } from 'react';
+
 import { useForm } from '../../../hooks';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
-import { useDispatch } from 'react-redux';
-import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
 import { ModalForm } from '../layout/ModalForm';
 
 const styleIconButton = {
@@ -44,7 +44,6 @@ export const ModalServicios = () => {
         onInputChange, onResetForm, isFormValid
     } = useForm(formData, formValidations);
 
-    const dispatch = useDispatch();
     const { addServicio } = useCrudServicios();
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -64,8 +63,7 @@ export const ModalServicios = () => {
         )
         onResetForm();
         setFormSubmitted(false);
-        dispatch(setMessage('Servicio agregado correctamente'));
-        dispatch(handleMessageOpen());
+
         return true;
     }
 

@@ -1,6 +1,11 @@
+import { useDispatch } from 'react-redux';
 import { useCreateServicioMutation, useDeleteServicioMutation, useGetServiciosQuery, useUpdateServicioMutation } from '../store/apis/serviciosApi';
+import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudServicios = () => {
+
+    // * Mensaje de confirmacion
+    const dispatch = useDispatch();
 
     // * OBTENER LOS DATOS Y GUARDARLOS EN "aplicaciones"
     // const [aplicaciones, setAplicaciones] = useState([])
@@ -26,7 +31,15 @@ export const useCrudServicios = () => {
             "claseCosto": claseCostoInput,
             "porcentajeComparacion": porcentajeComparacionInput,
             "responsableReporte": responsableReporteInput,
-        }).then( () => refetch());
+        })
+            .then((res) => {
+                dispatch(setMessage({
+                    text: `Servicio creado correctamente`,
+                    severity: 'success'
+                }));
+                dispatch(handleMessageOpen());
+                refetch();
+            });
     }
 
     // * EDITAR UNA APLICACION
@@ -50,13 +63,38 @@ export const useCrudServicios = () => {
             "claseCosto": claseCosto,
             "porcentajeComparacion": porcentajeComparacion,
             "responsableReporte": responsableReporte
-        }).then( () => refetch() );
+        })
+            .then((res) => {
+                dispatch(setMessage({
+                    text: `Servicio actualizado correctamente`,
+                    severity: 'success'
+                }));
+                dispatch(handleMessageOpen());
+                refetch();
+            });
     };
 
     // * BORRAR UN SERVICIO
     const [deleteServicio] = useDeleteServicioMutation();
     const borrarServicio = (idAplicacion) => {
-        deleteServicio(idAplicacion).then( () => refetch());
+        deleteServicio(idAplicacion)
+            .then((res) => {
+                if (res.error) {
+                    dispatch(setMessage({
+                        text: `Lo sentimos, no se pudo borrar el servicio. 
+                        Verifique que no se este usando en ninguna aplicacion`,
+                        severity: 'error'
+                    }));
+                    dispatch(handleMessageOpen());
+                } else {
+                    dispatch(setMessage({
+                        text: `Servicio borrado correctamente`,
+                        severity: 'success'
+                    }));
+                    dispatch(handleMessageOpen());
+                }
+                refetch();
+            });
     }
 
     return {

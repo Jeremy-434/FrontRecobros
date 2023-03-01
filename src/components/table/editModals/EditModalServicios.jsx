@@ -1,10 +1,8 @@
 import { Edit } from '@mui/icons-material';
 import { TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useForm } from '../../../hooks';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
-import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated/messageCreatedSlice';
 import { ModalForm } from '../layout/ModalForm';
 
 const formValidations = {
@@ -45,7 +43,6 @@ export const EditModalServicios = ({
     }, formValidations);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const dispatch = useDispatch();
     const { editServicio } = useCrudServicios();
 
     const editarServicios = () => {
@@ -64,8 +61,6 @@ export const EditModalServicios = ({
             responsableReporteInput,
         )
         setFormSubmitted(false);
-        dispatch(setMessage("Servicio actualizado correctamente"));
-        dispatch(handleMessageOpen());
 
         return true;
     }

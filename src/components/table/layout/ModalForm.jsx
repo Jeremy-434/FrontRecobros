@@ -7,7 +7,6 @@ const styleBoxForm = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'white',
     boxShadow: 24,
     p: 4,
@@ -22,7 +21,9 @@ export const ModalForm = ({
     handleCloseModal,
     styleIconButton,
     hiddenStyle,
-    title
+    title,
+    hiddenStyleCancelar,
+    colorStyleIconButton
 }) => {
 
     const [open, setOpen] = useState(false);
@@ -36,10 +37,16 @@ export const ModalForm = ({
         const call = funtion();
         call && handleClose();
     }
+    const colorButtonStyle = colorStyleIconButton != undefined ? colorStyleIconButton : 'primary';
 
     return (
         <>
-            <IconButton onClick={handleOpen} title={title} color='primary' sx={styleIconButton}>
+            <IconButton
+                onClick={handleOpen}
+                title={title}
+                color={colorButtonStyle}
+                sx={styleIconButton}
+            >
                 {styleButton}
             </IconButton>
             <Modal
@@ -48,10 +55,15 @@ export const ModalForm = ({
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box sx={{ ...styleBoxForm, width: 400 }}>
+                <Box sx={{ ...styleBoxForm }}>
                     {children}
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
-                        <Button variant="contained" color="primary" onClick={handleClose}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleClose}
+                            sx={hiddenStyleCancelar}
+                        >
                             Cancelar
                         </Button>
                         <Button

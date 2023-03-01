@@ -4,11 +4,13 @@ export const messageCreatedSlice = createSlice({
     name: 'messageCreated',
     initialState: {
         message: '',
-        messageBool: false
+        messageBool: false,
+        severity: 'success'
     },
     reducers: {
         setMessage: (state, action ) => {
-            state.message = `${action.payload}`;
+            state.message = `${action.payload.text}`;
+            state.severity = `${action.payload.severity}`;
         },
         handleMessageOpen: (state ) => {
             state.messageBool = true;
