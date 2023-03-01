@@ -2,10 +2,19 @@ import { Add } from '@mui/icons-material';
 import { TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from '../../../hooks';
-import { ModalForm } from '../../filtros/layout/ModalForm';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
 import { useDispatch } from 'react-redux';
 import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
+import { ModalForm } from '../layout/ModalForm';
+
+const styleIconButton = {
+    color: 'white',
+    backgroundColor: 'primary.main',
+    ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
+    position: 'fixed',
+    right: 90,
+    bottom: 50,
+}
 
 const formData = {
     'nombreServicio': '',
@@ -23,16 +32,8 @@ const formValidations = {
     // driver: [(value) => value.length >= 1, 'El driver es obligatorio.'],
     claseActividad: [(value) => value.length >= 1, 'La clase de actividad es obligatoria.'],
     claseCosto: [(value) => value.length >= 1, 'La clase de costo es obligatoria.'],
-    porcentajeComparacion: [(value) => (value >= 1 && value <= 100) || value.length == 0, 'Agrega un porcentaje entre el 1 y 100'],
+    porcentajeComparacion: [(value) => (value >= 1 && value <= 100), 'Agrega un porcentaje entre el 1 y 100'],
     responsableReporte: [(value) => value.length >= 1, 'El responsable del reporte es obligatorio.'],
-}
-const styleIconButton = {
-    color: 'white',
-    backgroundColor: 'primary.main',
-    ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
-    position: 'fixed',
-    right: 90,
-    bottom: 50,
 }
 
 export const ModalServicios = () => {
@@ -81,7 +82,7 @@ export const ModalServicios = () => {
             styleButton={<Add />}
             handleCloseModal={handleCloseModal}
             styleIconButton={styleIconButton}
-        // openMessage={openMessage}
+            title="Agregar"
         >
             <Typography variant="h4" color="inherit" mb={2}>
                 Agregar Servicio

@@ -1,7 +1,7 @@
 import { Delete } from '@mui/icons-material';
 import { LinearProgress, TableBody, TableCell, TableRow, IconButton } from '@mui/material';
 import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
-import { EditModalAplicaciones } from './EditModalAplicaciones';
+import { EditModalAplicaciones } from './editModals';
 import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
 const encabezadoDeTabla = [

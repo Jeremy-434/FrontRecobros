@@ -22,7 +22,7 @@ export const useCrudAplicaciones = () => {
             "nombreSegmento": nombreDeSegmento,
             "idServicio": servicio,
             "idAliado": aliado
-        }).then( () => refetch());
+        }).then(() => refetch());
     }
 
     // * EDITAR UNA APLICACION
@@ -35,20 +35,32 @@ export const useCrudAplicaciones = () => {
         aliadoResponsableInput,
         servicioInput,
     ) => {
+
+        // console.log(`
+        // 🚀 ~ idAplicacion: ${idAplicacion}
+        // 🚀 ~ nombreDeAplicacionInput: ${nombreDeAplicacionInput}
+        // 🚀 ~ estadoDeAplicacionInput: ${estadoDeAplicacionInput}
+        // 🚀 ~ nombreDeSegmentoInput: ${nombreDeSegmentoInput}
+        // 🚀 ~ servicioInput: ${servicioInput}
+        // 🚀 ~ aliadoResponsableInput: ${aliadoResponsableInput}`)
+
         updateAplicacion({
-            "idAplicacion": idAplicacion,
-            "nombreAplicacion": nombreDeAplicacionInput,
-            "estado": estadoDeAplicacionInput,
-            "nombreSegmento": nombreDeSegmentoInput,
-            "idAliado": aliadoResponsableInput,
-            "idServicio": servicioInput,
-        }).then( () => refetch() );
+            idAplicacion: idAplicacion,
+            nombreAplicacion: nombreDeAplicacionInput,
+            estado: estadoDeAplicacionInput,
+            nombreSegmento: nombreDeSegmentoInput,
+            idServicio: servicioInput,
+            idAliado: aliadoResponsableInput,
+        }).then((res) => {
+            // console.log(res);
+            refetch()
+        });
     };
 
     // * BORRAR UNA APLICACION
     const [deleteAplicacion] = useDeleteAplicacionMutation();
     const borrarAplicacion = (idAplicacion) => {
-        deleteAplicacion(idAplicacion).then( () => refetch());
+        deleteAplicacion(idAplicacion).then(() => refetch());
     }
 
     return {

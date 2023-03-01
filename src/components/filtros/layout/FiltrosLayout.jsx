@@ -1,10 +1,9 @@
 import { ArrowBackIos, CleaningServices, Search } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import { Container, Typography, TextField, Stack, Chip, Button, IconButton, Modal } from '@mui/material';
-import { ModalAplicaciones } from '../../table/addModals/ModalAplicaciones';
-import { useForm } from '../../../hooks';
 import { useFiltrosServicios } from '../hooks';
-import { ModalServicios } from '../../table/addModals';
+import { useDispatch } from 'react-redux';
+import { setFilters } from '../../../store/slices/filteredData';
 
 const ArrowBackIosStyle = {
   bgcolor: 'transparent',
@@ -19,12 +18,12 @@ const ArrowBackIosStyle = {
 
 export const FiltrosLayout = ({ children, modal }) => {
 
-  const { filtros, onInputChange, onResetForm } = useForm({
-    'filtros': 10,
-  });
-
-  const {filteredData,searchTerm,handleSearch} = useFiltrosServicios();
-  // console.log("🚀 ~ filteredData:", filteredData)
+  const { filters, searchTerm, handleSearch, clickSearch, onResetHandleSearch } = useFiltrosServicios();
+  const dispatch = useDispatch();
+  const handleSetFilters = () => {
+    dispatch(setFilters([]));
+    onResetHandleSearch();
+  }
 
   return (
     <Container component='div' sx={{ marginTop: 4 }} >
@@ -57,21 +56,19 @@ export const FiltrosLayout = ({ children, modal }) => {
       >
 
         <TextField
-          label="Generar filtros"
+          label="Buscar servicio"
           // name="filtros"
           value={searchTerm}
           onChange={handleSearch}
           fullWidth
           size="small"
+          sx={{ mb: 2 }}
         />
-          {/* {children}
+        {/* {children}
         </TextField> */}
-        {/* <ul>
-          {filteredData.map((item) => (
-            <li key={item.idServicio}>{item.nombreServicio}</li>
-          ))}
-        </ul> */}
-        <Box
+
+        {/* // * CHIPS */}
+        {/* <Box
           component='div'
           padding={2}
           borderRadius={2}
@@ -87,23 +84,27 @@ export const FiltrosLayout = ({ children, modal }) => {
               label="INACT"
             />
           </Stack>
-        </Box>
+        </Box> */}
 
         <Box display='flex' justifyContent='space-between'  >
-          <Button variant="contained" color='primary' sx={{ height: '30px' }} >
+
+          {/* // * BOTON PARA LIMPIAR FILTROS */}
+          <Button
+            onClick={handleSetFilters}
+            variant="contained"
+            color='primary'
+            sx={{ height: '30px' }}
+          >
             <CleaningServices sx={{ fontSize: '16px' }} />
             <Typography marginLeft={1} fontSize='12px'>Limpiar</Typography>
           </Button>
 
-
-          {/* {(modal === 'Aplicaciones')
-            ?
-            <ModalAplicaciones />
-            :
-            <ModalServicios />
-          } */}
-
-          <Button variant="contained" color='primary' sx={{ height: '30px' }} >
+          <Button
+            onClick={clickSearch}
+            variant="contained"
+            color='primary'
+            sx={{ height: '30px' }}
+          >
             <Search sx={{ fontSize: '16px' }} />
             <Typography marginLeft={1} fontSize='12px'>Buscar</Typography>
           </Button>

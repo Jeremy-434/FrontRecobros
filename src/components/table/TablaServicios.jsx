@@ -1,9 +1,9 @@
-import { Delete, Edit } from '@mui/icons-material';
-import { IconButton, LinearProgress, TableBody, TableCell, TableRow } from '@mui/material';
+import { Delete, More } from '@mui/icons-material';
+import { IconButton, LinearProgress, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import { useCrudServicios } from '../../hooks/useCrudServicios';
 import { useFiltrosServicios } from '../filtros/hooks';
-import { ModalServicios } from './addModals';
-import { EditModalServicios } from './EditModalServicios';
+import { EditModalServicios } from './editModals';
+import { ModalForm } from './layout/ModalForm';
 import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
 const encabezadoDeTabla = [
@@ -20,7 +20,7 @@ const encabezadoDeTabla = [
 export const TablaServicios = () => {
 
   const { servicios, error, isLoading, borrarServicio } = useCrudServicios();
-  const { filteredData } = useFiltrosServicios();
+  const { filters } = useFiltrosServicios();
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} >
@@ -37,7 +37,8 @@ export const TablaServicios = () => {
             </TableBody>
             : servicios ?
               <TableBody>
-                {servicios.map((servicio) => {
+                {
+                  (filters.filters.length != 0 ? filters.filters : servicios).map((servicio) => {
                   if (servicio.idServicio) {
                     return (
                       <TableRow
@@ -47,7 +48,21 @@ export const TablaServicios = () => {
                         <StyledTableCell component="th" scope="row">
                           {servicio.nombreServicio}
                         </StyledTableCell>
-                        <StyledTableCell >{servicio.descripcion}</StyledTableCell>
+                        <StyledTableCell >
+                          {servicio.descripcion.slice(0, 30)}... 
+                          <ModalForm
+                            nameButton={"Aceptar"}
+                            styleButton={<More sx={{ fontSize: 16 }} />}
+                            hiddenStyle={{display: 'none'}}
+                            styleIconButton={{ width: 20, padding: 0}}
+                            title="Leer mas..."
+                          >
+                            <Typography variant="h4" color="inherit" mb={2}>
+                              Descripción
+                            </Typography>
+                            {servicio.descripcion}
+                          </ModalForm>
+                        </StyledTableCell>
                         <StyledTableCell >{servicio.driver}</StyledTableCell>
                         <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
                         <StyledTableCell >{servicio.claseCosto}</StyledTableCell>

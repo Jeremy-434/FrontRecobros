@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { aplicacionesApi, serviciosApi } from './apis';
+import { filteredDataSlice } from './slices/filteredData';
 import { messageCreatedSlice } from './slices/messageCreated';
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
 
         // * other states
         messageCreated: messageCreatedSlice.reducer,
+        filteredData: filteredDataSlice.reducer,
     },
 
     middleware: getDefaultMiddleware => getDefaultMiddleware()

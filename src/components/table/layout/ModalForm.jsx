@@ -14,7 +14,16 @@ const styleBoxForm = {
 };
 
 
-export const ModalForm = ({ children, funtion, nameButton, styleButton, handleCloseModal, styleIconButton }) => {
+export const ModalForm = ({
+    children,
+    funtion,
+    nameButton,
+    styleButton,
+    handleCloseModal,
+    styleIconButton,
+    hiddenStyle,
+    title
+}) => {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -30,7 +39,7 @@ export const ModalForm = ({ children, funtion, nameButton, styleButton, handleCl
 
     return (
         <>
-            <IconButton onClick={handleOpen} title='Agregar' color='primary' sx={styleIconButton}>
+            <IconButton onClick={handleOpen} title={title} color='primary' sx={styleIconButton}>
                 {styleButton}
             </IconButton>
             <Modal
@@ -45,7 +54,12 @@ export const ModalForm = ({ children, funtion, nameButton, styleButton, handleCl
                         <Button variant="contained" color="primary" onClick={handleClose}>
                             Cancelar
                         </Button>
-                        <Button variant="contained" color="primary" onClick={() => { handleButton() }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => { handleButton() }}
+                            sx={hiddenStyle}
+                        >
                             {nameButton}
                         </Button>
                     </Box>

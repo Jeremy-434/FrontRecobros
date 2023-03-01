@@ -1,10 +1,21 @@
 import { Edit } from '@mui/icons-material';
 import { TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useForm } from '../../hooks';
-import { useCrudServicios } from '../../hooks/useCrudServicios';
-import { handleMessageOpen, setMessage } from '../../store/slices/messageCreated/messageCreatedSlice';
-import { ModalForm } from '../filtros/layout/ModalForm';
+import { useForm } from '../../../hooks';
+import { useCrudServicios } from '../../../hooks/useCrudServicios';
+import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated/messageCreatedSlice';
+import { ModalForm } from '../layout/ModalForm';
+
+const formValidations = {
+    nombreServicioInput: [(value) => value.length >= 2, 'El nombre de servicio es obligatorio'],
+    // descripcion: [(value) => value.length >= 1, 'Agrega una descripcion'],
+    // driver: [(value) => value.length >= 1, 'El driver es obligatorio.'],
+    claseActividadInput: [(value) => value.length >= 1, 'La clase de actividad es obligatoria.'],
+    claseCostoInput: [(value) => value.length >= 1, 'La clase de costo es obligatoria.'],
+    porcentajeComparacionInput: [(value) => (value >= 1 && value <= 100), 'Agrega un porcentaje entre el 1 y 100'],
+    responsableReporteInput: [(value) => value.length >= 1, 'El responsable del reporte es obligatorio.'],
+}
 
 export const EditModalServicios = ({
     idServicio,
@@ -18,15 +29,11 @@ export const EditModalServicios = ({
 }) => {
 
     const {
-        nombreServicioInput,
-        descripcionInput,
-        driverInput,
-        claseActividadInput,
-        claseCostoInput,
-        porcentajeComparacionInput,
-        responsableReporteInput,
-        onInputChange,
-        onResetForm
+        nombreServicioInput, descripcionInput, driverInput, claseActividadInput,
+        claseCostoInput, porcentajeComparacionInput, responsableReporteInput,
+        nombreServicioInputValid, descripcionInputValid, driverInputValid, claseActividadInputValid,
+        claseCostoInputValid, porcentajeComparacionInputValid, responsableReporteInputValid,
+        onInputChange, onResetForm, isFormValid
     } = useForm({
         'nombreServicioInput': nombreServicio,
         'descripcionInput': descripcion,
@@ -35,12 +42,17 @@ export const EditModalServicios = ({
         'claseCostoInput': claseCosto,
         'porcentajeComparacionInput': porcentajeComparacion,
         'responsableReporteInput': responsableReporte,
-    });
+    }, formValidations);
 
-    const { editServicio } = useCrudServicios();
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const dispatch = useDispatch();
+    const { editServicio } = useCrudServicios();
 
     const editarServicios = () => {
+        setFormSubmitted(true);
+
+        if (!isFormValid) return;
+
         editServicio(
             idServicio,
             nombreServicioInput,
@@ -51,30 +63,36 @@ export const EditModalServicios = ({
             porcentajeComparacionInput,
             responsableReporteInput,
         )
-        dispatch( setMessage("Servicio actualizado correctamente") );
-        dispatch( handleMessageOpen() );
+        setFormSubmitted(false);
+        dispatch(setMessage("Servicio actualizado correctamente"));
+        dispatch(handleMessageOpen());
 
         return true;
     }
 
+    const handleCloseModal = () => {
+        onResetForm();
+        setFormSubmitted(false);
+    }
+
     return (
-        <ModalForm funtion={editarServicios} nameButton={"Actualizar"} styleButton={<Edit />}>
+        <ModalForm
+            funtion={editarServicios}
+            nameButton={"Actualizar"}
+            styleButton={<Edit />}
+            handleCloseModal={handleCloseModal}
+            title="Actualizar"
+        >
             <Typography variant="h4" color="inherit" mb={2}>
                 Editar servicio
             </Typography>
-            {/* <TextField
-                label="Id"
-                value={idServicio}
-                size="small"
-                disabled
-                fullWidth
-                sx={{ mb: 2 }}
-            /> */}
             <TextField
                 label="Nombre de servicio"
                 name='nombreServicioInput'
                 value={nombreServicioInput}
                 onChange={onInputChange}
+                error={!!nombreServicioInputValid && formSubmitted}
+                helperText={formSubmitted ? nombreServicioInputValid : null}
                 size="small"
                 fullWidth
                 sx={{ mb: 2 }}
@@ -84,6 +102,8 @@ export const EditModalServicios = ({
                 name='descripcionInput'
                 value={descripcionInput}
                 onChange={onInputChange}
+                error={!!descripcionInputValid && formSubmitted}
+                helperText={formSubmitted ? descripcionInputValid : null}
                 size="small"
                 fullWidth
                 sx={{ mb: 2 }}
@@ -93,6 +113,8 @@ export const EditModalServicios = ({
                 name='driverInput'
                 value={driverInput}
                 onChange={onInputChange}
+                error={!!driverInputValid && formSubmitted}
+                helperText={formSubmitted ? driverInputValid : null}
                 size="small"
                 fullWidth
                 sx={{ mb: 2 }}
@@ -102,6 +124,8 @@ export const EditModalServicios = ({
                 name='claseActividadInput'
                 value={claseActividadInput}
                 onChange={onInputChange}
+                error={!!claseActividadInputValid && formSubmitted}
+                helperText={formSubmitted ? claseActividadInputValid : null}
                 size="small"
                 fullWidth
                 sx={{ mb: 2 }}
@@ -111,6 +135,8 @@ export const EditModalServicios = ({
                 name='claseCostoInput'
                 value={claseCostoInput}
                 onChange={onInputChange}
+                error={!!claseCostoInputValid && formSubmitted}
+                helperText={formSubmitted ? claseCostoInputValid : null}
                 size="small"
                 fullWidth
                 sx={{ mb: 2 }}
@@ -120,6 +146,8 @@ export const EditModalServicios = ({
                 name='porcentajeComparacionInput'
                 value={porcentajeComparacionInput}
                 onChange={onInputChange}
+                error={!!porcentajeComparacionInputValid && formSubmitted}
+                helperText={formSubmitted ? porcentajeComparacionInputValid : null}
                 size="small"
                 fullWidth
                 type="number"
@@ -130,6 +158,8 @@ export const EditModalServicios = ({
                 name='responsableReporteInput'
                 value={responsableReporteInput}
                 onChange={onInputChange}
+                error={!!responsableReporteInputValid && formSubmitted}
+                helperText={formSubmitted ? responsableReporteInputValid : null}
                 size="small"
                 fullWidth
             />
