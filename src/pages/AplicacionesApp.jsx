@@ -3,6 +3,7 @@ import { FiltrosAplicaciones, TablaAplicaciones } from '../components/';
 import { ModalAplicaciones } from '../components/table/addModals';
 
 export const AplicacionesApp = () => {
+
   return (
     <Grid
       display='flex'

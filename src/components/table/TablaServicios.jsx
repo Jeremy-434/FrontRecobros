@@ -1,5 +1,6 @@
 import { Delete, More } from '@mui/icons-material';
 import { Alert, IconButton, LinearProgress, TableBody, TableCell, TableRow, Typography, Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { useCrudServicios } from '../../hooks/useCrudServicios';
 import { useFiltrosServicios } from '../filtros/hooks';
 import { EditModalServicios } from './editModals';
@@ -19,7 +20,7 @@ const encabezadoDeTabla = [
 
 export const TablaServicios = () => {
 
-  const { servicios, error, isLoading, borrarServicio } = useCrudServicios();
+  const { servicios, error, borrarServicio } = useCrudServicios();
   const { filters } = useFiltrosServicios();
 
   return (
@@ -27,15 +28,7 @@ export const TablaServicios = () => {
       {
         error
           ? <>Oh no, algo ha ocurrido!</>
-          : isLoading ?
-            <TableBody sx={{ width: '100%' }}>
-              <TableRow>
-                <TableCell>
-                  <LinearProgress />
-                </TableCell>
-              </TableRow>
-            </TableBody>
-            : servicios ?
+          : servicios ?
               <TableBody>
                 {
                   (filters.filters.length != 0 ? filters.filters : servicios).map((servicio) => {

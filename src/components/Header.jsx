@@ -1,10 +1,15 @@
-import { Logout} from '@mui/icons-material';
-import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import { Logout } from '@mui/icons-material';
+import { AppBar, Box, Toolbar, Typography, Button, IconButton, LinearProgress } from '@mui/material';
+import { useCrudAplicaciones } from '../hooks';
+import { useCrudServicios } from '../hooks/useCrudServicios';
 
 export const Header = () => {
 
+  const { isLoading: isLoadingServicios } = useCrudServicios();
+  const { isLoading: isLoadingAplicaciones } = useCrudAplicaciones();
+
   return (
-    <Box sx={{ flexGrow: 1}} position='fixed' width='100%' zIndex={10}>
+    <Box sx={{ flexGrow: 1 }} position='fixed' width='100%' zIndex={10}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -43,6 +48,7 @@ export const Header = () => {
           </Button>
         </Toolbar>
       </AppBar>
+      { (isLoadingServicios || isLoadingAplicaciones) && <LinearProgress color="secondary" />}
     </Box>
   );
 }
