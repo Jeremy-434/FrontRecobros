@@ -4,7 +4,7 @@ import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudServicios = () => {
 
-    // * Mensaje de confirmacion
+    // * Para hacer el "dispatch" del Mensaje de confirmacion
     const dispatch = useDispatch();
 
     // * OBTENER LOS DATOS Y GUARDARLOS EN "aplicaciones"

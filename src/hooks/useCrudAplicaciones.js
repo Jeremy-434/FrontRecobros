@@ -1,6 +1,11 @@
+import { useDispatch } from 'react-redux';
 import { useCreateAplicacionMutation, useDeleteAplicacionMutation, useGetAplicacionesQuery, useUpdateAplicacionMutation } from '../store/apis/aplicacionesApi';
+import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudAplicaciones = () => {
+
+    // * Para hacer el "dispatch" del Mensaje de confirmacion
+    const dispatch = useDispatch();
 
     // * OBTENER LOS DATOS Y GUARDARLOS EN "aplicaciones"
     // const [aplicaciones, setAplicaciones] = useState([])
@@ -22,7 +27,14 @@ export const useCrudAplicaciones = () => {
             "nombreSegmento": nombreDeSegmento,
             "idServicio": servicio,
             "idAliado": aliado
-        }).then(() => refetch());
+        }).then((res) => {
+            dispatch(setMessage({
+                text: `Aplicacion creada correctamente`,
+                severity: 'success'
+            }));
+            dispatch(handleMessageOpen());
+            refetch();
+        });
     }
 
     // * EDITAR UNA APLICACION
@@ -52,15 +64,27 @@ export const useCrudAplicaciones = () => {
             idServicio: servicioInput,
             idAliado: aliadoResponsableInput,
         }).then((res) => {
-            // console.log(res);
-            refetch()
+            dispatch(setMessage({
+                text: `Aplicacion actualizada correctamente`,
+                severity: 'success'
+            }));
+            dispatch(handleMessageOpen());
+            refetch();
         });
     };
 
     // * BORRAR UNA APLICACION
     const [deleteAplicacion] = useDeleteAplicacionMutation();
     const borrarAplicacion = (idAplicacion) => {
-        deleteAplicacion(idAplicacion).then(() => refetch());
+        deleteAplicacion(idAplicacion)
+            .then((res) => {
+                dispatch(setMessage({
+                    text: `Aplicacion borrada correctamente`,
+                    severity: 'success'
+                }));
+                dispatch(handleMessageOpen());
+                refetch();
+            });
     }
 
     return {

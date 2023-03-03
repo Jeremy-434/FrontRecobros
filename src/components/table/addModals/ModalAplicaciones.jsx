@@ -1,12 +1,12 @@
+import { useState } from 'react';
+
 import { Add } from '@mui/icons-material';
 import { MenuItem, TextField, Typography } from '@mui/material';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { useForm } from '../../../hooks';
+import { ModalForm } from '../layout/ModalForm';
 import { useCrudAplicaciones } from '../../../hooks/useCrudAplicaciones';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
-import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
-import { ModalForm } from '../layout/ModalForm';
 
 const styleIconButton = {
     color: 'white',
@@ -43,7 +43,6 @@ export const ModalAplicaciones = () => {
 
     const { aplicaciones, addAplicacion } = useCrudAplicaciones();
     const { servicios } = useCrudServicios();
-    const dispatch = useDispatch();
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const agregarAplicacion = () => {
@@ -60,8 +59,6 @@ export const ModalAplicaciones = () => {
         )
         onResetForm();
         setFormSubmitted(false);
-        dispatch(setMessage('Aplicacion agregada correctamente'));
-        dispatch(handleMessageOpen());
         return true;
     }
 

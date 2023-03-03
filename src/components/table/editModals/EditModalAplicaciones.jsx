@@ -1,11 +1,9 @@
 import { Edit } from '@mui/icons-material';
 import { MenuItem, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useForm } from '../../../hooks';
 import { useCrudAplicaciones } from '../../../hooks/useCrudAplicaciones';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
-import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
 import { ModalForm } from '../layout/ModalForm';
 
 const formValidations = {
@@ -38,7 +36,6 @@ export const EditModalAplicaciones = ({
     }, formValidations);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const dispatch = useDispatch();
     const { aplicaciones, editAplicaciones } = useCrudAplicaciones();
     const { servicios } = useCrudServicios();
 
@@ -56,8 +53,6 @@ export const EditModalAplicaciones = ({
             servicioInput,
         )
         setFormSubmitted(false);
-        dispatch(setMessage("Aplicacion actualizada correctamente"));
-        dispatch(handleMessageOpen());
 
         return true;
     }
