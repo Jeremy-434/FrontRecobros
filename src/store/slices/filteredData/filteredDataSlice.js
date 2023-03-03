@@ -3,11 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 export const filteredDataSlice = createSlice({
     name: 'filteredData',
     initialState: {
-        filters: []
+        filterServicios: [],
+        filterAplicaciones: []
     },
     reducers: {
         setFilters: (state, action  ) => {
-            state.filters = action.payload;
+            switch (action.type) {
+                case 'Aplicacion':
+                    state.filterAplicaciones = action.payload;
+                case 'Servicio':
+                    state.filterServicios = action.payload;
+                default:
+                    break;
+            }
         },
     }
 });

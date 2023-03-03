@@ -1,9 +1,10 @@
-import { ArrowBackIos, CleaningServices, Search } from '@mui/icons-material';
 import { Box } from '@mui/system';
+import { ArrowBackIos, CleaningServices, Search } from '@mui/icons-material';
 import { Container, Typography, TextField, Button, IconButton } from '@mui/material';
-import { useDispatch } from 'react-redux';
+
+import { useCrudAplicaciones } from '../../hooks/useCrudAplicaciones';
+import { useForm } from '../../hooks/useForm';
 import { useFiltrosAplicaciones } from './hooks';
-import { setFilters } from '../../store/slices/filteredData';
 
 const ArrowBackIosStyle = {
   bgcolor: 'transparent',
@@ -17,11 +18,14 @@ const ArrowBackIosStyle = {
 
 export const FiltrosAplicaciones = () => {
 
-  const { searchTerm, handleSearch, clickSearch, onResetHandleSearch } = useFiltrosAplicaciones();
-  const dispatch = useDispatch();
-  const handleDeleteFilters = () => {
-    dispatch(setFilters([]));
-    onResetHandleSearch();
+  const { searchTerm, onInputChange, onResetForm } = useForm({ searchTerm: '' });
+
+  const { aplicaciones } = useCrudAplicaciones();
+  const { handleDeleteFilters, clickSearch } = useFiltrosAplicaciones(aplicaciones, searchTerm);
+
+  const handleCleanSearch = () => {
+    handleDeleteFilters();
+    onResetForm();
   }
 
   return (
@@ -51,9 +55,9 @@ export const FiltrosAplicaciones = () => {
       >
         <TextField
           label="Buscar servicio"
-          // name="filtros"
+          name="searchTerm"
           value={searchTerm}
-          onChange={handleSearch}
+          onChange={onInputChange}
           fullWidth
           size="small"
           sx={{ mb: 2 }}
@@ -63,7 +67,7 @@ export const FiltrosAplicaciones = () => {
 
           {/* // * BOTON PARA LIMPIAR FILTROS */}
           <Button
-            onClick={handleDeleteFilters}
+            onClick={handleCleanSearch}
             variant="contained"
             color='primary'
             sx={{ height: '30px' }}

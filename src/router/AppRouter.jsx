@@ -1,32 +1,19 @@
-import { Container } from '@mui/material';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { DrawerLeft, Header, MessagesComponent } from '../components/';
+
 import { AplicacionesApp, ServiciosApp } from '../pages';
-
-const drawerWidth = 240;
-
-const styles = {
-  display: 'flex',
-  alignItems: 'center',
-  width: { xs: '100%', sm: `calc(100% - ${drawerWidth}px) ` },
-  // height: { xs: '100%', sm: `calc(100vh - 71px) ` },
-  marginLeft: { xs: 0, sm: `${drawerWidth}px` },
-  overflowY: 'scroll'
-}
+import { DrawerLeft, Header, MessagesComponent } from '../components/';
+import { ContainerLayout } from './layout/ContainerLayout';
+import { FiltersProvider } from '../context';
 
 export const AppRouter = () => {
   return (
-    <>
+    <FiltersProvider>
 
       <Header />
       <DrawerLeft />
 
-      <Container
-        sx={styles}
-      // sx={{
-      //   marginLeft
-      // }}
-      >
+      <ContainerLayout>
+
         <Routes>
 
           <Route path="servicios" element={<ServiciosApp />} />
@@ -37,7 +24,7 @@ export const AppRouter = () => {
 
         <MessagesComponent />
 
-      </Container>
-    </>
+      </ContainerLayout>
+    </FiltersProvider>
   )
 }

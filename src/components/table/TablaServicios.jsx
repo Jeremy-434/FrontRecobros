@@ -1,6 +1,5 @@
 import { Delete, More } from '@mui/icons-material';
-import { Alert, IconButton, LinearProgress, TableBody, TableCell, TableRow, Typography, Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { IconButton, TableBody, TableRow, Typography } from '@mui/material';
 import { useCrudServicios } from '../../hooks/useCrudServicios';
 import { useFiltrosServicios } from '../filtros/hooks';
 import { EditModalServicios } from './editModals';
@@ -21,7 +20,7 @@ const encabezadoDeTabla = [
 export const TablaServicios = () => {
 
   const { servicios, error, borrarServicio } = useCrudServicios();
-  const { filters } = useFiltrosServicios();
+  const { dataFilters } = useFiltrosServicios(servicios);
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} >
@@ -31,7 +30,7 @@ export const TablaServicios = () => {
           : servicios ?
               <TableBody>
                 {
-                  (filters.filters.length != 0 ? filters.filters : servicios).map((servicio) => {
+                  (dataFilters).map((servicio) => {
                     if (servicio.idServicio) {
                       return (
                         <TableRow

@@ -1,44 +1,28 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCrudServicios } from '../../../hooks/useCrudServicios';
-import { setFilters } from '../../../store/slices/filteredData';
+import { useContext } from 'react';
+import { FiltersContext } from '../../../context/filters/filtersContext';
 
-export const useFiltrosServicios = () => {
-  const { servicios } = useCrudServicios();
-  const [searchTerm, setSearchTerm] = useState("");
-  // const [filteredData, setFilteredData] = useState(servicios);
-  const filters = useSelector(state => state.filteredData);
+export const useFiltrosServicios = (data, valueInputFiltro) => {
 
-  const dispatch = useDispatch();
-  const setFilteredData = (dataFilters) => {
-    dispatch(setFilters(dataFilters))
-  }
+  // * Contexto global para filtros
+  const {filterServicios, setFilterServicios} = useContext( FiltersContext );
 
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-
-    const value = event.target.value.toLowerCase();
-    setSearchTerm(value);
+  const handleDeleteFilters = () => {
+    setFilterServicios([]);
   };
-  const onResetHandleSearch = () => {
-    setSearchTerm("");
-  }
 
-  const clickSearch = (event) => {
-    const results = servicios.filter((item) =>
-      item.nombreServicio.toLowerCase().includes(searchTerm)
+  const clickSearch = () => {
+    const results = data.filter((item) =>
+      item.nombreServicio.toLowerCase().includes(valueInputFiltro)
     );
 
-    setFilteredData(results);
-  }
+    setFilterServicios(results);
+  };
 
+  const dataFilters = filterServicios.length != 0 ? filterServicios : data
 
   return {
-    searchTerm,
-    filters,
-    handleSearch,
+    dataFilters,
     clickSearch,
-    onResetHandleSearch
+    handleDeleteFilters
   }
 }  

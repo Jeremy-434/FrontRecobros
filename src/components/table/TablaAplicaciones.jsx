@@ -17,7 +17,7 @@ const encabezadoDeTabla = [
 export const TablaAplicaciones = () => {
 
   const { aplicaciones, borrarAplicacion } = useCrudAplicaciones();
-  const { filters } = useFiltrosAplicaciones();
+  const { dataFilters } = useFiltrosAplicaciones(aplicaciones);
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1200} >
@@ -25,7 +25,7 @@ export const TablaAplicaciones = () => {
         aplicaciones ?
           <TableBody>
             {
-              (filters.filters.length != 0 ? filters.filters : aplicaciones).map((apli) => (
+              (dataFilters).map((apli) => (
               <TableRow
                 key={apli.idAplicacion}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

@@ -1,43 +1,28 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCrudAplicaciones } from '../../../hooks/useCrudAplicaciones';
-import { setFilters } from '../../../store/slices/filteredData';
+import { useContext } from 'react';
+import { FiltersContext } from '../../../context/filters/filtersContext';
 
-export const useFiltrosAplicaciones = () => {
-  const { aplicaciones } = useCrudAplicaciones();
-  const [searchTerm, setSearchTerm] = useState("");
-  // const [filteredData, setFilteredData] = useState(aplicaciones);
-  const filters = useSelector(state => state.filteredData);
+export const useFiltrosAplicaciones = (data, valueInputFiltro) => {
 
-  const dispatch = useDispatch();
-  const setFilteredData = (dataFilters) => {
-    dispatch(setFilters(dataFilters))
-  }
+  // * Contexto global para filtros
+  const {filterAplicaciones, setFilterAplicaciones} = useContext( FiltersContext );
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-
-    const value = event.target.value.toLowerCase();
-    setSearchTerm(value);
+  const handleDeleteFilters = () => {
+    setFilterAplicaciones([]);
   };
-  const onResetHandleSearch = () => {
-    setSearchTerm("");
-  }
 
   const clickSearch = () => {
-    const results = aplicaciones.filter((item) =>
-      item.nombreAplicacion.toLowerCase().includes(searchTerm)
+    const results = data.filter((item) =>
+      item.nombreAplicacion.toLowerCase().includes(valueInputFiltro)
     );
 
-    setFilteredData(results);
-  }
+    setFilterAplicaciones(results);
+  };
 
+  const dataFilters = filterAplicaciones.length != 0 ? filterAplicaciones : data
 
   return {
-    searchTerm,
-    filters,
-    handleSearch,
+    dataFilters,
     clickSearch,
-    onResetHandleSearch
+    handleDeleteFilters
   }
 }  

@@ -7,7 +7,7 @@ export const AdmPortfolioApp = () => {
   return (
     <Provider store={store}>
       <AppTheme>
-          <AppRouter/>
+        <AppRouter />
       </AppTheme>
     </Provider>
   )
