@@ -54,7 +54,7 @@ export const FiltrosAplicaciones = () => {
         marginY={2}
       >
         <TextField
-          label="Buscar servicio"
+          label="Buscar aplicacion"
           name="searchTerm"
           value={searchTerm}
           onChange={onInputChange}

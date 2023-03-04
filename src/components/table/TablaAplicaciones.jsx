@@ -6,7 +6,7 @@ import { EditModalAplicaciones } from './editModals';
 import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
 const encabezadoDeTabla = [
-  'Nombre de aplicación',
+  'Aplicación',
   'Estado de aplicación (ACT/INACT)',
   'Nombre de segmento',
   'Aliado responsable',

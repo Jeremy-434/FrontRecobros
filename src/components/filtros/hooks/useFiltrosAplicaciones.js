@@ -12,7 +12,7 @@ export const useFiltrosAplicaciones = (data, valueInputFiltro) => {
 
   const clickSearch = () => {
     const results = data.filter((item) =>
-      item.nombreAplicacion.toLowerCase().includes(valueInputFiltro)
+      item.nombreAplicacion.toLowerCase().includes(valueInputFiltro.toLowerCase())
     );
 
     setFilterAplicaciones(results);

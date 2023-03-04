@@ -9,12 +9,14 @@ export const StyledTableCell = styled(TableCell)(({ }) => ({
     textAlign: 'right',
     fontSize: 14,
     fontWeight: 600,
-    height: '60px'
+    height: '60px',
+    padding: 6
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 12,
     textAlign: 'right',
-    height: '50px'
+    height: '50px',
+    padding: 6,
   },
 }));
 

@@ -4,7 +4,7 @@ import { FiltersContext } from './filtersContext';
 export const FiltersProvider = ({ children }) => {
 
     const [filterServicios, setFilterServicios] = useState([]);
-    const [filterAplicaciones, setFilterAplicaciones] = useState([])
+    const [filterAplicaciones, setFilterAplicaciones] = useState([]);
 
     return (
         <FiltersContext.Provider value={{

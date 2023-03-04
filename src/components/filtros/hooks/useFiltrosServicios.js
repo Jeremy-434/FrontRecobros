@@ -12,7 +12,7 @@ export const useFiltrosServicios = (data, valueInputFiltro) => {
 
   const clickSearch = () => {
     const results = data.filter((item) =>
-      item.nombreServicio.toLowerCase().includes(valueInputFiltro)
+      item.nombreServicio.toLowerCase().includes(valueInputFiltro.toLowerCase())
     );
 
     setFilterServicios(results);
