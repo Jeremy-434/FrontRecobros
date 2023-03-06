@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} position='fixed' width='100%' zIndex={10}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"

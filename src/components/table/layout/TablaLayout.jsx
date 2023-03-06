@@ -1,4 +1,4 @@
-import { Table, TableContainer, TableHead, TableRow, Paper, LinearProgress } from '@mui/material';
+import { Table, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 
@@ -25,7 +25,7 @@ export const TablaLayout = ({ children, encabezadoDeTabla, minWidth }) => {
 
   return (
     <>
-      <TableContainer component={Paper} >
+      <TableContainer component={Paper} sx={{ overflow: 'auto' }} >
         <Table sx={{ minWidth: minWidth }} aria-label="simple table">
           <TableHead sx={{ '&.MuiTableCell-root': { height: '70px' } }} >
             <TableRow >

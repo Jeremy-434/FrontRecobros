@@ -11,9 +11,9 @@ const styleIconButton = {
     color: 'white',
     backgroundColor: 'primary.main',
     ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
-    position: 'fixed',
-    right: 90,
-    bottom: 50,
+    position: 'absolute',
+    right: 100,
+    top: 100,
 }
 
 const formData = {
@@ -27,12 +27,12 @@ const formData = {
 }
 
 const formValidations = {
-    nombreServicio: [(value) => value.length >= 2, 'El nombre de servicio es obligatorio'],
-    // descripcion: [(value) => value.length >= 1, 'Agrega una descripcion'],
+    nombreServicio: [(value) => value.length >= 2, 'El nombre de servicio es obligatorio.'],
+    // descripcion: [(value) => value.length >= 1, 'Agrega una descripcion.'],
     // driver: [(value) => value.length >= 1, 'El driver es obligatorio.'],
     claseActividad: [(value) => value.length >= 1, 'La clase de actividad es obligatoria.'],
     claseCosto: [(value) => value.length >= 1, 'La clase de costo es obligatoria.'],
-    porcentajeComparacion: [(value) => (value >= 1 && value <= 100), 'Agrega un porcentaje entre el 1 y 100'],
+    porcentajeComparacion: [(value) => (value >= 1 && value <= 100), 'Agrega un porcentaje entre el 1 y 100.'],
     responsableReporte: [(value) => value.length >= 1, 'El responsable del reporte es obligatorio.'],
 }
 

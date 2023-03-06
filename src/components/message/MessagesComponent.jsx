@@ -15,12 +15,18 @@ export const MessagesComponent = () => {
         <>
             {
                 (message != "") ?
-                    <Snackbar open={messageBool} autoHideDuration={6000} onClose={handleClose}>
+                    <Snackbar
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        open={messageBool}
+                        autoHideDuration={6000}
+                        onClose={handleClose}
+                    >
                         <Alert
                             onClose={handleClose}
                             severity={severity}
-                            // severity={severity != undefined ? severity : 'success'}
-                            sx={{ width: '100%' }}
+                            sx={{
+                                width: '100%'
+                            }}
                         >
                             {message}
                         </Alert>

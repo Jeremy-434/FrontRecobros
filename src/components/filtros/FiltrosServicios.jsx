@@ -32,9 +32,12 @@ export const FiltrosServicios = () => {
   return (
     <Container component='div' sx={{ marginTop: 4 }} >
       <Box component='div' display='flex' alignItems='center' marginBottom={4}>
-        <IconButton sx={ArrowBackIosStyle} >
+
+        {/* // * BOTON para regresar */}
+        {/* <IconButton sx={ArrowBackIosStyle} >
           <ArrowBackIos />
-        </IconButton>
+        </IconButton> */}
+
         <Typography
           variant="h2"
           color="initial"

@@ -76,7 +76,7 @@ export const EditModalServicios = ({
             nameButton={"Actualizar"}
             styleButton={<Edit />}
             handleCloseModal={handleCloseModal}
-            title="Actualizar"
+            title="Editar"
         >
             <Typography variant="h4" color="inherit" mb={2}>
                 Editar servicio

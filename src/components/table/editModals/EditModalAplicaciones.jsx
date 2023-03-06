@@ -10,8 +10,8 @@ const formValidations = {
     nombreDeAplicacionInput: [(value) => value.length >= 2, 'El nombre de la aplicacion es obligatorio'],
     estadoDeAplicacionInput: [(value) => value.length >= 1, 'El estado es obligatorio.'],
     // nombreDeSegmento: [(value) => value.length >= 1, 'El nombre del segmento es obligatorio.'],
-    servicioInput: [(value) => value >= 1, 'Elije algun servicio'],
-    aliadoResponsableInput: [(value) => value >= 1, 'Elije algun aliado asociado'],
+    servicioInput: [(value) => value >= 1, 'Selecciona algun servicio'],
+    aliadoResponsableInput: [(value) => value >= 1, 'Selecciona algun aliado'],
 }
 
 export const EditModalAplicaciones = ({
@@ -68,7 +68,7 @@ export const EditModalAplicaciones = ({
             nameButton={"Actualizar"}
             styleButton={<Edit />}
             handleCloseModal={handleCloseModal}
-            title="Actualizar"
+            title="Editar"
         >
             <Typography variant="h4" color="inherit" mb={2}>
                 Editar aplicacion

@@ -12,14 +12,18 @@ const styleIconButton = {
     color: 'white',
     backgroundColor: 'primary.main',
     ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
-    position: 'fixed',
-    right: 90,
-    bottom: 50,
+    position: 'absolute',
+    'border-radius': '100px',
+    width: '40px',
+    right: 100,
+    top: 100,
+    // left: 100,
+    // bottom: 100,
 }
 
 const formData = {
     'nombreDeAplicacion': '',
-    'estadoDeAplicacion': '',
+    'estadoDeAplicacion': 'Activo',
     'nombreDeSegmento': '',
     'servicio': '',
     'aliado': ''
@@ -29,8 +33,8 @@ const formValidations = {
     nombreDeAplicacion: [(value) => value.length >= 2, 'El nombre de la aplicacion es obligatorio'],
     estadoDeAplicacion: [(value) => value.length >= 1, 'El estado es obligatorio.'],
     // nombreDeSegmento: [(value) => value.length >= 1, 'El nombre del segmento es obligatorio.'],
-    servicio: [(value) => value >= 1, 'Elije algun servicio'],
-    aliado: [(value) => value >= 1, 'Elije algun aliado asociado'],
+    servicio: [(value) => value >= 1, 'Selecciona algun servicio'],
+    aliado: [(value) => value >= 1, 'Selecciona algun aliado'],
 }
 
 export const ModalAplicaciones = () => {
