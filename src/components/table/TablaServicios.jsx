@@ -8,13 +8,13 @@ import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
 const encabezadoDeTabla = [
   'Servicio',
-  'Descripción del servicio',
-  'Driver (No. de usuarios)',
-  'Clase de actividad',
-  'Clase de costo',
-  'Responsable del reporte',
-  'Porcentaje de comparacion',
-  ''
+  'Driver',
+  'Cl. Actividad',
+  'Cl. Costo',
+  'Responsable',
+  'Comparacion',
+  'Descripción',
+  'Acciones -',
 ]
 
 export const TablaServicios = () => {
@@ -40,8 +40,13 @@ export const TablaServicios = () => {
                           <StyledTableCell component="th" scope="row">
                             {servicio.nombreServicio}
                           </StyledTableCell>
+                          <StyledTableCell >{servicio.driver}</StyledTableCell>
+                          <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
+                          <StyledTableCell >{servicio.claseCosto}</StyledTableCell>
+                          <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
+                          <StyledTableCell >{servicio.porcentajeComparacion}%</StyledTableCell>
                           <StyledTableCell >
-                            {servicio.descripcion.slice(0, 30)}...
+                            {servicio.descripcion.slice(0, 10)}...
                             <ModalForm
                               nameButton={"Aceptar"}
                               styleButton={<More sx={{ fontSize: 16 }} />}
@@ -55,12 +60,7 @@ export const TablaServicios = () => {
                               {servicio.descripcion}
                             </ModalForm>
                           </StyledTableCell>
-                          <StyledTableCell >{servicio.driver}</StyledTableCell>
-                          <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
-                          <StyledTableCell >{servicio.claseCosto}</StyledTableCell>
-                          <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
-                          <StyledTableCell >{servicio.porcentajeComparacion}</StyledTableCell>
-                          <StyledTableCell sx={{ display: 'flex', alignItems: 'center' }} >
+                          <StyledTableCell >
                             <EditModalServicios idServicio={servicio.idServicio} {...servicio} />
                             {/* <ModalForm
                               nameButton={"Borrar"}
@@ -90,7 +90,7 @@ export const TablaServicios = () => {
                             </ModalForm> */}
                             <IconButton
                             color="error"
-                            title='Borrar'
+                            title="Borrar"
                             onClick={() => { borrarServicio(servicio.idServicio) }}
                           >
                             <Delete />

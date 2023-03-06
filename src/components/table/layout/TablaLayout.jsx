@@ -7,16 +7,21 @@ export const StyledTableCell = styled(TableCell)(({ }) => ({
     backgroundColor: '#3C6309',
     color: 'white',
     textAlign: 'right',
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 600,
     height: '60px',
-    padding: 6
+    padding: 4,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 12,
+    fontWeight: 400,
     textAlign: 'right',
-    height: '50px',
+    alignContent: 'right',
+    height: '40px',
+    // width: '100px',
+    // 'max-width': '100px',
     padding: 6,
+    margin: 0,
   },
 }));
 
@@ -36,7 +41,7 @@ export const TablaLayout = ({ children, encabezadoDeTabla, minWidth }) => {
           </TableHead>
 
           {children}
-          
+
         </Table>
       </TableContainer>
     </>

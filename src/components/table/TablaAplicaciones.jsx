@@ -7,11 +7,11 @@ import { StyledTableCell, TablaLayout } from './layout/TablaLayout';
 
 const encabezadoDeTabla = [
   'Aplicación',
-  'Estado de aplicación (ACT/INACT)',
-  'Nombre de segmento',
-  'Aliado responsable',
+  'Estado',
+  'Segmento',
+  'Aliado',
   'Servicio',
-  ''
+  'Acciones'
 ]
 
 export const TablaAplicaciones = () => {
@@ -37,11 +37,11 @@ export const TablaAplicaciones = () => {
                 <StyledTableCell >{apli.nombreSegmento}</StyledTableCell>
                 <StyledTableCell >{apli.idAliadoNavigation.nombreAliado}</StyledTableCell>
                 <StyledTableCell >{apli.idServicioNavigation.nombreServicio}</StyledTableCell>
-                <StyledTableCell sx={{ display: 'flex' }} >
+                <StyledTableCell>
                   <EditModalAplicaciones idAplicacion={apli.idAplicacion} {...apli} />
                   <IconButton
                     color="error"
-                    title='Borrar'
+                    title="Borrar"
                     onClick={() => { borrarAplicacion(apli.idAplicacion) }}
                   >
                     <Delete />
