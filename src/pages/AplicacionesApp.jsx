@@ -8,7 +8,7 @@ export const AplicacionesApp = () => {
     <PageLayout>
       <FiltrosAplicaciones />
       <TablaAplicaciones />
-      <ModalAplicaciones />
+      {/* <ModalAplicaciones /> */}
     </PageLayout>
   )
 }

@@ -7,7 +7,7 @@ export const ServiciosApp = () => {
     <PageLayout>
       <FiltrosServicios />
       <TablaServicios />
-      <ModalServicios />
+      {/* <ModalServicios /> */}
     </PageLayout>
   )
 }
