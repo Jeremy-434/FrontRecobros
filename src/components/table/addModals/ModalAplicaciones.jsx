@@ -12,13 +12,9 @@ const styleIconButton = {
     color: 'white',
     backgroundColor: 'primary.main',
     ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
-    position: 'absolute',
     borderRadius: '100px',
     width: '40px',
-    right: 100,
-    top: 100,
-    // left: 100,
-    // bottom: 100,
+    mr: 2,
 }
 
 const formData = {

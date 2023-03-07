@@ -22,6 +22,7 @@ export const FiltrosAplicaciones = () => {
       clickSearch={clickSearch}
       searchTerm={searchTerm}
       onInputChange={onInputChange}
+      modal="Aplicaciones"
     />
   )
 }

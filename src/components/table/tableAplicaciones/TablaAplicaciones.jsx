@@ -7,12 +7,24 @@ import { StyledTableCell, TablaLayout } from '../layout/TablaLayout';
 import { AlertDelete } from '../components/AlertDelete';
 
 const encabezadoDeTabla = [
-  'Aplicación',
-  'Estado',
-  'Segmento',
-  'Aliado',
-  'Servicio',
-  'Acciones'
+  {
+    title: 'Aplicación'
+  },
+  {
+    title: 'Estado'
+  },
+  {
+    title: 'Segmento'
+  },
+  {
+    title: 'Aliado'
+  },
+  {
+    title: 'Servicio'
+  },
+  {
+    title: 'Acciones'
+  }
 ]
 
 export const TablaAplicaciones = () => {
