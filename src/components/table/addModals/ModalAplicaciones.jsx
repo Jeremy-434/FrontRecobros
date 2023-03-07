@@ -13,7 +13,7 @@ const styleIconButton = {
     backgroundColor: 'primary.main',
     ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
     position: 'absolute',
-    'border-radius': '100px',
+    borderRadius: '100px',
     width: '40px',
     right: 100,
     top: 100,

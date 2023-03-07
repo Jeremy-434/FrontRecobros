@@ -10,6 +10,7 @@ export const StyledTableCell = styled(TableCell)(({ }) => ({
     fontSize: 16,
     fontWeight: 600,
     height: '60px',
+    maxWidth: 90,
     padding: 4,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -18,8 +19,6 @@ export const StyledTableCell = styled(TableCell)(({ }) => ({
     textAlign: 'right',
     alignContent: 'right',
     height: '40px',
-    // width: '100px',
-    // 'max-width': '100px',
     padding: 6,
     margin: 0,
   },
