@@ -49,7 +49,22 @@ export const FiltrosLayout = ({
       >
         {TextFieldSelectFilter}
         {
-          searchType
+          (searchType == 'estado')
+          ?
+          <TextField
+                label={`Buscar ${searchType} `}
+                name="searchTerm"
+                value={searchTerm}
+                onChange={onInputChange}
+                fullWidth
+                select
+                size="small"
+                sx={{ mb: 2 }}
+              >
+                <MenuItem value="Activo">Activo</MenuItem>
+                <MenuItem value="Inactivo">Inactivo</MenuItem>
+              </TextField>
+          :searchType
             ? <Box>
               <TextField
                 label={`Buscar ${searchType} `}

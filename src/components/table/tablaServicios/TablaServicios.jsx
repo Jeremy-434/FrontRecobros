@@ -1,6 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
-import { TableBody, TablePagination, TableRow } from '@mui/material';
+import { TableBody, TableRow } from '@mui/material';
 
 import { EditModalServicios } from '../editModals';
 import { StyledTableCell, TablaLayout } from '../layout/TablaLayout';
@@ -10,7 +10,7 @@ import { TableCellDescripcion } from './TableCellDescripcion';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
 import { useFiltrosServicios } from '../../filtros/hooks';
 import { ComTablePagination } from '../components/ComTablePagination';
-import { FiltersContext } from '../../../context/filters/filtersContext';
+import { FirstContext } from '../../../context';
 
 const encabezadoDeTabla = [
   {
@@ -45,7 +45,7 @@ export const TablaServicios = () => {
   const { servicios, error, borrarServicio } = useCrudServicios();
   const { dataFilters } = useFiltrosServicios(servicios);
 
-  const {page, rowsPerPage} = useContext( FiltersContext );
+  const {page, rowsPerPage} = useContext( FirstContext );
 
   return (
     <>

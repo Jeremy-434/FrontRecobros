@@ -3,11 +3,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { AplicacionesApp, ServiciosApp } from '../pages';
 import { DrawerLeft, Header, MessagesComponent } from '../components/';
 import { ContainerLayout } from './layout/ContainerLayout';
-import { FiltersProvider } from '../context';
+import { FirstProvider } from '../context';
 
 export const AppRouter = () => {
   return (
-    <FiltersProvider>
+    <FirstProvider>
 
       <Header />
       <DrawerLeft />
@@ -25,6 +25,6 @@ export const AppRouter = () => {
         <MessagesComponent />
 
       </ContainerLayout>
-    </FiltersProvider>
+    </FirstProvider>
   )
 }

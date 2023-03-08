@@ -1,17 +1,16 @@
 import { useContext } from 'react';
-import { FiltersContext } from '../../../context/filters/filtersContext';
+import { FirstContext } from '../../../context/first';
 
 export const useFiltrosServicios = (data, valueInputFiltro) => {
 
   // * Contexto global para filtros
-  const { filterServicios, setFilterServicios } = useContext(FiltersContext);
+  const { filterServicios, setFilterServicios } = useContext(FirstContext);
 
   const handleDeleteFilters = () => {
     setFilterServicios([]);
   };
 
   const clickSearch = (filtersBy) => {
-    console.log("🚀 filtersBy:", filtersBy)
     const results = data.filter((item) => {
       switch (filtersBy) {
         case 'servicio':

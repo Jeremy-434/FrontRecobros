@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FiltersContext } from './filtersContext';
+import { FirstContext } from './FirstContext';
 
-export const FiltersProvider = ({ children }) => {
+export const FirstProvider = ({ children }) => {
 
     // * Filtros: servicios y aplicaciones
     const [filterServicios, setFilterServicios] = useState([]);
@@ -12,7 +12,7 @@ export const FiltersProvider = ({ children }) => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     return (
-        <FiltersContext.Provider value={{
+        <FirstContext.Provider value={{
             //* Filtros para Servicios
             filterServicios,
             setFilterServicios,
@@ -20,13 +20,13 @@ export const FiltersProvider = ({ children }) => {
             filterAplicaciones,
             setFilterAplicaciones,
 
-            // * paginas para la paginacion
-            page: page,
+            // * Para la paginacion
+            page,
             setPage,
             rowsPerPage,
             setRowsPerPage
         }}>
             {children}
-        </FiltersContext.Provider>
+        </FirstContext.Provider>
     )
 }

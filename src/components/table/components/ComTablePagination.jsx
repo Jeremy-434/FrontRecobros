@@ -1,10 +1,10 @@
 import { TablePagination } from '@mui/material'
 import { useContext } from 'react';
-import { FiltersContext } from '../../../context/filters/filtersContext';
+import { FirstContext } from '../../../context/first';
 
 export const ComTablePagination = ({dataFilters}) => {
 
-    const { page, setPage, rowsPerPage, setRowsPerPage } = useContext(FiltersContext);
+    const { page, setPage, rowsPerPage, setRowsPerPage } = useContext(FirstContext);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -17,6 +17,7 @@ export const ComTablePagination = ({dataFilters}) => {
 
     return (
         <TablePagination
+            labelRowsPerPage="Filas por página"
             rowsPerPageOptions={[5, 10, 25, 100]}
             component="div"
             count={dataFilters.length}
