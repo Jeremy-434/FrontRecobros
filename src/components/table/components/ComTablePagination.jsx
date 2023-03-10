@@ -20,7 +20,7 @@ export const ComTablePagination = ({dataFilters}) => {
             labelRowsPerPage="Filas por página"
             rowsPerPageOptions={[5, 10, 25, 100]}
             component="div"
-            count={dataFilters.length}
+            count={dataFilters ? dataFilters.length : 0}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

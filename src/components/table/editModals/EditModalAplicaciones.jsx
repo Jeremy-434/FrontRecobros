@@ -1,7 +1,7 @@
 import { Edit } from '@mui/icons-material';
 import { MenuItem, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useForm } from '../../../hooks';
+import { useCrudAliados, useForm } from '../../../hooks';
 import { useCrudAplicaciones } from '../../../hooks/useCrudAplicaciones';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
 import { ModalForm } from '../layout/ModalForm';
@@ -36,8 +36,9 @@ export const EditModalAplicaciones = ({
     }, formValidations);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const { aplicaciones, editAplicaciones } = useCrudAplicaciones();
+    const { editAplicaciones } = useCrudAplicaciones();
     const { servicios } = useCrudServicios();
+    const { aliados } = useCrudAliados();
 
     const editarAplicaciones = () => {
         setFormSubmitted(true);
@@ -147,12 +148,12 @@ export const EditModalAplicaciones = ({
                 select
             >
                 {
-                    aplicaciones.map(({ idAliadoNavigation }) => (
+                    aliados.map((aliado) => (
                         <MenuItem
-                            key={idAliadoNavigation.idAliado}
-                            value={idAliadoNavigation.idAliado}
+                            key={aliado.idAliado}
+                            value={aliado.idAliado}
                         >
-                            {idAliadoNavigation.nombreAliado}
+                            {aliado.nombreAliado}
                         </MenuItem>
                     ))
                 }

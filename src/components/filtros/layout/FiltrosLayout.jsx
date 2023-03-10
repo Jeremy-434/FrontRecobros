@@ -5,7 +5,6 @@ import { ModalAplicaciones, ModalServicios } from '../../table/addModals';
 
 export const FiltrosLayout = ({
   title,
-  labelText,
   handleCleanSearch,
   searchTerm,
   handleClickSearch,
@@ -24,7 +23,7 @@ export const FiltrosLayout = ({
         marginBottom={0}
         justifyContent="space-between"
       >
-
+        {/* //* TITULO DE PAGINA */}
         <Typography
           variant="h2"
           color="initial"
@@ -36,10 +35,12 @@ export const FiltrosLayout = ({
         >
           {title}
         </Typography>
+        {/* //* MODAL PARA AGREGAR */}
         {(modal == "Aplicaciones") && <ModalAplicaciones />}
         {(modal == "Servicios") && <ModalServicios />}
       </Box>
 
+      {/* //* INPUTS AL ELEGIR FILTRO */}
       <Box
         component="div"
         padding={2}
@@ -50,37 +51,39 @@ export const FiltrosLayout = ({
         {TextFieldSelectFilter}
         {
           (searchType == 'estado')
-          ?
-          <TextField
-                label={`Buscar ${searchType} `}
-                name="searchTerm"
-                value={searchTerm}
-                onChange={onInputChange}
-                fullWidth
-                select
-                size="small"
-                sx={{ mb: 2 }}
-              >
-                <MenuItem value="Activo">Activo</MenuItem>
-                <MenuItem value="Inactivo">Inactivo</MenuItem>
-              </TextField>
-          :searchType
-            ? <Box>
-              <TextField
-                label={`Buscar ${searchType} `}
-                name="searchTerm"
-                value={searchTerm}
-                onChange={onInputChange}
-                fullWidth
-                size="small"
-                sx={{ mb: 2 }}
-              />
-            </Box>
-            : null
+            ?
+            <TextField
+              label={`Buscar ${searchType} `}
+              name="searchTerm"
+              value={searchTerm}
+              onChange={onInputChange}
+              fullWidth
+              select
+              size="small"
+              sx={{ mb: 2 }}
+            >
+              <MenuItem value="Activo">Activo</MenuItem>
+              <MenuItem value="Inactivo">Inactivo</MenuItem>
+            </TextField>
+            : searchType
+              ? <Box>
+                <TextField
+                  label={`Buscar ${searchType} `}
+                  name="searchTerm"
+                  value={searchTerm}
+                  onChange={onInputChange}
+                  fullWidth
+                  size="small"
+                  sx={{ mb: 2 }}
+                />
+              </Box>
+              : null
         }
+        
+        {/* //* BOTOTNES */}
         <Box display="flex" justifyContent="space-between"  >
 
-          {/* // * BOTON PARA LIMPIAR FILTROS */}
+          {/* // * BOTON PARA LIMPIAR FILTROS  */}
           <Button
             onClick={handleCleanSearch}
             variant="contained"
@@ -91,6 +94,7 @@ export const FiltrosLayout = ({
             <Typography marginLeft={1} fontSize="12px">Limpiar</Typography>
           </Button>
 
+          {/* // * BOTON PARA HACER BUSQUEDA FILTRADA  */}
           <Button
             onClick={handleClickSearch}
             variant="contained"

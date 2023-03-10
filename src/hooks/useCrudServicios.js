@@ -7,12 +7,12 @@ export const useCrudServicios = () => {
     // * Para hacer el "dispatch" del Mensaje de confirmacion
     const dispatch = useDispatch();
 
-    // * OBTENER LOS DATOS Y GUARDARLOS EN "aplicaciones"
+    // * OBTENER LOS DATOS Y GUARDARLOS EN "servicios"
     // const [aplicaciones, setAplicaciones] = useState([])
     const { data, error, isLoading, refetch } = useGetServiciosQuery();
-    const servicios = data ? data.response : [];
+    const servicios = data ? data : [];
 
-    // * GUARDAR UNA SERVICIO
+    // * GUARDAR UN SERVICIO
     const [createServicio] = useCreateServicioMutation();
     const addServicio = (
         nombreServicioInput,
@@ -42,7 +42,7 @@ export const useCrudServicios = () => {
             });
     }
 
-    // * EDITAR UNA APLICACION
+    // * EDITAR UN SERVICIO
     const [updateServicio] = useUpdateServicioMutation();
     const editServicio = (
         idServicio,

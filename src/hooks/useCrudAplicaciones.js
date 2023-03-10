@@ -10,7 +10,7 @@ export const useCrudAplicaciones = () => {
     // * OBTENER LOS DATOS Y GUARDARLOS EN "aplicaciones"
     // const [aplicaciones, setAplicaciones] = useState([])
     const { data, error, isLoading, refetch } = useGetAplicacionesQuery();
-    const aplicaciones = data ? data.response : [];
+    const aplicaciones = data ? data : [];
 
     // * GUARDAR UNA APLICACION
     const [createAplicacion] = useCreateAplicacionMutation();

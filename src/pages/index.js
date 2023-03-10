@@ -1,2 +1,2 @@
-export * from './AplicacionesApp';
-export * from './ServiciosApp';
+export * from './portafolio';
+export * from './usoDeDatos';

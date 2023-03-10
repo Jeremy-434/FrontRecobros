@@ -29,22 +29,25 @@ export const DrawerLeft = () => {
                 <AcordionPortafolio
                     Icon={<ImportContacts sx={fontIcon} />}
                     text="Portafolio"
-                    linksAcordion={['Aplicaciones', 'Servicios']}
+                    linksAcordion={['Aplicaciones', 'Servicios', 'Aliados']}
                 />
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}
                     text="Uso de Datos"
-                    linksAcordion={['Carga', 'Seguimiento', 'Validación', 'Visualización']}
+                    linksAcordion={['Carga', 'Visualización']}
+                    // linksAcordion={['Carga', 'Seguimiento', 'Validación', 'Visualización']}
                 />
                 <AcordionPortafolio
                     Icon={<Science sx={fontIcon} />}
                     text="Volumetria"
-                    linksAcordion={['Consolidación', 'Sumarización']}
+                    linksAcordion={['Consolidacion', 'Comparacion']}
+                    // linksAcordion={['Consolidación', 'Sumarización']}
                 />
                 <AcordionPortafolio
                     Icon={<Info sx={fontIcon} />}
                     text="Informes"
-                    linksAcordion={['Intermedios', 'finales']}
+                    linksAcordion={['Log de errores']}
+                    // linksAcordion={['Intermedios', 'finales']}
                 />
                 <Divider />
             </Box>
