@@ -3,7 +3,7 @@ import { FiltrosAliados } from '../../components/filtros/FiltrosAliados';
 import { TablaAliados } from '../../components/table/tableAliados/TablaAliados';
 import { PageLayout } from '../layout/PageLayout';
 
-export const AliadosApp = () => {
+export const AliadosPage = () => {
     return (
         <PageLayout>
             <FiltrosAliados />

@@ -1,10 +1,10 @@
 
-import { Box, Grid, TextField, Button, MenuItem, Typography } from '@mui/material';
+import { Grid, TextField, Button, MenuItem, Typography } from '@mui/material';
 import { Container } from '@mui/system';
-import { Label, Sledding, Upload } from '@mui/icons-material';
+import { Upload } from '@mui/icons-material';
 import { useLoadFile } from '../hooks/useLoadFile';
 import { useForm } from '../../../hooks/useForm';
-import { useCrudAplicaciones } from '../../../hooks';
+import { useCrudAliados } from '../../../hooks';
 import { useRef, useState } from 'react';
 
 const formData = {
@@ -22,8 +22,7 @@ export const LoadGridInputs = () => {
 
     const [nameFile, setNameFile] = useState('');
 
-    const { aplicaciones } = useCrudAplicaciones();
-
+    const { aliados } = useCrudAliados();
     const { onInputChange, aliado, archivoAliado, mes, anio, aliadoValid } = useForm(formData, formValidations);
     const { readFile } = useLoadFile();
 
@@ -70,12 +69,12 @@ export const LoadGridInputs = () => {
                         select
                     >
                         {
-                            aplicaciones.map(({ idAliadoNavigation }) => (
+                            aliados.map(( aliado ) => (
                                 <MenuItem
-                                    key={idAliadoNavigation.idAliado}
-                                    value={idAliadoNavigation.idAliado}
+                                    key={aliado.idAliado}
+                                    value={aliado.idAliado}
                                 >
-                                    {idAliadoNavigation.nombreAliado}
+                                    {aliado.nombreAliado}
                                 </MenuItem>
                             ))
                         }

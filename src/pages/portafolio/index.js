@@ -1,2 +1,3 @@
-export * from './AplicacionesApp';
-export * from './ServiciosApp';
+export * from './AliadosPage';
+export * from './AplicacionesPage';
+export * from './ServiciosPage';

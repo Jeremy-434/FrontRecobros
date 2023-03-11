@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { useCreateAliadoMutation, useGetAliadosQuery } from '../store/apis/aliadosApi';
+
+import { useCreateAliadoMutation, useDeleteAliadoMutation, useGetAliadosQuery, useUpdateAliadoMutation } from '../store/apis/aliadosApi';
+import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudAliados = () => {
 
@@ -8,7 +10,7 @@ export const useCrudAliados = () => {
 
     // * OBTENER LOS DATOS Y GUARDARLOS EN "aliado"
     // const [aplicaciones, setAplicaciones] = useState([])
-    const { data, error, isLoading, refetch } = useGetAliadosQuery();
+    const { data, error, isLoading, refetch, isFetching  } = useGetAliadosQuery();
     const aliados = data ? data : [];
 
     // * GUARDAR UN ALIADO
@@ -25,7 +27,7 @@ export const useCrudAliados = () => {
             "usuario": usuario,
             "estado": estado,
             "correoResponsable": correoResponsable,
-            "fecha": fecha,
+            "fecha": fecha ? fecha : null,
         })
             .then((res) => {
                 dispatch(setMessage({
@@ -37,65 +39,63 @@ export const useCrudAliados = () => {
             });
     }
 
-    // // * EDITAR UN ALIADO
-    // const [updateServicio] = useUpdateServicioMutation();
-    // const editServicio = (
-    //     idServicio,
-    //     nombreServicio,
-    //     descripcion,
-    //     driver,
-    //     claseActividad,
-    //     claseCosto,
-    //     porcentajeComparacion,
-    //     responsableReporte,
-    // ) => {
-    //     updateServicio({
-    //         "idServicio": idServicio,
-    //         "nombreServicio": nombreServicio,
-    //         "descripcion": descripcion,
-    //         "driver": driver,
-    //         "claseActividad": claseActividad,
-    //         "claseCosto": claseCosto,
-    //         "porcentajeComparacion": porcentajeComparacion,
-    //         "responsableReporte": responsableReporte
-    //     })
-    //         .then((res) => {
-    //             dispatch(setMessage({
-    //                 text: `Servicio actualizado correctamente`,
-    //                 severity: 'success'
-    //             }));
-    //             dispatch(handleMessageOpen());
-    //             refetch();
-    //         });
-    // };
+    // * EDITAR UN ALIADO
+    const [updateAliado] = useUpdateAliadoMutation();
+    const editAliado = (
+        idAliado,
+        nombreAliado,
+        usuario,
+        estado,
+        correoResponsable,
+        fecha
+    ) => {
+        updateAliado({
+            "idAliado": idAliado,
+            "nombreAliado": nombreAliado,
+            "usuario": usuario,
+            "estado": estado,
+            "correoResponsable": correoResponsable,
+            "fecha": fecha
+        })
+            .then((res) => {
+                dispatch(setMessage({
+                    text: `Aliado actualizado correctamente`,
+                    severity: 'success'
+                }));
+                dispatch(handleMessageOpen());
+                refetch();
+            });
+    };
 
-    // // * BORRAR UN ALIADO
-    // const [deleteServicio] = useDeleteServicioMutation();
-    // const borrarServicio = (idAplicacion) => {
-    //     deleteServicio(idAplicacion)
-    //         .then((res) => {
-    //             if (res.error) {
-    //                 dispatch(setMessage({
-    //                     text: `Lo sentimos, no se pudo borrar el servicio. 
-    //                     Verifique que no se este usando en ninguna aplicacion`,
-    //                     severity: 'error'
-    //                 }));
-    //                 dispatch(handleMessageOpen());
-    //             } else {
-    //                 dispatch(setMessage({
-    //                     text: `Servicio borrado correctamente`,
-    //                     severity: 'success'
-    //                 }));
-    //                 dispatch(handleMessageOpen());
-    //             }
-    //             refetch();
-    //         });
-    // }
+    // * BORRAR UN ALIADO
+    const [deleteAliado] = useDeleteAliadoMutation();
+    const borrarAliado = (id) => {
+        deleteAliado(id)
+            .then((res) => {
+                if (res.error) {
+                    dispatch(setMessage({
+                        text: `Lo sentimos, no se pudo borrar el Aliado. 
+                        Verifique que no se este usando en ninguna aplicacion`,
+                        severity: 'error'
+                    }));
+                    dispatch(handleMessageOpen());
+                } else {
+                    dispatch(setMessage({
+                        text: `Aliado borrado correctamente`,
+                        severity: 'success'
+                    }));
+                    dispatch(handleMessageOpen());
+                }
+                refetch();
+            });
+    }
 
     return {
         error,
         aliados,
         isLoading,
         addAliado,
+        editAliado,
+        borrarAliado
     }
 }

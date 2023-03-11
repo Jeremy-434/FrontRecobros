@@ -12,7 +12,7 @@ export const AlertDelete = ({funtionDelete, title}) => {
             // hiddenStyleCancelar={{ width: '100%', mt: 0 }}
             styleIconButton={{ width: 20, padding: 0 }}
             colorStyleIconButton={"error"}
-            buttonBorrarServicio={
+            buttonBorrar={
                 <Button
                     color="error"
                     variant="contained"

@@ -9,18 +9,21 @@ import { useFiltrosAliados } from '../../filtros/hooks';
 
 import { ComTablePagination } from '../components/ComTablePagination';
 import { StyledTableCell, TablaLayout } from '../layout/TablaLayout';
+import { AlertDelete } from '../components/AlertDelete';
+import { EditModalAliados } from '../editModals/EditModalAliados';
 
 const encabezadoDeTabla = [
     { title: 'Aliado' },
     { title: 'Usuario' },
     { title: 'Estado' },
     { title: 'Correo responsable' },
-    { title: 'fecha' }
+    { title: 'fecha' },
+    { title: 'Acciones' }
 ]
 
 export const TablaAliados = () => {
 
-    const { aliados, error } = useCrudAliados();
+    const { aliados, error, borrarAliado } = useCrudAliados();
     const { dataFilters } = useFiltrosAliados(aliados);
 
     const { page, rowsPerPage } = useContext(FirstContext);
@@ -45,6 +48,13 @@ export const TablaAliados = () => {
                                                 <StyledTableCell>{aliado.estado}</StyledTableCell>
                                                 <StyledTableCell>{aliado.correoResponsable}</StyledTableCell>
                                                 <StyledTableCell>{aliado.fecha}</StyledTableCell>
+                                                <StyledTableCell>
+                                                    <EditModalAliados {...aliado} />
+                                                    <AlertDelete
+                                                        funtionDelete={() => { borrarAliado(aliado.idAliado) }}
+                                                        title={"Borrar aliado"}
+                                                    />
+                                                </StyledTableCell>
                                             </TableRow>
                                         ))
                                 }

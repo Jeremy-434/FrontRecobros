@@ -76,8 +76,8 @@ export const useCrudServicios = () => {
 
     // * BORRAR UN SERVICIO
     const [deleteServicio] = useDeleteServicioMutation();
-    const borrarServicio = (idAplicacion) => {
-        deleteServicio(idAplicacion)
+    const borrarServicio = (id) => {
+        deleteServicio(id)
             .then((res) => {
                 if (res.error) {
                     dispatch(setMessage({

@@ -24,7 +24,7 @@ export const ModalForm = ({
     title,
     hiddenStyleCancelar,
     colorStyleIconButton,
-    buttonBorrarServicio
+    buttonBorrar
 }) => {
 
     const [open, setOpen] = useState(false);
@@ -75,7 +75,7 @@ export const ModalForm = ({
                         >
                             {nameButton}
                         </Button>
-                        {buttonBorrarServicio}
+                        {buttonBorrar}
                     </Box>
                 </Box>
             </Modal>

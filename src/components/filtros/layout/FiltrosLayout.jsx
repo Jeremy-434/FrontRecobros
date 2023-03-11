@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import { CleaningServices, Search } from '@mui/icons-material';
 import { Container, Typography, TextField, Button, MenuItem } from '@mui/material';
-import { ModalAplicaciones, ModalServicios } from '../../table/addModals';
+import { ModalAliados, ModalAplicaciones, ModalServicios } from '../../table/addModals';
 
 export const FiltrosLayout = ({
   title,
@@ -38,6 +38,7 @@ export const FiltrosLayout = ({
         {/* //* MODAL PARA AGREGAR */}
         {(modal == "Aplicaciones") && <ModalAplicaciones />}
         {(modal == "Servicios") && <ModalServicios />}
+        {(modal == "Aliados") && <ModalAliados />}
       </Box>
 
       {/* //* INPUTS AL ELEGIR FILTRO */}
