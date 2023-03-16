@@ -8,9 +8,9 @@ import { useCrudServicios } from '../../../hooks/useCrudServicios';
 import { ModalForm } from '../layout/ModalForm';
 
 const styleIconButton = {
-    color: 'white',
-    backgroundColor: 'primary.main',
-    ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
+    color: 'primary.main',
+    backgroundColor: 'none',
+    ':hover': { backgroundColor: 'none', opacity: 0.9 },
     mr: 2,
 }
 

@@ -1,25 +1,27 @@
-import { TableBody, TableRow } from "@mui/material"
-import { useContext } from "react"
-import { ComTablePagination } from "../../../components/table/components/ComTablePagination"
-import { StyledTableCell, TablaLayout } from "../../../components/table/layout/TablaLayout"
-import { FirstContext } from "../../../context"
-import { useLoadFile } from "../hooks/useLoadFile"
+import { useContext } from 'react';
+import { TableBody, TableRow } from '@mui/material';
+
+import { ComTablePagination } from '../../../components/table/components/ComTablePagination';
+import { StyledTableCell, TablaLayout } from '../../../components/table/layout/TablaLayout';
+
+import { FirstContext } from '../../../context';
+import { useCrudControlArchivos } from '../../../hooks';
 
 const encabezadoDeTabla = [
-    { title: 'Registro' },
-    { title: 'Nombre' },
-    { title: 'Null1' },
-    { title: 'Null2' },
-    { title: 'Null3' },
     { title: 'Archivo' },
-    { title: 'Fecha' },
+    { title: 'Usuario' },
+    { title: 'Aliado' },
+    { title: 'Mes' },
+    { title: 'Anio' },
+    { title: 'Fecha servidor' },
+    { title: 'Estado ' },
 ]
 
 export const LoadFileTable = () => {
 
-    const { dataFinalFile } = useLoadFile();
-
     const { page, rowsPerPage } = useContext(FirstContext);
+
+    const {controlArchivos, error} = useCrudControlArchivos();
 
     return (
         <>
@@ -28,24 +30,27 @@ export const LoadFileTable = () => {
                 minWidth={600}
             >
                 {
-                    dataFinalFile
+                    error
+                    ? <>Oh no, algo ha ocurrido al intentar cargar la tabla. Lo sentimos.</>
+                    : controlArchivos
                         ? <TableBody>
                             {
-                                dataFinalFile
+                                controlArchivos
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .reverse()
                                     .map(data => {
                                         return (
                                             <TableRow
-                                                key={data[0]}
+                                                key={data.idControlArchivo}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
-                                                <StyledTableCell>{data[0]}asd</StyledTableCell>
-                                                <StyledTableCell>{data[1].slice(0, 40)}</StyledTableCell>
-                                                <StyledTableCell>{data[2]}</StyledTableCell>
-                                                <StyledTableCell>{data[3]}</StyledTableCell>
-                                                <StyledTableCell>{data[4]}</StyledTableCell>
-                                                <StyledTableCell>{data[5]}</StyledTableCell>
-                                                <StyledTableCell>{data[6]}</StyledTableCell>
+                                                <StyledTableCell>{data.nombreArchivo}</StyledTableCell>
+                                                <StyledTableCell>{data.usuario}</StyledTableCell>
+                                                <StyledTableCell>{data.idAliadoNavigation.nombreAliado}</StyledTableCell>
+                                                <StyledTableCell>{data.mes}</StyledTableCell>
+                                                <StyledTableCell>{data.anio}</StyledTableCell>
+                                                <StyledTableCell>{data.fechaServidor}</StyledTableCell>
+                                                <StyledTableCell>{data.estado}</StyledTableCell>
                                             </TableRow>
                                         )
                                     })
@@ -55,7 +60,7 @@ export const LoadFileTable = () => {
                 }
             </TablaLayout>
             <ComTablePagination
-                dataFilters={dataFinalFile}
+                dataFilters={controlArchivos}
             />
         </>
     )

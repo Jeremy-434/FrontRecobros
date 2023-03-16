@@ -9,9 +9,9 @@ import { useCrudAplicaciones } from '../../../hooks/useCrudAplicaciones';
 import { useCrudServicios } from '../../../hooks/useCrudServicios';
 
 const styleIconButton = {
-    color: 'white',
-    backgroundColor: 'primary.main',
-    ':hover': { backgroundColor: 'primary.main', opacity: 0.9 },
+    color: 'primary.main',
+    backgroundColor: 'none',
+    ':hover': { backgroundColor: 'none', opacity: 1},
     borderRadius: '100px',
     width: '40px',
     mr: 2,

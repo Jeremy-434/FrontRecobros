@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { AliadosPage, AplicacionesPage, CargueAliados, ServiciosPage } from '../pages';
+import { AliadosPage, AplicacionesPage, CargueArchivosPage, ServiciosPage } from '../pages';
 import { DrawerLeft, Header, MessagesComponent } from '../components/';
 import { ContainerLayout } from './layout/ContainerLayout';
 import { FirstProvider } from '../context';
@@ -19,7 +19,7 @@ export const AppRouter = () => {
           <Route path="servicios" element={<ServiciosPage />} />
           <Route path="aplicaciones" element={<AplicacionesPage />} />
           <Route path="aliados" element={<AliadosPage />} />
-          <Route path="carga" element={<CargueAliados />} />
+          <Route path="carga" element={<CargueArchivosPage />} />
           <Route path="/*" element={<Navigate to="servicios" />} />
 
         </Routes>

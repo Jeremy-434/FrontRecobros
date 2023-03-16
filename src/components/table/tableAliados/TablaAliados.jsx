@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { TableBody, TableRow } from '@mui/material';
+import { TableBody, TableCell, TableRow } from '@mui/material';
 
 import { FirstContext } from '../../../context';
 
@@ -11,60 +11,66 @@ import { ComTablePagination } from '../components/ComTablePagination';
 import { StyledTableCell, TablaLayout } from '../layout/TablaLayout';
 import { AlertDelete } from '../components/AlertDelete';
 import { EditModalAliados } from '../editModals/EditModalAliados';
+import { TableCellWithStyle } from '../components';
 
 const encabezadoDeTabla = [
-    { title: 'Aliado' },
-    { title: 'Usuario' },
-    { title: 'Estado' },
-    { title: 'Correo responsable' },
-    { title: 'fecha' },
-    { title: 'Acciones' }
+  {
+    title: 'Aliado',
+    sx: {
+      // textAlign: 'left',
+    }
+  },
+  { title: 'Usuario' },
+  { title: 'Estado' },
+  { title: 'Correo responsable' },
+  { title: 'Fecha' },
+  { title: 'Acciones' }
 ]
 
 export const TablaAliados = () => {
 
-    const { aliados, error, borrarAliado } = useCrudAliados();
-    const { dataFilters } = useFiltrosAliados(aliados);
+  const { aliados, error, borrarAliado } = useCrudAliados();
+  const { dataFilters } = useFiltrosAliados(aliados);
 
-    const { page, rowsPerPage } = useContext(FirstContext);
+  const { page, rowsPerPage } = useContext(FirstContext);
 
-    return (
-        <>
-            <TablaLayout encabezadoDeTabla={encabezadoDeTabla}>
+  return (
+    <>
+      <TablaLayout encabezadoDeTabla={encabezadoDeTabla} modal="Aliados">
+        {
+          error
+            ? <>Oh, no algo ha ocurrido</>
+            : aliados ?
+              <TableBody>
                 {
-                    error
-                        ? <>Oh, no algo ha ocurrido</>
-                        : aliados ?
-                            <TableBody>
-                                {
-                                    dataFilters
-                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                        .map((aliado) => (
-                                            <TableRow
-                                                key={aliado.idAliado}
-                                            >
-                                                <StyledTableCell>{aliado.nombreAliado}</StyledTableCell>
-                                                <StyledTableCell>{aliado.usuario}</StyledTableCell>
-                                                <StyledTableCell>{aliado.estado}</StyledTableCell>
-                                                <StyledTableCell>{aliado.correoResponsable}</StyledTableCell>
-                                                <StyledTableCell>{aliado.fecha}</StyledTableCell>
-                                                <StyledTableCell>
-                                                    <EditModalAliados {...aliado} />
-                                                    <AlertDelete
-                                                        funtionDelete={() => { borrarAliado(aliado.idAliado) }}
-                                                        title={"Borrar aliado"}
-                                                    />
-                                                </StyledTableCell>
-                                            </TableRow>
-                                        ))
-                                }
-                            </TableBody>
-                            : null
+                  dataFilters
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((aliado) => (
+                      <TableRow
+                        key={aliado.idAliado}
+                      >
+                        <StyledTableCell>{aliado.nombreAliado.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell>{aliado.usuario}</StyledTableCell>
+                        <StyledTableCell>{aliado.estado}</StyledTableCell>
+                        <StyledTableCell>{aliado.correoResponsable}</StyledTableCell>
+                        <StyledTableCell>{aliado.fecha}</StyledTableCell>
+                        <StyledTableCell sxbody={{ textAlign: 'center', padding: 0, paddingLeft: 0 }} >
+                          <EditModalAliados {...aliado} />
+                          <AlertDelete
+                            funtionDelete={() => { borrarAliado(aliado.idAliado) }}
+                            title={"Borrar aliado"}
+                          />
+                        </StyledTableCell>
+                      </TableRow>
+                    ))
                 }
-            </TablaLayout>
-            <ComTablePagination
-                dataFilters={dataFilters}
-            />
-        </>
-    )
+              </TableBody>
+              : null
+        }
+      </TablaLayout>
+      <ComTablePagination
+        dataFilters={dataFilters}
+      />
+    </>
+  )
 }

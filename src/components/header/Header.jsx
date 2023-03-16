@@ -43,8 +43,8 @@ export const Header = () => {
             <Logout color='error' />
           </Button>
         </Toolbar>
+        <LoadingComponent />
       </AppBar>
-      <LoadingComponent/>
     </Box>
   );
 }

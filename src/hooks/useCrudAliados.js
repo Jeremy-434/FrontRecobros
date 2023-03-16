@@ -75,7 +75,7 @@ export const useCrudAliados = () => {
                 if (res.error) {
                     dispatch(setMessage({
                         text: `Lo sentimos, no se pudo borrar el Aliado. 
-                        Verifique que no se este usando en ninguna aplicacion`,
+                        Verifique que no se este usando`,
                         severity: 'error'
                     }));
                     dispatch(handleMessageOpen());

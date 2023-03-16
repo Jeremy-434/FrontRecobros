@@ -1,62 +1,46 @@
-import { useState } from 'react';
-import { saveAs } from 'file-saver';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
-import { deleteDataFileLines, setDataFileLines } from '../../../store/slices/dataFile.js';
+import { checkingProgress, handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
+import { useCrudControlArchivos } from '../../../hooks';
+import { useUploadArchivoMutation } from '../../../store/apis';
 
 export const useLoadFile = () => {
 
-    const [countOneLineFile, setCountOneLineFile] = useState();
-    const { dataFinalFile } = useSelector(state => state.dataFile);
-    const dispatch = useDispatch();
+  //* Dispatch de los mensajes correspondientes
+  const dispatch = useDispatch();
+  //* Hook que llama al rtk.query que proveer una funcion "addControlArchivo" para agregar 
+  const { addControlArchivo } = useCrudControlArchivos();
+  //* Rtk-Query que provee una funcion "uploadArchivo" para cargar el archivo en la ruta
+  const [uploadArchivo] = useUploadArchivoMutation();
 
-    const createFile = () => {
+  //* Funcion que lee todo el txt
+  const readFile = (valueFile, dataForCreate) => {
 
-        const blob = new Blob([myValue], { type: 'text/plain;charset=utf-8' });
-        saveAs(blob, 'mi-archivo.txt');
-    }
+    if (!valueFile) return;
 
-    const readFile = (valueFile) => {
+    //* Constante formData para enviar el archivo por la funcion "uploadArchivo"
+    const fileFormData = new FormData();
+    fileFormData.append("file", valueFile);
 
-        if (!valueFile) return;
+    uploadArchivo(fileFormData)
+      .then((res) => {
+        if (res.error) {
+          console.log("🚀 ~ res.error:", res)
+          dispatch(setMessage({
+            text: res.error.data ?? `Lo sentimos, el archivo no puede superar los 30MB`,
+            severity: 'error'
+          }));
+          dispatch(handleMessageOpen());
+        } else {
+          // //* Se añade la data pasada por parametro para agregar una fila a tbControlArchivo a la base de datos
+          addControlArchivo(dataForCreate);
+          //* Mensaje de confirmacion
+          dispatch(setMessage({ text: "El archivo se cargo correctamente", severity: 'success' }))
+          dispatch(handleMessageOpen());
+        }
+      });
+  };
 
-        const fileReader = new FileReader();
-
-        fileReader.readAsText(valueFile);
-
-        fileReader.onload = () => {
-            const newDataArray = fileReader.result.split("\r\n");
-            const oneLineArray = newDataArray.slice(0, 1);
-            const countDataArray = oneLineArray[0].split("|");
-            setCountOneLineFile(countDataArray.length);
-            if (countDataArray.length != 7) {
-                dispatch(setMessage({ text: "El archivo no corresponde", severity: 'error' }))
-                dispatch(handleMessageOpen());
-                return;
-            } else {
-                dispatch(setMessage({ text: "El se cargo correctamente", severity: 'success' }))
-                dispatch(handleMessageOpen());
-                newDataArray.forEach(i => {
-                    dispatch(setDataFileLines(i.split("|")));
-                });
-                dispatch(deleteDataFileLines());
-                return;
-            }
-
-
-        };
-
-        fileReader.onerror = () => {
-            console.log(fileReader.error);
-        };
-
-    };
-
-    return {
-        countOneLineFile,
-        dataFinalFile,
-        createFile,
-        readFile
-    }
+  return {
+    readFile
+  }
 }

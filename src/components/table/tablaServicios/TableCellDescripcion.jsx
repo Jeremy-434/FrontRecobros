@@ -6,10 +6,10 @@ import { StyledTableCell } from '../layout/TablaLayout';
 export const TableCellDescripcion = ({descripcion}) => {
     return (
         <StyledTableCell >
-            {descripcion.slice(0, 10)}...
+            {descripcion.slice(0, 10)}
             <ModalForm
                 nameButton={"Aceptar"}
-                styleButton={<More sx={{ fontSize: 16 }} />}
+                styleButton={<More sx={{ fontSize: 14 }} />}
                 hiddenStyle={{ display: 'none' }}
                 styleIconButton={{ width: 20, padding: 0 }}
                 title="Leer mas..."

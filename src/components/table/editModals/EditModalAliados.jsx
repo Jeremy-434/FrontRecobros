@@ -62,7 +62,8 @@ export const EditModalAliados = ({
         <ModalForm
             funtion={editarAliado}
             nameButton={"Actualizar"}
-            styleButton={<Edit />}
+            styleButton={<Edit/>}
+            styleIconButton={{ width: 20, padding: 0, paddingRight: 2 }}
             handleCloseModal={handleCloseModal}
             title="Editar"
         >

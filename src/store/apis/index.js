@@ -1,3 +1,5 @@
-export * from './aplicacionesApi';
-export * from './serviciosApi';
 export * from './aliadosApi';
+export * from './aplicacionesApi';
+export * from './archivoApi';
+export * from './controlArchivosApi';
+export * from './serviciosApi';

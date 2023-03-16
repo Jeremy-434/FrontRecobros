@@ -11,6 +11,7 @@ import { useCrudServicios } from '../../../hooks/useCrudServicios';
 import { useFiltrosServicios } from '../../filtros/hooks';
 import { ComTablePagination } from '../components/ComTablePagination';
 import { FirstContext } from '../../../context';
+import { TableCellWithStyle } from '../components';
 
 const encabezadoDeTabla = [
   {
@@ -45,11 +46,11 @@ export const TablaServicios = () => {
   const { servicios, error, borrarServicio } = useCrudServicios();
   const { dataFilters } = useFiltrosServicios(servicios);
 
-  const {page, rowsPerPage} = useContext( FirstContext );
+  const { page, rowsPerPage } = useContext(FirstContext);
 
   return (
     <>
-      <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} >
+      <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1400} modal="Servicios" >
         {
           error
             ? <>Oh no, algo ha ocurrido!</>
@@ -63,18 +64,15 @@ export const TablaServicios = () => {
                         return (
                           <TableRow
                             key={servicio.idServicio}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                           >
-                            <StyledTableCell component="th" scope="row">
-                              {servicio.nombreServicio}
-                            </StyledTableCell>
+                            <StyledTableCell>{servicio.nombreServicio}</StyledTableCell>
                             <StyledTableCell >{servicio.driver}</StyledTableCell>
                             <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
                             <StyledTableCell >{servicio.claseCosto}</StyledTableCell>
                             <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
                             <StyledTableCell >{servicio.porcentajeComparacion}%</StyledTableCell>
                             <TableCellDescripcion {...servicio} />
-                            <StyledTableCell >
+                            <StyledTableCell sxbody={{ textAlign: 'center', padding: 0, paddingLeft: 0 }} >
                               <EditModalServicios idServicio={servicio.idServicio} {...servicio} />
                               <AlertDelete
                                 funtionDelete={() => { borrarServicio(servicio.idServicio) }}

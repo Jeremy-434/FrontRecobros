@@ -1,1 +1,1 @@
-export * from './CargueAliados';
+export * from './CargueArchivosPage';

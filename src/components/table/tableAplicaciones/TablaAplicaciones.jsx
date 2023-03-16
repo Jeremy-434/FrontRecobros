@@ -34,43 +34,42 @@ const encabezadoDeTabla = [
 
 export const TablaAplicaciones = () => {
 
-  const { aplicaciones, borrarAplicacion } = useCrudAplicaciones();
+  const { aplicaciones, borrarAplicacion, error } = useCrudAplicaciones();
   const { dataFilters } = useFiltrosAplicaciones(aplicaciones);
 
   const { page, rowsPerPage } = useContext(FirstContext);
 
   return (
     <>
-      <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1200} >
+      <TablaLayout encabezadoDeTabla={encabezadoDeTabla} minWidth={1200} modal="Aplicaciones" >
         {
-          aplicaciones ?
-            <TableBody>
-              {
-                (dataFilters)
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((apli) => (
-                    <TableRow
-                      key={apli.idAplicacion}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <StyledTableCell component="th" scope="row">
-                        {apli.nombreAplicacion}
-                      </StyledTableCell>
-                      <StyledTableCell >{apli.estado}</StyledTableCell>
-                      <StyledTableCell >{apli.nombreSegmento}</StyledTableCell>
-                      <StyledTableCell >{apli.idAliadoNavigation.nombreAliado}</StyledTableCell>
-                      <StyledTableCell >{apli.idServicioNavigation.nombreServicio}</StyledTableCell>
-                      <StyledTableCell>
-                        <EditModalAplicaciones idAplicacion={apli.idAplicacion} {...apli} />
-                        <AlertDelete
-                          title={"Borrar aplicación"}
-                          funtionDelete={() => { borrarAplicacion(apli.idAplicacion) }}
-                        />
-                      </StyledTableCell>
-                    </TableRow>
-                  ))}
-            </TableBody>
-            : null
+          error
+            ? <>Oh no, algo ha ocurrido!</>
+            : aplicaciones ?
+              <TableBody>
+                {
+                  (dataFilters)
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((apli) => (
+                      <TableRow
+                        key={apli.idAplicacion}
+                      >
+                        <StyledTableCell>{apli.nombreAplicacion}</StyledTableCell>
+                        <StyledTableCell >{apli.estado}</StyledTableCell>
+                        <StyledTableCell >{apli.nombreSegmento}</StyledTableCell>
+                        <StyledTableCell >{apli.idAliadoNavigation.nombreAliado}</StyledTableCell>
+                        <StyledTableCell >{apli.idServicioNavigation.nombreServicio}</StyledTableCell>
+                        <StyledTableCell sxbody={{ textAlign: 'center', padding: 0, paddingLeft: 0 }}>
+                          <EditModalAplicaciones idAplicacion={apli.idAplicacion} {...apli} />
+                          <AlertDelete
+                            title={"Borrar aplicación"}
+                            funtionDelete={() => { borrarAplicacion(apli.idAplicacion) }}
+                          />
+                        </StyledTableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+              : null
         }
       </TablaLayout>
       <ComTablePagination
