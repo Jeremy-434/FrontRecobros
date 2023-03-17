@@ -24,7 +24,6 @@ export const useLoadFile = () => {
     uploadArchivo(fileFormData)
       .then((res) => {
         if (res.error) {
-          console.log("🚀 ~ res.error:", res)
           dispatch(setMessage({
             text: res.error.data ?? `Lo sentimos, el archivo no puede superar los 30MB`,
             severity: 'error'

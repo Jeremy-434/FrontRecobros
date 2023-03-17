@@ -1,7 +1,6 @@
 import { Box } from '@mui/system';
 import { CleaningServices, Search } from '@mui/icons-material';
 import { Container, Typography, TextField, Button, MenuItem } from '@mui/material';
-import { ModalAliados, ModalAplicaciones, ModalServicios } from '../../table/addModals';
 
 export const FiltrosLayout = ({
   title,

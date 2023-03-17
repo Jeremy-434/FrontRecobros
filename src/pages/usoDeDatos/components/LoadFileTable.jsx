@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { TableBody, TableRow } from '@mui/material';
 
-import { ComTablePagination } from '../../../components/table/components/ComTablePagination';
-import { StyledTableCell, TablaLayout } from '../../../components/table/layout/TablaLayout';
-
 import { FirstContext } from '../../../context';
+
+import { StyledTableCell, TablaLayout } from '../../layout';
+import { ComTablePagination } from '../../components';
+
 import { useCrudControlArchivos } from '../../../hooks';
 
 const encabezadoDeTabla = [

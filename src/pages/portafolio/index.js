@@ -1,3 +1,3 @@
-export * from './AliadosPage';
-export * from './AplicacionesPage';
-export * from './ServiciosPage';
+export * from './aliados';
+export * from './aplicaciones';
+export * from './servicios';

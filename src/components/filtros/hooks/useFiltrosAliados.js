@@ -16,7 +16,7 @@ export const useFiltrosAliados = (data, valueInputFiltro) => {
         case 'aliado':
           return item.nombreAliado.toLowerCase().includes(valueInputFiltro.toLowerCase().trim());
         case 'estado':
-          return item.estado.toLowerCase().includes(valueInputFiltro.toLowerCase().trim());
+          return item.estado.includes(valueInputFiltro.trim());
         case 'usuario':
           return item.usuario.toLowerCase().includes(valueInputFiltro.toLowerCase().trim());
         case 'correo responsable':

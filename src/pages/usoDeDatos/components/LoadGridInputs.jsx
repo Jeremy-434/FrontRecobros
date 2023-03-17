@@ -49,7 +49,6 @@ export const LoadGridInputs = () => {
         setFormSubmitted(true);
         if (!isFormValid || fileValidations) return;
         dispatch(checkingProgress());
-        console.log("asd");
 
         const dataForCreate = {
             "nombreArchivo": nameFile,
