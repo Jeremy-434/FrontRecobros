@@ -5,9 +5,8 @@ import { TableBody, TableRow } from '@mui/material';
 import { FirstContext } from '../../../../context';
 
 import { StyledTableCell, TablaLayout } from '../../../layout';
-import { AlertDelete, ComTablePagination } from '../../../components';
+import { AlertDelete, ComTablePagination, MoreInfoModal } from '../../../components';
 import { EditModalServicios } from '../modals';
-import { TableCellDescripcion } from './TableCellDescripcion';
 
 import { useFiltrosServicios } from '../../../../components/filtros/hooks';
 import { useCrudServicios } from '../../../../hooks';
@@ -15,7 +14,7 @@ import { useCrudServicios } from '../../../../hooks';
 const encabezadoDeTabla = [
   {
     title: 'Servicio',
-    height: '60px'
+    sxhead: {textAlign: 'left', paddingLeft: 20}
   },
   {
     title: 'Driver'
@@ -39,6 +38,17 @@ const encabezadoDeTabla = [
     title: 'Acciones -'
   },
 ]
+
+const titlePrimaryInList = [
+  "Nombre del servicio",
+  "Descripción",
+  "Driver",
+  "Responsable del reporte",
+  "Clase de actividad",
+  "Clase de costo",
+  "Porcentaje de comparaciòn",
+]
+
 
 export const TablaServicios = () => {
 
@@ -64,19 +74,27 @@ export const TablaServicios = () => {
                           <TableRow
                             key={servicio.idServicio}
                           >
-                            <StyledTableCell >{servicio.nombreServicio}</StyledTableCell>
-                            <StyledTableCell >{servicio.driver}</StyledTableCell>
-                            <StyledTableCell >{servicio.claseActividad}</StyledTableCell>
-                            <StyledTableCell >{servicio.claseCosto}</StyledTableCell>
-                            <StyledTableCell >{servicio.responsableReporte}</StyledTableCell>
+                            <StyledTableCell >{servicio.nombreServicio.slice(0, 20)}</StyledTableCell>
+                            <StyledTableCell >{servicio.driver.slice(0, 20)}</StyledTableCell>
+                            <StyledTableCell >{servicio.claseActividad.slice(0, 20)}</StyledTableCell>
+                            <StyledTableCell >{servicio.claseCosto.slice(0, 20)}</StyledTableCell>
+                            <StyledTableCell >{servicio.responsableReporte.slice(0, 20)}</StyledTableCell>
                             <StyledTableCell >{servicio.porcentajeComparacion}%</StyledTableCell>
-                            <TableCellDescripcion {...servicio} />
-                            <StyledTableCell sxbody={{ textAlign: 'center', padding: 0, paddingLeft: 0 }} >
+                            <StyledTableCell> {servicio.descripcion.slice(0, 10)}... </StyledTableCell>
+                            <StyledTableCell
+                              sxbody={{
+                                textAlign: 'center',
+                                padding: 'auto',
+                                display: 'flex',
+                                justifyContent: 'space-around'
+                              }}
+                            >
                               <EditModalServicios idServicio={servicio.idServicio} {...servicio} />
                               <AlertDelete
                                 funtionDelete={() => { borrarServicio(servicio.idServicio) }}
                                 title={"Borrar servicio"}
                               />
+                              <MoreInfoModal data={servicio} titlePrimaryInList={titlePrimaryInList} />
                             </StyledTableCell>
                           </TableRow>
                         );

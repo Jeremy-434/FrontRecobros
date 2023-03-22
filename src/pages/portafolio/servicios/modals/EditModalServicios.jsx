@@ -77,6 +77,7 @@ export const EditModalServicios = ({
             nameButton={"Actualizar"}
             styleButton={<Edit />}
             handleCloseModal={handleCloseModal}
+            styleIconButton={{ width: 20, padding: 0}}
             title="Editar"
         >
             <Typography variant="h4" color="inherit" mb={2}>

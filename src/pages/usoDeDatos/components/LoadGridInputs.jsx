@@ -1,7 +1,6 @@
-
 import { useRef, useState } from 'react';
 
-import { Grid, TextField, Button, MenuItem, Typography, CircularProgress, Box, LinearProgress } from '@mui/material';
+import { Grid, TextField, Button, MenuItem, Typography, Input } from '@mui/material';
 import { Container } from '@mui/system';
 import { Upload } from '@mui/icons-material';
 
@@ -57,9 +56,9 @@ export const LoadGridInputs = () => {
             "mes": mes,
             "anio": anio,
             "aliado": aliado,
-            "fechaServidor": new Date(),
+            "fechaServidor": null,
         }
-        readFile(fileSelected, dataForCreate);
+        readFile(fileSelected, dataForCreate, nameFile);
 
         onResetForm();
         setNameFile("");
@@ -86,7 +85,6 @@ export const LoadGridInputs = () => {
                 spacing={2}
                 borderRadius={2}
                 boxShadow="2px 4px 12px -4px rgba(0,0,0,0.75)"
-
             >
                 <Grid item xs={6} >
                     <TextField
@@ -101,14 +99,18 @@ export const LoadGridInputs = () => {
                         select
                     >
                         {
-                            aliados.map((aliado) => (
-                                <MenuItem
-                                    key={aliado.idAliado}
-                                    value={aliado.idAliado}
-                                >
-                                    {aliado.nombreAliado}
-                                </MenuItem>
-                            ))
+                            aliados.map((aliado) => {
+                                if (aliado.estado == "Activo") {
+                                    return (
+                                        <MenuItem
+                                            key={aliado.idAliado}
+                                            value={aliado.idAliado}
+                                        >
+                                            {aliado.nombreAliado}
+                                        </MenuItem>
+                                    )
+                                }
+                            })
                         }
                     </TextField>
                 </Grid>
@@ -132,14 +134,16 @@ export const LoadGridInputs = () => {
                             Selecciona un archivo .txt antes de cargarlo.
                         </Typography>
                     )}
-                    <TextField
+                    <Input
                         id="file-upload"
                         inputRef={selectFileRef}
                         onChange={handleChangeFileInput}
-                        type={"file"}
-                        sx={{ display: 'none' }}
+                        type="file"
+                        accept=".txt"
+                        multiline={false}
+                        style={{ display: 'none' }}
                         inputProps={{
-                            multiple: false,
+                            accept: ".txt"
                         }}
                     />
                 </Grid>

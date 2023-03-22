@@ -2,7 +2,7 @@ import { Delete } from '@mui/icons-material';
 import { Alert, Button, Typography } from '@mui/material';
 import { ModalForm } from '../../layout/ModalForm';
 
-export const AlertDelete = ({funtionDelete, title}) => {
+export const AlertDelete = ({ funtionDelete, title }) => {
 
     return (
         <ModalForm
@@ -26,10 +26,10 @@ export const AlertDelete = ({funtionDelete, title}) => {
             title="Borrar"
         >
 
+            <Typography variant="h4" color="inherit" mb={2}>
+                {title}
+            </Typography>
             <Alert severity="error" >
-                <Typography variant="h4" color="inherit" mb={2}>
-                    {title}
-                </Typography>
                 ¿Esta seguro de esta accion?
             </Alert>
 

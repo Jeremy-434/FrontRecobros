@@ -1,2 +1,2 @@
 export * from './TablaServicios';
-export * from './TableCellDescripcion';
+export * from '../../../components/table/MoreInfoModal';

@@ -6,14 +6,16 @@ import { StyledTableCell, TablaLayout } from '../../../layout/TablaLayout';
 import { AlertDelete } from '../../../components/table/AlertDelete';
 import { ComTablePagination } from '../../../components/table/ComTablePagination';
 import { FirstContext } from '../../../../context';
-import { EditModalAplicaciones } from '../modals';
+import { EditModalAplicaciones, MoreInfoModalApliaciones } from '../modals';
 
 import { useFiltrosAplicaciones } from '../../../../components/filtros/hooks';
 import { useCrudAplicaciones } from '../../../../hooks/useCrudAplicaciones';
+import { MoreInfoModal } from '../../servicios';
 
 const encabezadoDeTabla = [
   {
-    title: 'Aplicación'
+    title: 'Aplicación',
+    sxhead: {textAlign: 'left', paddingLeft: 20}
   },
   {
     title: 'Estado'
@@ -30,6 +32,14 @@ const encabezadoDeTabla = [
   {
     title: 'Acciones'
   }
+]
+
+const titlePrimaryInList = [
+  "Nombre de la aplicación",
+  "Estado",
+  "Nombre del segmento",
+  "Aliado",
+  "Servicio",
 ]
 
 export const TablaAplicaciones = () => {
@@ -50,21 +60,27 @@ export const TablaAplicaciones = () => {
                 {
                   (dataFilters)
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((apli) => (
+                    .map((aplicacion) => (
                       <TableRow
-                        key={apli.idAplicacion}
+                        key={aplicacion.idAplicacion}
                       >
-                        <StyledTableCell>{apli.nombreAplicacion}</StyledTableCell>
-                        <StyledTableCell >{apli.estado}</StyledTableCell>
-                        <StyledTableCell >{apli.nombreSegmento}</StyledTableCell>
-                        <StyledTableCell >{apli.idAliadoNavigation.nombreAliado}</StyledTableCell>
-                        <StyledTableCell >{apli.idServicioNavigation.nombreServicio}</StyledTableCell>
-                        <StyledTableCell sxbody={{ textAlign: 'center', padding: 0, paddingLeft: 0 }}>
-                          <EditModalAplicaciones idAplicacion={apli.idAplicacion} {...apli} />
+                        <StyledTableCell>{aplicacion.nombreAplicacion.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.estado}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.nombreSegmento.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.idAliadoNavigation.nombreAliado.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.idServicioNavigation.nombreServicio.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell sxbody={{
+                          textAlign: 'center',
+                          padding: 'auto',
+                          display: 'flex',
+                          justifyContent: 'space-around'
+                        }}>
+                          <EditModalAplicaciones idAplicacion={aplicacion.idAplicacion} {...aplicacion} />
                           <AlertDelete
                             title={"Borrar aplicación"}
-                            funtionDelete={() => { borrarAplicacion(apli.idAplicacion) }}
+                            funtionDelete={() => { borrarAplicacion(aplicacion.idAplicacion) }}
                           />
+                          <MoreInfoModalApliaciones data={aplicacion} />
                         </StyledTableCell>
                       </TableRow>
                     ))}

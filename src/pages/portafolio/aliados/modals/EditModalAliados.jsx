@@ -65,7 +65,7 @@ export const EditModalAliados = ({
             funtion={editarAliado}
             nameButton={"Actualizar"}
             styleButton={<Edit />}
-            styleIconButton={{ width: 20, padding: 0, paddingRight: 2 }}
+            styleIconButton={{ width: 20, padding: 0 }}
             handleCloseModal={handleCloseModal}
             title="Editar"
         >

@@ -36,20 +36,10 @@ export const TablaLayout = ({ children, encabezadoDeTabla, minWidth, modal }) =>
 
   return (
     <Paper sx={{ width: '100%' }}>
-      <TableContainer
-      // sx={{ overflow: 'auto' }}
-      >
-        <Table stickyHeader
-          // sx={{ minWidth: minWidth }}
-          aria-label="sticky table"
-        >
-          <TableHead
-          // sx={{ '&.MuiTableCell-root': { height: '70px' } }} 
-          >
-            <TableRow
-              align="left"
-              colSpan={3}
-            >
+      <TableContainer>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow align="left" colSpan={3}>
               <StyledTableCell sxhead={{ backgroundColor: 'none', textAlign: 'left', height: 'none' }} >
                 {/* //* MODAL PARA AGREGAR */}
                 {(modal == "Aplicaciones") && <ModalAplicaciones />}
@@ -61,6 +51,7 @@ export const TablaLayout = ({ children, encabezadoDeTabla, minWidth, modal }) =>
               {encabezadoDeTabla.map(e => (
                 <StyledTableCell
                   key={e.title}
+                  sxhead={e.sxhead}
                 >
                   {e.title}
                 </StyledTableCell>

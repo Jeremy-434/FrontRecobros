@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { TableBody, TableCell, TableRow } from '@mui/material';
+import { TableBody, TableRow } from '@mui/material';
 
 import { FirstContext } from '../../../../context';
 
@@ -9,20 +9,26 @@ import { useFiltrosAliados } from '../../../../components/filtros/hooks';
 
 import { StyledTableCell, TablaLayout } from '../../../layout';
 import { EditModalAliados } from '../modals';
-import { AlertDelete, ComTablePagination } from '../../../components';
+import { AlertDelete, ComTablePagination, MoreInfoModal } from '../../../components';
 
 const encabezadoDeTabla = [
   {
     title: 'Aliado',
-    sx: {
-      // textAlign: 'left',
-    }
+    sxhead: {textAlign: 'left', paddingLeft: 20}
   },
   { title: 'Usuario' },
   { title: 'Estado' },
   { title: 'Correo responsable' },
   { title: 'Fecha' },
   { title: 'Acciones' }
+]
+
+const titlePrimaryInList = [
+  "Nombre aliado",
+  "Usuario",
+  "Estado",
+  "Correo del responsable",
+  "Fecha",
 ]
 
 export const TablaAliados = () => {
@@ -47,17 +53,24 @@ export const TablaAliados = () => {
                       <TableRow
                         key={aliado.idAliado}
                       >
-                        <StyledTableCell>{aliado.nombreAliado.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell>{aliado.nombreAliado.slice(0, 20)}</StyledTableCell>
                         <StyledTableCell>{aliado.usuario}</StyledTableCell>
                         <StyledTableCell>{aliado.estado}</StyledTableCell>
                         <StyledTableCell>{aliado.correoResponsable}</StyledTableCell>
                         <StyledTableCell>{aliado.fecha}</StyledTableCell>
-                        <StyledTableCell sxbody={{ textAlign: 'center', padding: 0, paddingLeft: 0 }} >
+                        <StyledTableCell sxbody={{
+                          textAlign: 'center',
+                          padding: 'auto',
+                          display: 'flex',
+                          justifyContent: 'space-around'
+                        }}
+                        >
                           <EditModalAliados {...aliado} />
                           <AlertDelete
                             funtionDelete={() => { borrarAliado(aliado.idAliado) }}
                             title={"Borrar aliado"}
                           />
+                          <MoreInfoModal data={aliado} titlePrimaryInList={titlePrimaryInList} />
                         </StyledTableCell>
                       </TableRow>
                     ))
