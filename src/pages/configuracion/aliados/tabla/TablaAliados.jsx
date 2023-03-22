@@ -8,8 +8,8 @@ import { useCrudAliados } from '../../../../hooks';
 import { useFiltrosAliados } from '../../../../components/filtros/hooks';
 
 import { StyledTableCell, TablaLayout } from '../../../layout';
-import { EditModalAliados } from '../modals';
 import { AlertDelete, ComTablePagination, MoreInfoModal } from '../../../components';
+import { EditModalAliados } from '../modals';
 
 const encabezadoDeTabla = [
   {

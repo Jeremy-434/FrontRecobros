@@ -1,9 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { AliadosPage, AplicacionesPage, CargueArchivosPage, ServiciosPage } from '../pages';
+import { AplicacionesPage, CargueArchivosPage, ServiciosPage } from '../pages';
 import { DrawerLeft, Header, MessagesComponent } from '../components/';
 import { ContainerLayout } from './layout/ContainerLayout';
 import { FirstProvider } from '../context';
+import { AliadosPage } from '../pages';
 
 export const AppRouter = () => {
   return (

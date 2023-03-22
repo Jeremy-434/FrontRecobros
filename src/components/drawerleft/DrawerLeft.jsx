@@ -1,5 +1,5 @@
 // 
-import { DataObject, ImportContacts, Info, Science } from "@mui/icons-material";
+import { DataObject, ImportContacts, Info, Science, Settings } from "@mui/icons-material";
 import { Box, Button, Divider, Drawer, Grid } from "@mui/material"
 import { AcordionPortafolio } from "./";
 
@@ -27,27 +27,32 @@ export const DrawerLeft = () => {
             <Box component='div' >
                 <Divider />
                 <AcordionPortafolio
+                    Icon={<Settings sx={fontIcon} />}
+                    text="Configuración"
+                    linksAcordion={['Parametros', 'Aliados', 'Cierre mes']}
+                />
+                <AcordionPortafolio
                     Icon={<ImportContacts sx={fontIcon} />}
                     text="Portafolio"
-                    linksAcordion={['Aplicaciones', 'Servicios', 'Aliados']}
+                    linksAcordion={['Aplicaciones', 'Servicios']}
                 />
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}
                     text="Uso de Datos"
                     linksAcordion={['Carga', 'Visualización']}
-                    // linksAcordion={['Carga', 'Seguimiento', 'Validación', 'Visualización']}
+                // linksAcordion={['Carga', 'Seguimiento', 'Validación', 'Visualización']}
                 />
-                <AcordionPortafolio
+                {/* <AcordionPortafolio
                     Icon={<Science sx={fontIcon} />}
                     text="Volumetria"
                     linksAcordion={['Consolidacion', 'Comparacion']}
-                    // linksAcordion={['Consolidación', 'Sumarización']}
-                />
+                // linksAcordion={['Consolidación', 'Sumarización']}
+                /> */}
                 <AcordionPortafolio
                     Icon={<Info sx={fontIcon} />}
                     text="Informes"
-                    linksAcordion={['Log de errores']}
-                    // linksAcordion={['Intermedios', 'finales']}
+                    linksAcordion={['Consolidacion', 'Comparacion', 'Log de errores' ]}
+                // linksAcordion={['Intermedios', 'finales']}
                 />
                 <Divider />
             </Box>

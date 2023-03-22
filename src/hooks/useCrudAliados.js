@@ -15,14 +15,14 @@ export const useCrudAliados = () => {
 
     // * GUARDAR UN ALIADO
     const [createAliado] = useCreateAliadoMutation();
-    const addAliado = (
+    const addAliado = async(
         nombreAliado,
         usuario,
         estado,
         correoResponsable,
         fecha,
     ) => {
-        createAliado({
+        await createAliado({
             "nombreAliado": nombreAliado,
             "usuario": usuario,
             "estado": estado,
@@ -41,7 +41,7 @@ export const useCrudAliados = () => {
 
     // * EDITAR UN ALIADO
     const [updateAliado] = useUpdateAliadoMutation();
-    const editAliado = (
+    const editAliado = async(
         idAliado,
         nombreAliado,
         usuario,
@@ -49,7 +49,7 @@ export const useCrudAliados = () => {
         correoResponsable,
         fecha
     ) => {
-        updateAliado({
+        await updateAliado({
             "idAliado": idAliado,
             "nombreAliado": nombreAliado,
             "usuario": usuario,
@@ -69,8 +69,8 @@ export const useCrudAliados = () => {
 
     // * BORRAR UN ALIADO
     const [deleteAliado] = useDeleteAliadoMutation();
-    const borrarAliado = (id) => {
-        deleteAliado(id)
+    const borrarAliado = async(id) => {
+        await deleteAliado(id)
             .then((res) => {
                 if (res.error) {
                     dispatch(setMessage({

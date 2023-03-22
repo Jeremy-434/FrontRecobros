@@ -14,7 +14,7 @@ export const useCrudServicios = () => {
 
     // * GUARDAR UN SERVICIO
     const [createServicio] = useCreateServicioMutation();
-    const addServicio = (
+    const addServicio = async(
         nombreServicioInput,
         descripcionInput,
         driverInput,
@@ -23,7 +23,7 @@ export const useCrudServicios = () => {
         porcentajeComparacionInput,
         responsableReporteInput,
     ) => {
-        createServicio({
+        await createServicio({
             "nombreServicio": nombreServicioInput,
             "descripcion": descripcionInput,
             "driver": driverInput,
@@ -44,7 +44,7 @@ export const useCrudServicios = () => {
 
     // * EDITAR UN SERVICIO
     const [updateServicio] = useUpdateServicioMutation();
-    const editServicio = (
+    const editServicio = async(
         idServicio,
         nombreServicio,
         descripcion,
@@ -54,7 +54,7 @@ export const useCrudServicios = () => {
         porcentajeComparacion,
         responsableReporte,
     ) => {
-        updateServicio({
+        await updateServicio({
             "idServicio": idServicio,
             "nombreServicio": nombreServicio,
             "descripcion": descripcion,
@@ -76,8 +76,8 @@ export const useCrudServicios = () => {
 
     // * BORRAR UN SERVICIO
     const [deleteServicio] = useDeleteServicioMutation();
-    const borrarServicio = (id) => {
-        deleteServicio(id)
+    const borrarServicio = async(id) => {
+        await deleteServicio(id)
             .then((res) => {
                 if (res.error) {
                     dispatch(setMessage({

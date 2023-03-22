@@ -2,7 +2,8 @@ import { Table, TableContainer, TableHead, TableRow, Paper } from '@mui/material
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 
-import { ModalAliados, ModalAplicaciones, ModalServicios } from '../portafolio';
+import { ModalAplicaciones, ModalServicios } from '../portafolio';
+import { ModalAliados } from '../configuracion';
 
 export const StyledTableCell = styled(TableCell)(({ sxhead, sxbody }) => {
   return {

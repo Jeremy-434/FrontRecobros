@@ -15,31 +15,13 @@ import { MoreInfoModal } from '../../servicios';
 const encabezadoDeTabla = [
   {
     title: 'Aplicación',
-    sxhead: {textAlign: 'left', paddingLeft: 20}
+    sxhead: { textAlign: 'left', paddingLeft: 20 }
   },
-  {
-    title: 'Estado'
-  },
-  {
-    title: 'Segmento'
-  },
-  {
-    title: 'Aliado'
-  },
-  {
-    title: 'Servicio'
-  },
-  {
-    title: 'Acciones'
-  }
-]
-
-const titlePrimaryInList = [
-  "Nombre de la aplicación",
-  "Estado",
-  "Nombre del segmento",
-  "Aliado",
-  "Servicio",
+  { title: 'Estado' },
+  { title: 'Segmento' },
+  { title: 'Aliado' },
+  { title: 'Servicio' },
+  { title: 'Acciones' }
 ]
 
 export const TablaAplicaciones = () => {
@@ -58,17 +40,17 @@ export const TablaAplicaciones = () => {
             : aplicaciones ?
               <TableBody>
                 {
-                  (dataFilters)
+                  dataFilters
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((aplicacion) => (
                       <TableRow
                         key={aplicacion.idAplicacion}
                       >
-                        <StyledTableCell>{aplicacion.nombreAplicacion.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell>{aplicacion.nombreAplicacion.slice(0, 20)}</StyledTableCell>
                         <StyledTableCell >{aplicacion.estado}</StyledTableCell>
-                        <StyledTableCell >{aplicacion.nombreSegmento.slice(0,20)}</StyledTableCell>
-                        <StyledTableCell >{aplicacion.idAliadoNavigation.nombreAliado.slice(0,20)}</StyledTableCell>
-                        <StyledTableCell >{aplicacion.idServicioNavigation.nombreServicio.slice(0,20)}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.nombreSegmento.slice(0, 20)}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.idAliadoNavigation.nombreAliado.slice(0, 20)}</StyledTableCell>
+                        <StyledTableCell >{aplicacion.idServicioNavigation.nombreServicio.slice(0, 20)}</StyledTableCell>
                         <StyledTableCell sxbody={{
                           textAlign: 'center',
                           padding: 'auto',

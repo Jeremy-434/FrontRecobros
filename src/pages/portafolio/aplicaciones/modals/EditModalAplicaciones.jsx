@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Edit } from '@mui/icons-material';
 import { MenuItem, TextField, Typography } from '@mui/material';
 
@@ -24,10 +24,11 @@ export const EditModalAplicaciones = ({
     idServicio,
 }) => {
 
+
     const {
         nombreDeAplicacionInput, estadoDeAplicacionInput, nombreDeSegmentoInput, aliadoResponsableInput, servicioInput,
         nombreDeAplicacionInputValid, estadoDeAplicacionInputValid, nombreDeSegmentoInputValid, aliadoResponsableInputValid, servicioInputValid,
-        onInputChange, onResetForm, isFormValid
+        onInputChange, onResetForm, isFormValid, reset
     } = useForm({
         'nombreDeAplicacionInput': nombreAplicacion,
         'estadoDeAplicacionInput': estado,
@@ -55,7 +56,6 @@ export const EditModalAplicaciones = ({
             servicioInput,
         )
         setFormSubmitted(false);
-
         return true;
     }
 

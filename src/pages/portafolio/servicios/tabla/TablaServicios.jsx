@@ -14,29 +14,15 @@ import { useCrudServicios } from '../../../../hooks';
 const encabezadoDeTabla = [
   {
     title: 'Servicio',
-    sxhead: {textAlign: 'left', paddingLeft: 20}
+    sxhead: { textAlign: 'left', paddingLeft: 20 }
   },
-  {
-    title: 'Driver'
-  },
-  {
-    title: 'Cl. Actividad'
-  },
-  {
-    title: 'Cl. Costo'
-  },
-  {
-    title: 'Responsable'
-  },
-  {
-    title: 'Comparacion'
-  },
-  {
-    title: 'Descripción'
-  },
-  {
-    title: 'Acciones -'
-  },
+  { title: 'Driver' },
+  { title: 'Cl. Actividad' },
+  { title: 'Cl. Costo' },
+  { title: 'Responsable' },
+  { title: 'Comparacion' },
+  { title: 'Descripción' },
+  { title: 'Acciones -' },
 ]
 
 const titlePrimaryInList = [

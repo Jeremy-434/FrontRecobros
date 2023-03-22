@@ -13,7 +13,7 @@ export const useLoadFile = () => {
   const [uploadArchivo] = useUploadArchivoMutation();
 
   //* Funcion que lee todo el txt
-  const readFile = (valueFile, dataForCreate, nameFile) => {
+  const readFile = async(valueFile, dataForCreate, nameFile) => {
 
     if (!valueFile) return;
 
@@ -35,10 +35,10 @@ export const useLoadFile = () => {
     const fileFormData = new FormData();
     fileFormData.append("file", valueFile);
 
-    uploadArchivo(fileFormData)
+    await uploadArchivo(fileFormData)
       .then((res) => {
         if (res.error) {
-          console.log("🚀 ~ res.error.data:", res.error.data)
+          //* Mensajes de error
           dispatch(setMessage({
             text: (res.error.data
               ? (res.error.data.includes('The network path was not found.')

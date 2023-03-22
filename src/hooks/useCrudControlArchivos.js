@@ -14,7 +14,7 @@ export const useCrudControlArchivos = () => {
 
     // * GUARDAR UN CONTROL DE ARCHIVO
     const [createControlArchivo] = useCreateControlArchivosMutation();
-    const addControlArchivo = ({
+    const addControlArchivo = async({
         nombreArchivo,
         usuario,
         estado,
@@ -23,7 +23,7 @@ export const useCrudControlArchivos = () => {
         aliado,
         fechaServidor
     }) => {
-        createControlArchivo({
+        await createControlArchivo({
             "nombreArchivo": nombreArchivo,
             "usuario": usuario,
             "estado": estado,
