@@ -8,7 +8,7 @@ import { ComTablePagination } from '../../../components/table/ComTablePagination
 import { FirstContext } from '../../../../context';
 import { EditModalAplicaciones, MoreInfoModalApliaciones } from '../modals';
 
-import { useFiltrosAplicaciones } from '../../../../components/filtros/hooks';
+import { useFiltrosAplicaciones } from '../../../filters/hooks';
 import { useCrudAplicaciones } from '../../../../hooks/useCrudAplicaciones';
 import { MoreInfoModal } from '../../servicios';
 

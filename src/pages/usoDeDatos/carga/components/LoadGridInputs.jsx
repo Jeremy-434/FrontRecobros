@@ -1,14 +1,13 @@
 import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Grid, TextField, Button, MenuItem, Typography, Input } from '@mui/material';
 import { Container } from '@mui/system';
 import { Upload } from '@mui/icons-material';
 
-import { useLoadFile } from '../hooks/useLoadFile';
-import { useForm } from '../../../hooks/useForm';
-import { useCrudAliados } from '../../../hooks';
-import { useDispatch } from 'react-redux';
-import { checkingProgress } from '../../../store/slices/messageCreated';
+import { useLoadFile } from '../hooks';
+import { useCrudAliados, useForm } from '../../../../hooks';
+import { checkingProgress } from '../../../../store/slices/messageCreated';
 
 const dateDate = new Date();
 const dateYear = dateDate.getFullYear();
@@ -73,8 +72,19 @@ export const LoadGridInputs = () => {
     };
 
     return (
-        <Container component="div" >
-            <Typography variant="h4" color="initial" sx={{ mt: 2, mb: 0 }}>Cargue su archivo</Typography>
+        <Container component="div" sx={{ marginTop: 4 }} >
+            <Typography
+                variant="h2"
+                component="h2"
+                color="initial"
+                fontSize={34}
+                display="inline"
+                fontWeight="400"
+                marginLeft={2}
+                marginBottom={0}
+            >
+                Cargue su archivo
+            </Typography>
             <Grid
                 container
                 component="div"

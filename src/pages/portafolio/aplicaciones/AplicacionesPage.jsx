@@ -1,4 +1,4 @@
-import { FiltrosAplicaciones } from '../../../components';
+import { FiltrosAplicaciones } from '../../filters';
 import { PageLayout } from '../../layout';
 import { TablaAplicaciones } from './tabla';
 

@@ -24,6 +24,7 @@ export const MessagesComponent = () => {
                         <Alert
                             onClose={handleClose}
                             severity={severity}
+                            variant="filled"
                             sx={{
                                 width: '100%'
                             }}

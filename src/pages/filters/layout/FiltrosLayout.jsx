@@ -26,7 +26,7 @@ export const FiltrosLayout = ({
         <Typography
           variant="h2"
           color="initial"
-          fontSize={24}
+          fontSize={34}
           display="inline"
           fontWeight="400"
           marginLeft={2}

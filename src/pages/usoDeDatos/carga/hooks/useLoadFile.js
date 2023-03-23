@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { handleMessageOpen, setMessage } from '../../../store/slices/messageCreated';
-import { useCrudControlArchivos } from '../../../hooks';
-import { useUploadArchivoMutation } from '../../../store/apis';
+import { useCrudControlArchivos } from '../../../../hooks';
+import { useUploadArchivoMutation } from '../../../../store/apis';
+import { handleMessageOpen, setMessage } from '../../../../store/slices/messageCreated';
 
 export const useLoadFile = () => {
 

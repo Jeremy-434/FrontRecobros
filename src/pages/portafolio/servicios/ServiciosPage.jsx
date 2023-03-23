@@ -1,4 +1,4 @@
-import { FiltrosServicios } from '../../../components';
+import { FiltrosServicios } from '../../filters';
 import { PageLayout } from '../../layout';
 import { TablaServicios } from './tabla';
 

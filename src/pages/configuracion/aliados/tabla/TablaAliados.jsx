@@ -5,7 +5,7 @@ import { TableBody, TableRow } from '@mui/material';
 import { FirstContext } from '../../../../context';
 
 import { useCrudAliados } from '../../../../hooks';
-import { useFiltrosAliados } from '../../../../components/filtros/hooks';
+import { useFiltrosAliados } from '../../../filters/hooks';
 
 import { StyledTableCell, TablaLayout } from '../../../layout';
 import { AlertDelete, ComTablePagination, MoreInfoModal } from '../../../components';

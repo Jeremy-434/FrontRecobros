@@ -1,7 +1,7 @@
 import { MenuItem, TextField } from '@mui/material';
 import { useCrudAplicaciones, useForm } from '../../hooks';
-import { useFiltrosAplicaciones } from './hooks';
-import { FiltrosLayout } from './layout';
+import { useFiltrosAplicaciones } from '../../pages/filters/hooks';
+import { FiltrosLayout } from '../../pages/filters/layout';
 
 export const FiltrosAplicaciones = () => {
 

@@ -1,5 +1,5 @@
 import { Logout } from '@mui/icons-material';
-import { AppBar, Box, Toolbar, Typography, Button, IconButton, LinearProgress } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { LoadingComponent } from './LoadingComponent';
 
 export const Header = () => {
@@ -15,7 +15,6 @@ export const Header = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            {/* <MenuIcon sx={{ marginRight: 2 }} /> */}
             <Box component='img' src='\logo-ecopetrol.png' width={150} />
           </IconButton>
           <Box component="div" sx={{ flexGrow: 1 }}>

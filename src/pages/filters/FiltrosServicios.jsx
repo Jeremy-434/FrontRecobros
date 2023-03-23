@@ -1,7 +1,7 @@
-import { useFiltrosServicios } from './hooks';
+import { useFiltrosServicios } from '../../pages/filters/hooks';
 import { useCrudServicios } from '../../hooks/useCrudServicios';
 import { useForm } from '../../hooks/useForm';
-import { FiltrosLayout } from './layout';
+import { FiltrosLayout } from '../../pages/filters/layout';
 import { MenuItem, TextField } from '@mui/material';
 
 export const FiltrosServicios = () => {

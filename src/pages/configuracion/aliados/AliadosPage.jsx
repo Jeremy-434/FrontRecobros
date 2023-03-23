@@ -1,4 +1,4 @@
-import { FiltrosAliados } from '../../../components';
+import { FiltrosAliados } from '../../filters';
 import { PageLayout } from '../../layout';
 import { TablaAliados } from './tabla';
 

@@ -8,7 +8,7 @@ import { StyledTableCell, TablaLayout } from '../../../layout';
 import { AlertDelete, ComTablePagination, MoreInfoModal } from '../../../components';
 import { EditModalServicios } from '../modals';
 
-import { useFiltrosServicios } from '../../../../components/filtros/hooks';
+import { useFiltrosServicios } from '../../../filters/hooks';
 import { useCrudServicios } from '../../../../hooks';
 
 const encabezadoDeTabla = [

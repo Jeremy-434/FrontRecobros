@@ -1,1 +1,2 @@
-export * from './CargueArchivosPage';
+export * from './carga';
+export * from './visualizacion';

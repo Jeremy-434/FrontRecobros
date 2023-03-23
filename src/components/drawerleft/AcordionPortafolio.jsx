@@ -17,8 +17,8 @@ export const AcordionPortafolio = ({ text, linksAcordion, Icon }) => {
             </AccordionSummary>
             <AccordionDetails>
                 {
-                    linksAcordion.map(text => (
-                        <LinksAcordion key={text} text={text} />
+                    linksAcordion.map(linkText => (
+                        <LinksAcordion key={linkText} linkText={linkText} text={text} />
                     ))
                 }
             </AccordionDetails>
