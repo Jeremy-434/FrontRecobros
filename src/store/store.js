@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { aliadosApi, aplicacionesApi, archivoApi, controlArchivosApi, serviciosApi } from './apis';
+import { aliadosApi, aplicacionesApi, archivoApi, controlArchivosApi, parametrosApi, serviciosApi } from './apis';
 import { dataFileSlice } from './slices/dataFile.js/index.js';
 import { filteredDataSlice } from './slices/filteredData';
 import { messageCreatedSlice } from './slices/messageCreated';
@@ -12,6 +12,7 @@ export const store = configureStore({
         [aliadosApi.reducerPath]: aliadosApi.reducer,
         [controlArchivosApi.reducerPath]: controlArchivosApi.reducer,
         [archivoApi.reducerPath]: archivoApi.reducer,
+        [parametrosApi.reducerPath]: parametrosApi.reducer,
 
         // * other states
         messageCreated: messageCreatedSlice.reducer,
@@ -25,4 +26,5 @@ export const store = configureStore({
         .concat(aliadosApi.middleware)
         .concat(controlArchivosApi.middleware)
         .concat(archivoApi.middleware)
+        .concat(parametrosApi.middleware)
 })

@@ -1,6 +1,28 @@
 import { Box, Container, List, ListItem, Typography, TextField, Button, ListItemText } from '@mui/material';
+import { useCrudParametros, useForm } from '../../../hooks';
 
 export const UpdateParametros = () => {
+
+    const { parametros } = useCrudParametros();
+
+    const { editarParametro } = useCrudParametros();
+
+    const { ruta, historico, columnas, tamanioArchivo, onInputChange } = useForm({
+        "ruta": "",
+        "historico": "",
+        "columnas": "",
+        "tamanioArchivo": "",
+    });
+    const onUpdateParametros = () => {
+        editarParametro({
+            idParametro: parametros.idParametro,
+            rutaArchivosProcesar: ruta.length == 0 ? parametros.rutaArchivosProcesar : `${ruta}\\`,
+            numMesesEliminacionHistorico: Number(historico) == 0 ? parametros.numMesesEliminacionHistorico : Number(historico),
+            numColumnasArchivo: Number(columnas) == 0 ? parametros.numColumnasArchivo : Number(columnas),
+            bytesMaxArchivo: Number(tamanioArchivo) == 0 ? parametros.bytesMaxArchivo : Number(tamanioArchivo) ,
+        })
+    }
+
     return (
         <Container component="div" sx={{ marginTop: 4 }} >
             <Box
@@ -38,6 +60,13 @@ export const UpdateParametros = () => {
                         />
                         <TextField
                             size="small"
+                            type="text"
+                            name="ruta"
+                            value={ruta}
+                            onChange={onInputChange}
+                            label={parametros.rutaArchivosProcesar?.toString()}
+                            placeholder={parametros.rutaArchivosProcesar?.toString()}
+                            sx={{ width: '400px' }}
                         />
                     </ListItem>
                     <ListItem>
@@ -47,6 +76,12 @@ export const UpdateParametros = () => {
                         />
                         <TextField
                             size="small"
+                            type="number"
+                            name="historico"
+                            value={historico}
+                            onChange={onInputChange}
+                            label={parametros.numMesesEliminacionHistorico?.toString()}
+                            placeholder={parametros.numMesesEliminacionHistorico?.toString()}
                             sx={{ width: '80px' }}
                         />
                     </ListItem>
@@ -57,6 +92,12 @@ export const UpdateParametros = () => {
                         />
                         <TextField
                             size="small"
+                            type="number"
+                            name="columnas"
+                            value={columnas}
+                            onChange={onInputChange}
+                            label={parametros.numColumnasArchivo?.toString()}
+                            placeholder={parametros.numColumnasArchivo?.toString()}
                             sx={{ width: '80px' }}
                         />
                     </ListItem>
@@ -67,13 +108,19 @@ export const UpdateParametros = () => {
                         />
                         <TextField
                             size="small"
+                            type="number"
+                            name="tamanioArchivo"
+                            value={tamanioArchivo}
+                            onChange={onInputChange}
+                            label={parametros.bytesMaxArchivo?.toString()}
+                            placeholder={parametros.bytesMaxArchivo?.toString()}
                             sx={{ width: '140px' }}
                         />
                     </ListItem>
                 </List>
             </Box>
             <Box display="flex" justifyContent="right" marginTop={4} >
-                <Button variant="contained">
+                <Button variant="contained" onClick={onUpdateParametros}>
                     Actualizar configuración
                 </Button>
             </Box>
