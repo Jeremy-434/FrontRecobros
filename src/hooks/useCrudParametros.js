@@ -8,11 +8,11 @@ export const useCrudParametros = () => {
     // * Para hacer el "dispatch" del Mensaje de confirmacion
     const dispatch = useDispatch();
 
-    // * OBTENER LOS DATOS Y GUARDARLOS EN "controlArchivos"
+    // * OBTENER EL DATO DE LA PRIMERA FILA Y GUARDARLO EN "parametros"
     const { data, error, isLoading, refetch, isFetching } = useGetParametrosByIdQuery(1);
     const parametros = data ? data : [];
 
-    // * GUARDAR UN CONTROL DE ARCHIVO
+    // * GUARDAR UN PARAMETRO
     const [updateParametro] = useUpdateParametroMutation();
     const editarParametro = async({
         idParametro,

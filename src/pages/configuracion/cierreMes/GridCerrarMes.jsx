@@ -1,6 +1,30 @@
 import { Alert, Button, Container, Grid, Input, TextField, Typography } from '@mui/material';
+import { useCrudCierreMes, useForm } from '../../../hooks';
+
+const dateDate = new Date();
+const dateYear = dateDate.getFullYear();
+const dateMonth = dateDate.getUTCMonth() + 1;
+
+const formData = {
+    mes: dateMonth,
+    anio: dateYear,
+}
 
 export const GridCerrarMes = () => {
+
+    const { mes, anio, onInputChange } = useForm(formData);
+    const { addCierreMes } = useCrudCierreMes();
+
+    const onCerrarMes = () => {
+        addCierreMes({
+            mes: mes,
+            anio: anio,
+            usuario: "Ama Gwatterson",
+            fechaServidor: null,
+            estado: "Finalizado"
+        })
+    }
+
     return (
         <Container component="div" sx={{ marginTop: 4 }} >
             <Typography
@@ -32,6 +56,8 @@ export const GridCerrarMes = () => {
                     <TextField
                         label={`Mes`}
                         name="mes"
+                        value={mes}
+                        onChange={onInputChange}
                         size="small"
                         fullWidth
                         disabled
@@ -41,6 +67,8 @@ export const GridCerrarMes = () => {
                     <TextField
                         label={`Año`}
                         name="anio"
+                        value={anio}
+                        onChange={onInputChange}
                         size="small"
                         fullWidth
                         disabled
@@ -61,12 +89,9 @@ export const GridCerrarMes = () => {
                     </Alert>
                 </Grid>
                 <Grid item xs={6}>
-                    {/* <Button variant="contained" fullWidth>
-                          Reabrir mes
-                        </Button> */}
                 </Grid>
                 <Grid item xs={6}>
-                    <Button variant="contained" fullWidth>
+                    <Button variant="contained" fullWidth onClick={onCerrarMes}>
                         Cerrar mes
                     </Button>
                 </Grid>

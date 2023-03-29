@@ -1,7 +1,7 @@
 import { LinearProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
 
-import { useCrudAliados, useCrudAplicaciones, useCrudControlArchivos, useCrudParametros, useCrudServicios } from '../../hooks';
+import { useCrudAliados, useCrudAplicaciones, useCrudCierreMes, useCrudControlArchivos, useCrudParametros, useCrudServicios } from '../../hooks';
 
 export const LoadingComponent = () => {
 
@@ -12,7 +12,16 @@ export const LoadingComponent = () => {
     const { isLoading: isLoadingAliados } = useCrudAliados();
     const { isLoading: isLoadingControlArchivos } = useCrudControlArchivos();
     const { isLoading: isLoadingParametros } = useCrudParametros();
-    const isLoadingBool = isLoadingServicios || isLoadingAplicaciones || isLoadingAliados || isLoadingControlArchivos || isLoadingParametros || (status == 'inProgress')
+    const { isLoading: isLoadingCierreMes } = useCrudCierreMes();
+
+    const isLoadingBool = isLoadingServicios
+        || isLoadingAplicaciones
+        || isLoadingAliados
+        || isLoadingControlArchivos
+        || isLoadingParametros
+        || (status == 'inProgress')
+        || isLoadingCierreMes
+
     return (
         <>
             {
