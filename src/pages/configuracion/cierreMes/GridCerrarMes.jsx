@@ -1,7 +1,7 @@
 import { Alert, Button, Container, Grid, Input, TextField, Typography } from '@mui/material';
 import { useContext, useState } from 'react';
 import { FirstContext } from '../../../context/first/FirstContext';
-import { useCrudCierreMes, useForm } from '../../../hooks';
+import { useCrudCierreMes, useCrudControlArchivos, useForm } from '../../../hooks';
 
 const dateDate = new Date();
 const dateYear = dateDate.getFullYear();
@@ -14,10 +14,13 @@ const formData = {
 
 export const GridCerrarMes = () => {
 
-    const {mesCerrado, setMesCerrado} = useContext( FirstContext );
-
+    const { mesCerrado, setMesCerrado } = useContext(FirstContext);
     const { mes, anio, onInputChange } = useForm(formData);
+
     const { addCierreMes, borrarCierreMes, cierreMes } = useCrudCierreMes();
+    const { controlArchivos } = useCrudControlArchivos();
+
+    const controlArchivoLoaded = async () => { await controlArchivos?.slice(-1)[0].mes === mes };
 
     const onCerrarMes = () => {
         addCierreMes({
@@ -86,7 +89,7 @@ export const GridCerrarMes = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <Alert
-                        severity={mesCerrado ? 'error' : 'warning'}
+                        severity={mesCerrado ? 'error' : controlArchivoLoaded ? 'info' : 'warning'}
                         variant="standard"
                         sx={{
                             display: 'flex',
@@ -95,7 +98,7 @@ export const GridCerrarMes = () => {
                             padding: 0,
                         }}
                     >
-                        {mesCerrado ? 'Cerrado' : 'Pendiente'}
+                        {mesCerrado ? 'Cerrado' : controlArchivoLoaded ? 'Procesando' : 'Pendiente'}
                     </Alert>
                 </Grid>
                 <Grid item xs={6}>

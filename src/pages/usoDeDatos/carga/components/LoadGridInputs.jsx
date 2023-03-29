@@ -97,7 +97,11 @@ export const LoadGridInputs = () => {
                     severity="error"
                     variant="standard"
                 >
-                    {`No se puede cargar archivo ya que el mes ${mes} del año ${anio} se encuentra en estado: CERRADO`}
+                    {
+                        `No se puede cargar archivo ya que el mes 
+                        ${dateDate.toLocaleString('es-ES', { month: 'long' })}(${mes})
+                        del año ${anio} se encuentra en estado: CERRADO`
+                    }
                 </Alert>
             </Box>
             <Grid
