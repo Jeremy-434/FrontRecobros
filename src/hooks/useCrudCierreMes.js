@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useCreateCierreMesMutation, useGetCierreMesQuery, useDeleteCierreMesMutation } from '../store/apis';
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudCierreMes = () => {
 
@@ -20,6 +20,7 @@ export const useCrudCierreMes = () => {
         fechaServidor,
         estado,
     }) => {
+        dispatch(checkingProgress());
         await createCierreMes({
             "mes": mes,
             "anio": anio,
@@ -41,6 +42,7 @@ export const useCrudCierreMes = () => {
     // * BORRAR UN REGISTRO DE CIERRE DE MES
     const [deleteCierreMes] = useDeleteCierreMesMutation();
     const borrarCierreMes = async (id) => {
+        dispatch(checkingProgress());
         await deleteCierreMes(id)
             .then((res) => {
                 if (res.error) {
@@ -51,7 +53,7 @@ export const useCrudCierreMes = () => {
                     dispatch(handleMessageOpen());
                 } else {
                     dispatch(setMessage({
-                        text: `El mes esta nuevamente abierto`,
+                        text: `Mes nuevamente abierto`,
                         severity: 'success'
                     }));
                     dispatch(handleMessageOpen());

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { useCreateControlArchivosMutation, useGetControlArchivosQuery } from '../store/apis/controlArchivosApi';
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudControlArchivos = () => {
 
@@ -23,6 +23,9 @@ export const useCrudControlArchivos = () => {
         aliado,
         fechaServidor
     }) => {
+
+        dispatch( checkingProgress() );
+
         await createControlArchivo({
             "nombreArchivo": nombreArchivo,
             "usuario": usuario,

@@ -1,4 +1,6 @@
 import { Alert, Button, Container, Grid, Input, TextField, Typography } from '@mui/material';
+import { useContext, useState } from 'react';
+import { FirstContext } from '../../../context/first/FirstContext';
 import { useCrudCierreMes, useForm } from '../../../hooks';
 
 const dateDate = new Date();
@@ -12,8 +14,10 @@ const formData = {
 
 export const GridCerrarMes = () => {
 
+    const {mesCerrado, setMesCerrado} = useContext( FirstContext );
+
     const { mes, anio, onInputChange } = useForm(formData);
-    const { addCierreMes } = useCrudCierreMes();
+    const { addCierreMes, borrarCierreMes, cierreMes } = useCrudCierreMes();
 
     const onCerrarMes = () => {
         addCierreMes({
@@ -22,7 +26,13 @@ export const GridCerrarMes = () => {
             usuario: "Ama Gwatterson",
             fechaServidor: null,
             estado: "Finalizado"
-        })
+        });
+        setMesCerrado(true);
+    }
+
+    const onReabrirMes = () => {
+        borrarCierreMes(cierreMes.slice(-1)[0].idCierreMes);
+        setMesCerrado(false);
     }
 
     return (
@@ -76,7 +86,7 @@ export const GridCerrarMes = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <Alert
-                        severity="warning"
+                        severity={mesCerrado ? 'error' : 'warning'}
                         variant="standard"
                         sx={{
                             display: 'flex',
@@ -85,13 +95,26 @@ export const GridCerrarMes = () => {
                             padding: 0,
                         }}
                     >
-                        Pendiente
+                        {mesCerrado ? 'Cerrado' : 'Pendiente'}
                     </Alert>
                 </Grid>
                 <Grid item xs={6}>
+                    <Button
+                        variant="contained"
+                        fullWidth
+                        onClick={onReabrirMes}
+                        sx={{ display: mesCerrado ? '' : 'none' }}
+                    >
+                        Reabrir mes
+                    </Button>
                 </Grid>
                 <Grid item xs={6}>
-                    <Button variant="contained" fullWidth onClick={onCerrarMes}>
+                    <Button
+                        variant="contained"
+                        fullWidth
+                        onClick={onCerrarMes}
+                        sx={{ display: mesCerrado ? 'none' : '' }}
+                    >
                         Cerrar mes
                     </Button>
                 </Grid>

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { useCreateAliadoMutation, useDeleteAliadoMutation, useGetAliadosQuery, useUpdateAliadoMutation } from '../store/apis/aliadosApi';
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudAliados = () => {
 
@@ -22,6 +22,9 @@ export const useCrudAliados = () => {
         correoResponsable,
         fecha,
     ) => {
+
+        dispatch( checkingProgress() );
+
         await createAliado({
             "nombreAliado": nombreAliado,
             "usuario": usuario,
@@ -49,6 +52,9 @@ export const useCrudAliados = () => {
         correoResponsable,
         fecha
     ) => {
+
+        dispatch( checkingProgress() );
+
         await updateAliado({
             "idAliado": idAliado,
             "nombreAliado": nombreAliado,
@@ -70,6 +76,9 @@ export const useCrudAliados = () => {
     // * BORRAR UN ALIADO
     const [deleteAliado] = useDeleteAliadoMutation();
     const borrarAliado = async(id) => {
+
+        dispatch( checkingProgress() );
+
         await deleteAliado(id)
             .then((res) => {
                 if (res.error) {

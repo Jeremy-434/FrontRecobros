@@ -12,6 +12,9 @@ export const FirstProvider = ({ children }) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
+    //* Booleano de Cierre de mes
+    const [mesCerrado, setMesCerrado] = useState(false);
+
     return (
         <FirstContext.Provider value={{
             //* Filtros para Servicios
@@ -28,7 +31,11 @@ export const FirstProvider = ({ children }) => {
             page,
             setPage,
             rowsPerPage,
-            setRowsPerPage
+            setRowsPerPage,
+
+            //* Cierre de mes
+            mesCerrado,
+            setMesCerrado
         }}>
             {children}
         </FirstContext.Provider>

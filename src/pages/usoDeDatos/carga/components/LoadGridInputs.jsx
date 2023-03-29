@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Grid, TextField, Button, MenuItem, Typography, Input } from '@mui/material';
+import { Grid, TextField, Button, MenuItem, Typography, Input, Alert, Box } from '@mui/material';
 import { Container } from '@mui/system';
 import { Upload } from '@mui/icons-material';
 
 import { useLoadFile } from '../hooks';
 import { useCrudAliados, useForm } from '../../../../hooks';
 import { checkingProgress } from '../../../../store/slices/messageCreated';
+import { FirstContext } from '../../../../context';
 
 const dateDate = new Date();
 const dateYear = dateDate.getFullYear();
@@ -27,6 +28,8 @@ export const LoadGridInputs = () => {
 
     const [nameFile, setNameFile] = useState('');
     const [formSubmitted, setFormSubmitted] = useState(false);
+
+    const { mesCerrado } = useContext(FirstContext);
 
     const dispatch = useDispatch();
 
@@ -85,6 +88,18 @@ export const LoadGridInputs = () => {
             >
                 Cargue su archivo
             </Typography>
+            <Box
+                display={mesCerrado ? '' : 'none'}
+                marginY={2}
+                zIndex={2}
+            >
+                <Alert
+                    severity="error"
+                    variant="standard"
+                >
+                    {`No se puede cargar archivo ya que el mes ${mes} del año ${anio} se encuentra en estado: CERRADO`}
+                </Alert>
+            </Box>
             <Grid
                 container
                 component="div"
@@ -94,6 +109,7 @@ export const LoadGridInputs = () => {
                 paddingRight={2}
                 spacing={2}
                 borderRadius={2}
+                display={mesCerrado ? 'none' : ''}
                 boxShadow="2px 4px 12px -4px rgba(0,0,0,0.75)"
             >
                 <Grid item xs={6} >

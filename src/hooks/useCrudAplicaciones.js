@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useCreateAplicacionMutation, useDeleteAplicacionMutation, useGetAplicacionesQuery, useUpdateAplicacionMutation } from '../store/apis/aplicacionesApi';
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudAplicaciones = () => {
 
@@ -14,13 +14,16 @@ export const useCrudAplicaciones = () => {
 
     // * GUARDAR UNA APLICACION
     const [createAplicacion] = useCreateAplicacionMutation();
-    const addAplicacion = async(
+    const addAplicacion = async (
         nombreDeAplicacion,
         estadoDeAplicacion,
         nombreDeSegmento,
         servicio,
         aliado
     ) => {
+
+        dispatch(checkingProgress());
+
         await createAplicacion({
             "nombreAplicacion": nombreDeAplicacion,
             "estado": estadoDeAplicacion,
@@ -39,7 +42,7 @@ export const useCrudAplicaciones = () => {
 
     // * EDITAR UNA APLICACION
     const [updateAplicacion] = useUpdateAplicacionMutation();
-    const editAplicaciones = async(
+    const editAplicaciones = async (
         idAplicacion,
         nombreDeAplicacionInput,
         estadoDeAplicacionInput,
@@ -47,6 +50,8 @@ export const useCrudAplicaciones = () => {
         aliadoResponsableInput,
         servicioInput,
     ) => {
+
+        dispatch(checkingProgress());
 
         await updateAplicacion({
             idAplicacion: idAplicacion,
@@ -67,7 +72,10 @@ export const useCrudAplicaciones = () => {
 
     // * BORRAR UNA APLICACION
     const [deleteAplicacion] = useDeleteAplicacionMutation();
-    const borrarAplicacion = async(idAplicacion) => {
+    const borrarAplicacion = async (idAplicacion) => {
+
+        dispatch(checkingProgress());
+
         await deleteAplicacion(idAplicacion)
             .then((res) => {
                 dispatch(setMessage({

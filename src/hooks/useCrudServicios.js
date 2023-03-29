@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useCreateServicioMutation, useDeleteServicioMutation, useGetServiciosQuery, useUpdateServicioMutation } from '../store/apis/serviciosApi';
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudServicios = () => {
 
@@ -14,7 +14,7 @@ export const useCrudServicios = () => {
 
     // * GUARDAR UN SERVICIO
     const [createServicio] = useCreateServicioMutation();
-    const addServicio = async(
+    const addServicio = async (
         nombreServicioInput,
         descripcionInput,
         driverInput,
@@ -23,6 +23,9 @@ export const useCrudServicios = () => {
         porcentajeComparacionInput,
         responsableReporteInput,
     ) => {
+
+        dispatch(checkingProgress());
+
         await createServicio({
             "nombreServicio": nombreServicioInput,
             "descripcion": descripcionInput,
@@ -44,7 +47,7 @@ export const useCrudServicios = () => {
 
     // * EDITAR UN SERVICIO
     const [updateServicio] = useUpdateServicioMutation();
-    const editServicio = async(
+    const editServicio = async (
         idServicio,
         nombreServicio,
         descripcion,
@@ -54,6 +57,9 @@ export const useCrudServicios = () => {
         porcentajeComparacion,
         responsableReporte,
     ) => {
+
+        dispatch(checkingProgress());
+
         await updateServicio({
             "idServicio": idServicio,
             "nombreServicio": nombreServicio,
@@ -76,7 +82,10 @@ export const useCrudServicios = () => {
 
     // * BORRAR UN SERVICIO
     const [deleteServicio] = useDeleteServicioMutation();
-    const borrarServicio = async(id) => {
+    const borrarServicio = async (id) => {
+
+        dispatch(checkingProgress());
+
         await deleteServicio(id)
             .then((res) => {
                 if (res.error) {

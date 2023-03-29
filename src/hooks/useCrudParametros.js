@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useGetParametrosByIdQuery, useUpdateParametroMutation } from '../store/apis';
 
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudParametros = () => {
 
@@ -21,6 +21,9 @@ export const useCrudParametros = () => {
         numColumnasArchivo,
         bytesMaxArchivo,
     }) => {
+
+        dispatch( checkingProgress() );
+
         await updateParametro({
             "idParametro": idParametro,
             "rutaArchivosProcesar": rutaArchivosProcesar ?? null,
