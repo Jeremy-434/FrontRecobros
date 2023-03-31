@@ -1,6 +1,11 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
+import { loadingConsolidados } from '../../store/apis/consolidados/thunks';
+import { ExportExcelFile } from '../informes/consolidacion/excelExport/ExportExcelFile';
 
 export const FiltrosConsolidaciones = () => {
+
+    const { consolidados } = loadingConsolidados();
+
     return (
         <Container component="div" sx={{ marginTop: 4 }} >
             <Typography
@@ -55,6 +60,7 @@ export const FiltrosConsolidaciones = () => {
                     <Button variant="contained" fullWidth color="info">
                         Exportar excel
                     </Button>
+                    <ExportExcelFile data={consolidados} />
                 </Grid>
             </Grid>
         </Container>

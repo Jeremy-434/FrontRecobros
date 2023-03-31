@@ -10,7 +10,7 @@ export const useCrudParametros = () => {
 
     // * OBTENER EL DATO DE LA PRIMERA FILA Y GUARDARLO EN "parametros"
     const { data, error, isLoading, refetch, isFetching } = useGetParametrosByIdQuery(1);
-    const parametros = data ? data : [];
+    const parametros = data ?? [];
 
     // * GUARDAR UN PARAMETRO
     const [updateParametro] = useUpdateParametroMutation();

@@ -32,11 +32,11 @@ export const StyledTableCell = styled(TableCell)(({ sxhead, sxbody }) => {
 });
 
 
-export const TablaLayout = ({ children, encabezadoDeTabla, minWidth, modal }) => {
+export const TablaLayout = ({ children, encabezadoDeTabla, modal }) => {
 
 
   return (
-    <Paper sx={{ width: '100%' }}>
+    <Paper sx={{ width: '100%'}}>
       <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

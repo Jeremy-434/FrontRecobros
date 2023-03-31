@@ -1,9 +1,9 @@
 import { Info } from '@mui/icons-material';
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 
 import { ModalForm } from '../../layout';
 
-export const MoreInfoModal = ({ data, titlePrimaryInList }) => {
+export const MoreInfoModal = ({ data, titlePrimaryInList, numGrid = 12 }) => {
     return (
         <ModalForm
             nameButton={"Aceptar"}
