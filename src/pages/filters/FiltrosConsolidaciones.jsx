@@ -20,7 +20,6 @@ export const FiltrosConsolidaciones = () => {
 
     const handleCleanSearch = () => {
         handleDeleteFilters();
-        resetField();
     }
 
     const onSubmit = (data) => {

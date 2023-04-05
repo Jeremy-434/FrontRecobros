@@ -8,6 +8,7 @@ export const FirstProvider = ({ children }) => {
     const [filterAplicaciones, setFilterAplicaciones] = useState([]);
     const [filterAliados, setFilterAliados] = useState([]);
     const [filterConsolidados, setFilterConsolidados] = useState([]);
+    const [filterLogErrores, setFilterLogErrores] = useState([]);
 
     // * PAGINACION: oaginas y filas
     const [page, setPage] = useState(0);
@@ -30,6 +31,9 @@ export const FirstProvider = ({ children }) => {
             //* Filtros para consolidados
             filterConsolidados,
             setFilterConsolidados,
+            //* Filtros para los registros de errores
+            filterLogErrores,
+            setFilterLogErrores,
 
             // * Para la paginacion
             page,

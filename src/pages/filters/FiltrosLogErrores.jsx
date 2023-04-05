@@ -1,6 +1,32 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import { loadingLogErrores } from '../../store/apis/logErrores/thunks';
+import { useFiltrosLogErrores } from './hooks/useFiltrosLogErrores';
+
+const date = new Date();
 
 export const FiltrosLogErrores = () => {
+
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            "mes": date.getMonth(),
+            "anio": date.getFullYear(),
+            "servicio": "",
+            "aplicacion": "",
+        }
+    });
+    const { logErrores } = loadingLogErrores();
+
+    const { handleDeleteFilters, clickSearch } = useFiltrosLogErrores(logErrores);
+
+    const handleCleanSearch = () => {
+        handleDeleteFilters();
+    }
+
+    const onSubmit = (data) => {
+        clickSearch(data);
+    }
+
     return (
         <Container component="div" sx={{ marginTop: 4 }} >
             <Typography
@@ -17,7 +43,8 @@ export const FiltrosLogErrores = () => {
             </Typography>
             <Grid
                 container
-                component="div"
+                component="form"
+                onSubmit={handleSubmit(onSubmit)}
                 marginTop={1}
                 marginY={2}
                 paddingTop={1}
@@ -33,8 +60,8 @@ export const FiltrosLogErrores = () => {
                         label={`Mes`}
                         name="mes"
                         size="small"
+                        {...register("mes")}
                         fullWidth
-                        disabled
                     />
                 </Grid>
                 <Grid item xs={3}>
@@ -42,13 +69,13 @@ export const FiltrosLogErrores = () => {
                         label={`Año`}
                         name="anio"
                         size="small"
+                        {...register("anio")}
                         fullWidth
-                        disabled
                     />
                 </Grid>
 
                 <Grid item xs={6}>
-                    <Button variant="contained" fullWidth>
+                    <Button variant="contained" fullWidth type="submit">
                         Consultar
                     </Button>
                 </Grid>

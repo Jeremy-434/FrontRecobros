@@ -3,6 +3,7 @@ import { aliadosApi, aplicacionesApi, archivoApi, cierreMesApi, consolidadosApi,
 import { dataFileSlice } from './slices/dataFile.js/index.js';
 import { filteredDataSlice } from './slices/filteredData';
 import { messageCreatedSlice } from './slices/messageCreated';
+import { logErroresApi } from './apis/logErrores/logErroresApi';
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         [parametrosApi.reducerPath]: parametrosApi.reducer,
         [cierreMesApi.reducerPath]: cierreMesApi.reducer,
         [consolidadosApi.reducerPath]: consolidadosApi.reducer,
+        [logErroresApi.reducerPath]: logErroresApi.reducer,
 
         // * other states
         messageCreated: messageCreatedSlice.reducer,
@@ -31,4 +33,5 @@ export const store = configureStore({
         .concat(parametrosApi.middleware)
         .concat(cierreMesApi.middleware)
         .concat(consolidadosApi.middleware)
+        .concat(logErroresApi.middleware)
 })

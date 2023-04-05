@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { FirstContext } from '../../../../context';
+
 import { TableBody, TableRow } from '@mui/material';
+
 import { loadingConsolidados } from '../../../../store/apis/consolidados/thunks';
 import { StyledTableCell, TablaLayout } from '../../../layout';
 import { MoreInfoModalConsolidacion } from './MoreInfoModalConsolidacion';
+import { ComTablePagination } from '../../../components';
 import { useFiltrosConsolidado } from '../../../filters/hooks';
 
 const encabezadoDeTabla = [
@@ -72,49 +77,58 @@ export const TableConsolidacion = () => {
   const { consolidados, error } = loadingConsolidados();
   const { dataFilters } = useFiltrosConsolidado(consolidados);
 
-  return (
-    <TablaLayout encabezadoDeTabla={encabezadoDeTabla} maxWidth>
-      {
-        error
-          ? console.error("Oh no, algo ha ocurrido")
-          : consolidados ?
-            <TableBody>
-              {
-                dataFilters.map((consolidado) => (
-                  <TableRow
-                    key={consolidado.idConsolidado}
-                  >
-                    <StyledTableCell>{consolidado.mes}</StyledTableCell>
-                    <StyledTableCell>{consolidado.anio}</StyledTableCell>
-                    <StyledTableCell>{consolidado.registro}</StyledTableCell>
-                    <StyledTableCell>{consolidado.nombre}</StyledTableCell>
-                    {/* <StyledTableCell>{consolidado.nombreServicio}</StyledTableCell> */}
-                    <StyledTableCell>{consolidado.subServicio}</StyledTableCell>
-                    <StyledTableCell>{consolidado.claseActividad}</StyledTableCell>
-                    <StyledTableCell>{consolidado.claseCosto}</StyledTableCell>
-                    <StyledTableCell>{consolidado.driver}</StyledTableCell>
-                    <StyledTableCell>{consolidado.centroCostoReceptor}</StyledTableCell>
-                    <StyledTableCell>{consolidado.cantidad}</StyledTableCell>
-                    <StyledTableCell>{consolidado.fecha}</StyledTableCell>
-                    <StyledTableCell>{consolidado.idAplicacionNavigation.nombreAplicacion}</StyledTableCell>
-                    <StyledTableCell>{consolidado.idServicioNavigation.nombreServicio}</StyledTableCell>
-                    <StyledTableCell>{consolidado.idAliadoNavigation.nombreAliado}</StyledTableCell>
+  const { page, rowsPerPage } = useContext(FirstContext);
 
-                    <StyledTableCell sxbody={{
-                      textAlign: 'center',
-                      padding: 'auto',
-                      display: 'flex',
-                      justifyContent: 'space-around'
-                    }}
-                    >
-                      <MoreInfoModalConsolidacion data={consolidado} />
-                    </StyledTableCell>
-                  </TableRow>
-                ))
-              }
-            </TableBody>
-            : null
-      }
-    </TablaLayout>
+  return (
+    <>
+      <TablaLayout encabezadoDeTabla={encabezadoDeTabla} maxWidth>
+        {
+          error
+            ? console.error("Oh no, algo ha ocurrido")
+            : consolidados ?
+              <TableBody>
+                {
+                  dataFilters
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((consolidado) => (
+                      <TableRow
+                        key={consolidado.idConsolidado}
+                      >
+                        <StyledTableCell>{consolidado.mes}</StyledTableCell>
+                        <StyledTableCell>{consolidado.anio}</StyledTableCell>
+                        <StyledTableCell>{consolidado.registro}</StyledTableCell>
+                        <StyledTableCell>{consolidado.nombre}</StyledTableCell>
+                        {/* <StyledTableCell>{consolidado.nombreServicio}</StyledTableCell> */}
+                        <StyledTableCell>{consolidado.subServicio}</StyledTableCell>
+                        <StyledTableCell>{consolidado.claseActividad}</StyledTableCell>
+                        <StyledTableCell>{consolidado.claseCosto}</StyledTableCell>
+                        <StyledTableCell>{consolidado.driver}</StyledTableCell>
+                        <StyledTableCell>{consolidado.centroCostoReceptor}</StyledTableCell>
+                        <StyledTableCell>{consolidado.cantidad}</StyledTableCell>
+                        <StyledTableCell>{consolidado.fecha}</StyledTableCell>
+                        <StyledTableCell>{consolidado.idAplicacionNavigation.nombreAplicacion}</StyledTableCell>
+                        <StyledTableCell>{consolidado.idServicioNavigation.nombreServicio}</StyledTableCell>
+                        <StyledTableCell>{consolidado.idAliadoNavigation.nombreAliado}</StyledTableCell>
+
+                        <StyledTableCell sxbody={{
+                          textAlign: 'center',
+                          padding: 'auto',
+                          display: 'flex',
+                          justifyContent: 'space-around'
+                        }}
+                        >
+                          <MoreInfoModalConsolidacion data={consolidado} />
+                        </StyledTableCell>
+                      </TableRow>
+                    ))
+                }
+              </TableBody>
+              : null
+        }
+      </TablaLayout>
+      <ComTablePagination
+        dataFilters={dataFilters}
+      />
+    </>
   )
 }
