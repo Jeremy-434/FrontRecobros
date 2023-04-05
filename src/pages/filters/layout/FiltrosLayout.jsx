@@ -34,10 +34,6 @@ export const FiltrosLayout = ({
         >
           {title}
         </Typography>
-        {/* //* MODAL PARA AGREGAR
-        {(modal == "Aplicaciones") && <ModalAplicaciones />}
-        {(modal == "Servicios") && <ModalServicios />}
-        {(modal == "Aliados") && <ModalAliados />} */}
       </Box>
 
       {/* //* INPUTS AL ELEGIR FILTRO */}

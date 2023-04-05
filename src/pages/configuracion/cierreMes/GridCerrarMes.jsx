@@ -20,7 +20,8 @@ export const GridCerrarMes = () => {
   const { addCierreMes, borrarCierreMes, cierreMes } = useCrudCierreMes();
   const { controlArchivos } = useCrudControlArchivos();
 
-  const controlArchivoLoaded = async () => { await controlArchivos?.slice(-1)[0].mes === mes };
+  const lastControlArchivo = controlArchivos?.slice(-1)[0] ? controlArchivos?.slice(-1)[0].mes : null;
+  const boolControlArchivo = lastControlArchivo == mes;
 
   const onCerrarMes = () => {
     addCierreMes({
@@ -89,7 +90,7 @@ export const GridCerrarMes = () => {
         </Grid>
         <Grid item xs={6}>
           <Alert
-            severity={mesCerrado ? 'error' : controlArchivoLoaded ? 'info' : 'warning'}
+            severity={mesCerrado ? 'error' : boolControlArchivo ? 'info' : 'warning'}
             variant="standard"
             sx={{
               display: 'flex',
@@ -98,7 +99,7 @@ export const GridCerrarMes = () => {
               padding: 0,
             }}
           >
-            {mesCerrado ? 'Cerrado' : controlArchivoLoaded ? 'Procesando' : 'Pendiente'}
+            {mesCerrado ? 'Cerrado' : boolControlArchivo ? 'Procesando' : 'Pendiente'}
           </Alert>
         </Grid>
         <Grid item xs={6}>

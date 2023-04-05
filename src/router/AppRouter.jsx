@@ -1,10 +1,21 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { AplicacionesPage, CargueArchivosPage, CierreMesPage, ComparacionPage, ConsolidacionPage, LogErroresPage, ParametrosPage, ServiciosPage, VisualizacionPage } from '../pages';
+import { FirstProvider } from '../context';
 import { DrawerLeft, Header, MessagesComponent } from '../components/';
 import { ContainerLayout } from './layout/ContainerLayout';
-import { FirstProvider } from '../context';
-import { AliadosPage } from '../pages';
+import {
+  AliadosPage,
+  AplicacionesPage,
+  CargueArchivosPage,
+  CierreMesPage,
+  ComparacionPage,
+  ConsolidacionPage,
+  InicioPage,
+  LogErroresPage,
+  ParametrosPage,
+  ServiciosPage,
+  VisualizacionPage
+} from '../pages';
 
 export const AppRouter = () => {
   return (
@@ -16,6 +27,10 @@ export const AppRouter = () => {
       <ContainerLayout>
 
         <Routes>
+
+          {/* // * Inicio */}
+          <Route path="inicio" element={<InicioPage />} />
+
           {/* //* Configuracion */}
           <Route path="aliados" element={<AliadosPage />} />
           <Route path="parametros" element={<ParametrosPage />} />
@@ -35,7 +50,7 @@ export const AppRouter = () => {
           <Route path="log de errores" element={<LogErroresPage />} />
 
 
-          <Route path="/*" element={<Navigate to="Parametros" />} />
+          <Route path="/*" element={<Navigate to="inicio" />} />
 
         </Routes>
 

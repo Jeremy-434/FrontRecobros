@@ -6,7 +6,8 @@ export const FirstProvider = ({ children }) => {
     // * Filtros: servicios y aplicaciones
     const [filterServicios, setFilterServicios] = useState([]);
     const [filterAplicaciones, setFilterAplicaciones] = useState([]);
-    const [filterAliados, setFilterAliados] = useState([])
+    const [filterAliados, setFilterAliados] = useState([]);
+    const [filterConsolidados, setFilterConsolidados] = useState([]);
 
     // * PAGINACION: oaginas y filas
     const [page, setPage] = useState(0);
@@ -26,6 +27,9 @@ export const FirstProvider = ({ children }) => {
             //* Filtros para Aliados
             filterAliados,
             setFilterAliados,
+            //* Filtros para consolidados
+            filterConsolidados,
+            setFilterConsolidados,
 
             // * Para la paginacion
             page,

@@ -1,10 +1,31 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { loadingConsolidados } from '../../store/apis/consolidados/thunks';
 import { ExportExcelFile } from '../informes/consolidacion/excelExport/ExportExcelFile';
+import { useForm } from 'react-hook-form';
+import { useFiltrosConsolidado } from './hooks';
+
+const date = new Date();
 
 export const FiltrosConsolidaciones = () => {
 
+    const { register, handleSubmit, reset, formState: { errors }, resetField } = useForm({
+        defaultValues: {
+            "mes": date.getMonth(),
+            "anio": date.getFullYear(),
+        }
+    });
     const { consolidados } = loadingConsolidados();
+
+    const { handleDeleteFilters, clickSearch } = useFiltrosConsolidado(consolidados);
+
+    const handleCleanSearch = () => {
+        handleDeleteFilters();
+        resetField();
+    }
+
+    const onSubmit = (data) => {
+        clickSearch(data);
+    }
 
     return (
         <Container component="div" sx={{ marginTop: 4 }} >
@@ -22,7 +43,8 @@ export const FiltrosConsolidaciones = () => {
             </Typography>
             <Grid
                 container
-                component="div"
+                component="form"
+                onSubmit={handleSubmit(onSubmit)}
                 marginTop={1}
                 marginY={2}
                 paddingTop={1}
@@ -39,7 +61,8 @@ export const FiltrosConsolidaciones = () => {
                         name="mes"
                         size="small"
                         fullWidth
-                        disabled
+                        type="number"
+                        {...register("mes")}
                     />
                 </Grid>
                 <Grid item xs={3}>
@@ -48,18 +71,21 @@ export const FiltrosConsolidaciones = () => {
                         name="anio"
                         size="small"
                         fullWidth
-                        disabled
+                        type="number"
+                        {...register("anio")}
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <Button variant="contained" fullWidth>
+                    <Button variant="contained" type="submit" fullWidth>
                         Consultar
                     </Button>
                 </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" fullWidth color="info">
-                        Exportar excel
+                <Grid item xs={6}>
+                    <Button variant="contained" onClick={handleCleanSearch} fullWidth>
+                        Limpiar
                     </Button>
+                </Grid>
+                <Grid item xs={6}>
                     <ExportExcelFile data={consolidados} />
                 </Grid>
             </Grid>

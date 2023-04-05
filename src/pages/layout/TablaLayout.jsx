@@ -34,7 +34,6 @@ export const StyledTableCell = styled(TableCell)(({ sxhead, sxbody }) => {
 
 export const TablaLayout = ({ children, encabezadoDeTabla, modal }) => {
 
-
   return (
     <Paper sx={{ width: '100%'}}>
       <TableContainer>

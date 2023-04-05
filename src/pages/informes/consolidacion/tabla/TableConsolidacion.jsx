@@ -2,6 +2,7 @@ import { TableBody, TableRow } from '@mui/material';
 import { loadingConsolidados } from '../../../../store/apis/consolidados/thunks';
 import { StyledTableCell, TablaLayout } from '../../../layout';
 import { MoreInfoModalConsolidacion } from './MoreInfoModalConsolidacion';
+import { useFiltrosConsolidado } from '../../../filters/hooks';
 
 const encabezadoDeTabla = [
   {
@@ -14,7 +15,7 @@ const encabezadoDeTabla = [
     title: "Nombre",
     sxhead: { minWidth: '120px' }
   },
-  { title: "Servicio" },
+  // { title: "Servicio" },
   {
     title: "Sub servicio",
     sxhead: { minWidth: '120px' }
@@ -51,12 +52,25 @@ const encabezadoDeTabla = [
   // { title: "id_aplicacion" },
   // { title: "id_servicio" },
   // { title: "id_aliado" },
+  {
+    title: "Aplicacion",
+    sxhead: { minWidth: '120px' }
+  },
+  {
+    title: "Servicio",
+    sxhead: { minWidth: '120px' }
+  },
+  {
+    title: "Aliado",
+    sxhead: { minWidth: '120px' }
+  },
   { title: "Acciones" },
 ]
 
 export const TableConsolidacion = () => {
 
   const { consolidados, error } = loadingConsolidados();
+  const { dataFilters } = useFiltrosConsolidado(consolidados);
 
   return (
     <TablaLayout encabezadoDeTabla={encabezadoDeTabla} maxWidth>
@@ -66,7 +80,7 @@ export const TableConsolidacion = () => {
           : consolidados ?
             <TableBody>
               {
-                consolidados.map((consolidado) => (
+                dataFilters.map((consolidado) => (
                   <TableRow
                     key={consolidado.idConsolidado}
                   >
@@ -74,7 +88,7 @@ export const TableConsolidacion = () => {
                     <StyledTableCell>{consolidado.anio}</StyledTableCell>
                     <StyledTableCell>{consolidado.registro}</StyledTableCell>
                     <StyledTableCell>{consolidado.nombre}</StyledTableCell>
-                    <StyledTableCell>{consolidado.nombreServicio}</StyledTableCell>
+                    {/* <StyledTableCell>{consolidado.nombreServicio}</StyledTableCell> */}
                     <StyledTableCell>{consolidado.subServicio}</StyledTableCell>
                     <StyledTableCell>{consolidado.claseActividad}</StyledTableCell>
                     <StyledTableCell>{consolidado.claseCosto}</StyledTableCell>
@@ -82,6 +96,10 @@ export const TableConsolidacion = () => {
                     <StyledTableCell>{consolidado.centroCostoReceptor}</StyledTableCell>
                     <StyledTableCell>{consolidado.cantidad}</StyledTableCell>
                     <StyledTableCell>{consolidado.fecha}</StyledTableCell>
+                    <StyledTableCell>{consolidado.idAplicacionNavigation.nombreAplicacion}</StyledTableCell>
+                    <StyledTableCell>{consolidado.idServicioNavigation.nombreServicio}</StyledTableCell>
+                    <StyledTableCell>{consolidado.idAliadoNavigation.nombreAliado}</StyledTableCell>
+
                     <StyledTableCell sxbody={{
                       textAlign: 'center',
                       padding: 'auto',

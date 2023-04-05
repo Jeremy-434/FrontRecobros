@@ -60,7 +60,7 @@ export const LoadGridInputs = () => {
             "aliado": aliado,
             "fechaServidor": null,
         }
-        readFile(fileSelected, dataForCreate, nameFile);
+        readFile(fileSelected, dataForCreate, nameFile, mes);
 
         onResetForm();
         setNameFile("");

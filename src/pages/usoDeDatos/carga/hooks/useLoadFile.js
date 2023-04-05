@@ -13,14 +13,18 @@ export const useLoadFile = () => {
   const [uploadArchivo] = useUploadArchivoMutation();
 
   //* Funcion que lee todo el txt
-  const readFile = async(valueFile, dataForCreate, nameFile) => {
+  const readFile = async (valueFile, dataForCreate, nameFile, mes) => {
 
     if (!valueFile) return;
 
     //* Verificar que no se cargue un archivo con el mismo nombre
-    const sameNameValidation = controlArchivos.some(item =>
-      item.nombreArchivo.toLowerCase().includes(nameFile.toLowerCase())
+    const sameNameValidation = controlArchivos.some(
+      (item) => {
+        item.mes == mes
+          && item.nombreArchivo.toLowerCase().includes(nameFile.toLowerCase())
+      }
     );
+
 
     if (sameNameValidation) {
       dispatch(setMessage({

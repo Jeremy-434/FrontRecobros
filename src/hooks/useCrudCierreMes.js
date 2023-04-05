@@ -29,7 +29,6 @@ export const useCrudCierreMes = () => {
             "fechaServidor": fechaServidor,
         })
             .then((res) => {
-                console.log("🚀 ~ res:", res)
                 dispatch(setMessage({
                     text: `Mes cerrado y su registro creado correctamente`,
                     severity: 'success'
