@@ -35,6 +35,7 @@ export const TablaAliados = () => {
 
   const { aliados, error, borrarAliado } = useCrudAliados();
   const { dataFilters } = useFiltrosAliados(aliados);
+  const dataFiltersReverse = dataFilters.slice().reverse();
 
   const { page, rowsPerPage } = useContext(FirstContext);
 
@@ -47,7 +48,7 @@ export const TablaAliados = () => {
             : aliados ?
               <TableBody>
                 {
-                  dataFilters
+                  dataFiltersReverse
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((aliado) => (
                       <TableRow

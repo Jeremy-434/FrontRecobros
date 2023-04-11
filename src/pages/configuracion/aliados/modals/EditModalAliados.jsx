@@ -80,6 +80,9 @@ export const EditModalAliados = ({
                 error={!!nombreAliadoInputValid && formSubmitted}
                 helperText={formSubmitted ? nombreAliadoInputValid : null}
                 size="small"
+                inputProps={{
+                    maxLength: 100
+                }}
                 fullWidth
                 sx={{ mb: 2 }}
             />
@@ -107,9 +110,12 @@ export const EditModalAliados = ({
                 error={!!usuarioInputValid && formSubmitted}
                 helperText={formSubmitted ? usuarioInputValid : null}
                 size="small"
+                inputProps={{
+                    maxLength: 30
+                }}
                 fullWidth
                 sx={{ mb: 2 }}
-
+                disabled
             />
             <TextField
                 label="Correo del responsable"
@@ -119,10 +125,14 @@ export const EditModalAliados = ({
                 error={!!correoResponsableInputValid && formSubmitted}
                 helperText={formSubmitted ? correoResponsableInputValid : null}
                 size="small"
+                type="email"
+                inputProps={{
+                    maxLength: 200
+                }}
                 fullWidth
                 sx={{ mb: 2 }}
             />
-            <TextField
+            {/* <TextField
                 // label="Fecha"
                 name="fechaInput"
                 value={fechaInput}
@@ -132,7 +142,7 @@ export const EditModalAliados = ({
                 size="small"
                 // type="date"
                 fullWidth
-            />
+            /> */}
         </ModalForm>
     )
 }

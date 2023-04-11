@@ -40,6 +40,7 @@ export const TablaServicios = () => {
 
   const { servicios, error, borrarServicio } = useCrudServicios();
   const { dataFilters } = useFiltrosServicios(servicios);
+  const dataFiltersReverse = dataFilters.slice().reverse();
 
   const { page, rowsPerPage } = useContext(FirstContext);
 
@@ -52,7 +53,7 @@ export const TablaServicios = () => {
             : servicios ?
               <TableBody>
                 {
-                  (dataFilters)
+                  (dataFiltersReverse)
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((servicio) => {
                       if (servicio.idServicio) {

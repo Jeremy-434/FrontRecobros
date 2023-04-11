@@ -4,7 +4,7 @@ import { useUpdateParametros } from './hook';
 
 const textFieldRutaValidations = {
     required: "Escribe una ruta",
-    validate: (value, formValues) => value.slice(-1) === '\\' ? true : 'Agregue un "\\" al final de la ruta'
+    // validate: (value, formValues) => value.slice(-1) === '\\' ? true : 'Agregue un "\\" al final de la ruta'
 }
 
 export const UpdateParametros = () => {

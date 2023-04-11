@@ -76,6 +76,7 @@ export const TableConsolidacion = () => {
 
   const { consolidados, error } = loadingConsolidados();
   const { dataFilters } = useFiltrosConsolidado(consolidados);
+  const dataFiltersReverse = dataFilters.slice().reverse();
 
   const { page, rowsPerPage } = useContext(FirstContext);
 
@@ -88,7 +89,7 @@ export const TableConsolidacion = () => {
             : consolidados ?
               <TableBody>
                 {
-                  dataFilters
+                  dataFiltersReverse
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((consolidado) => (
                       <TableRow

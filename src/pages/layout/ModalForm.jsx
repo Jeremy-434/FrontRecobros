@@ -34,7 +34,8 @@ export const ModalForm = ({
         handleCloseModal ? handleCloseModal() : null;
     };
 
-    const handleButton = () => {
+    const handleButton = (event) => {
+        event.preventDefault();
         const call = funtion();
         call && handleClose();
     }
@@ -56,7 +57,11 @@ export const ModalForm = ({
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box sx={{ ...styleBoxForm }}>
+                <Box
+                    sx={{ ...styleBoxForm }}
+                    component="form"
+                    onSubmit={handleButton}
+                >
                     {children}
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
                         <Button
@@ -70,7 +75,7 @@ export const ModalForm = ({
                         <Button
                             variant="contained"
                             color="primary"
-                            onClick={() => { handleButton() }}
+                            type="submit"
                             sx={hiddenStyle}
                         >
                             {nameButton}

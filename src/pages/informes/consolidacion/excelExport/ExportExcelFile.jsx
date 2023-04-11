@@ -7,9 +7,9 @@ import { loadingConsolidados } from '../../../../store/apis/consolidados/thunks'
 const useStyles = makeStyles({
   buttonExportExcel: {
     background: 'orange',
-    border: 0,
+    border: '2px blue',
     borderRadius: 3,
-    color: 'white',
+    color: 'primary',
     height: 36,
     width: '100%',
     padding: '0',

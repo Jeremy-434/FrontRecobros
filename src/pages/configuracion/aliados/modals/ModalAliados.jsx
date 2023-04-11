@@ -18,14 +18,14 @@ const styleIconButton = {
 
 const formData = {
     'nombreAliado': '',
-    'usuario': '',
+    'usuario': 'Ama Gwatterson',
     'estado': 'Activo',
     'correoResponsable': '',
     'fecha': ''
 }
 
 const formValidations = {
-    nombreAliado: [(value) => value.length >= 2, 'El nombre del aliado es obligatorio'],
+    nombreAliado: [(value) => value.length >= 1, 'El nombre del aliado es obligatorio'],
     usuario: [(value) => value.length >= 1, 'El usuario es obligatorio.'],
     estado: [(value) => value.length >= 1, 'El estado es obligatorio.'],
     correoResponsable: [(value) => value.length >= 1, 'El correo del responsable es obligatorio'],
@@ -79,26 +79,32 @@ export const ModalAliados = () => {
             </Typography>
             <TextField
                 label="Nombre del aliado"
-                name='nombreAliado'
+                name="nombreAliado"
                 value={nombreAliado}
                 onChange={onInputChange}
                 error={!!nombreAliadoValid && formSubmitted}
                 helperText={formSubmitted ? nombreAliadoValid : null}
                 size="small"
                 fullWidth
+                inputProps={{
+                    maxLength: 100
+                }}
                 sx={{ mb: 2 }}
             />
             <TextField
                 label="Usuario"
-                name='usuario'
+                name="usuario"
                 value={usuario}
                 onChange={onInputChange}
                 error={!!usuarioValid && formSubmitted}
                 helperText={formSubmitted ? usuarioValid : null}
                 size="small"
                 fullWidth
+                inputProps={{
+                    maxLength: 30
+                }}
                 sx={{ mb: 2 }}
-
+                disabled
             />
             <TextField
                 label="Estado del aliado"
@@ -123,10 +129,14 @@ export const ModalAliados = () => {
                 error={!!correoResponsableValid && formSubmitted}
                 helperText={formSubmitted ? correoResponsableValid : null}
                 size="small"
+                type="email"
+                inputProps={{
+                    maxLength: 200
+                }}
                 fullWidth
                 sx={{ mb: 2 }}
             />
-            <TextField
+            {/* <TextField
                 // label="Fecha"
                 name="fecha"
                 value={fecha}
@@ -136,7 +146,7 @@ export const ModalAliados = () => {
                 size="small"
                 type="date"
                 fullWidth
-            />
+            /> */}
         </ModalForm>
     )
 }

@@ -28,6 +28,7 @@ export const TablaAplicaciones = () => {
 
   const { aplicaciones, borrarAplicacion, error } = useCrudAplicaciones();
   const { dataFilters } = useFiltrosAplicaciones(aplicaciones);
+  const dataFiltersReverse = dataFilters.slice().reverse();
 
   const { page, rowsPerPage } = useContext(FirstContext);
 
@@ -40,7 +41,7 @@ export const TablaAplicaciones = () => {
             : aplicaciones ?
               <TableBody>
                 {
-                  dataFilters
+                  dataFiltersReverse
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((aplicacion) => (
                       <TableRow
