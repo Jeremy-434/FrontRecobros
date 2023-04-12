@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Grid, TextField, Button, MenuItem, Typography, Input, Alert, Box } from '@mui/material';
+import { Grid, TextField, Button, MenuItem, Typography, Input, Alert, Box, Autocomplete } from '@mui/material';
 import { Container } from '@mui/system';
 import { Upload } from '@mui/icons-material';
 
@@ -37,6 +37,8 @@ export const LoadGridInputs = () => {
 
     const { readFile } = useLoadFile();
     const { aliados } = useCrudAliados();
+
+    const aliadosActivos = aliados.filter(aliado => aliado.estado == "Activo");
 
     const {
         aliado, aliadoValid, anio, mes,
@@ -117,32 +119,29 @@ export const LoadGridInputs = () => {
                 boxShadow="2px 4px 12px -4px rgba(0,0,0,0.75)"
             >
                 <Grid item xs={6} >
-                    <TextField
-                        label="Seleccione aliado"
-                        name="aliado"
-                        value={aliado}
-                        onChange={onInputChange}
-                        error={!!aliadoValid && formSubmitted}
-                        helperText={formSubmitted ? aliadoValid : null}
-                        size="small"
-                        fullWidth
-                        select
-                    >
-                        {
-                            aliados.map((aliado) => {
-                                if (aliado.estado == "Activo") {
-                                    return (
-                                        <MenuItem
-                                            key={aliado.idAliado}
-                                            value={aliado.idAliado}
-                                        >
-                                            {aliado.nombreAliado}
-                                        </MenuItem>
-                                    )
-                                }
-                            })
-                        }
-                    </TextField>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo-aliados"
+                        options={aliadosActivos}
+                        getOptionLabel={(option) => String(option.nombreAliado)}
+                        onChange={(event, newValue) => {
+                            onInputChange({ target: { name: "aliado", value: newValue?.idAliado } })
+                        }}
+                        renderOption={(props, option) => (
+                            <li {...props} key={option.idAliado}>
+                                {option.nombreAliado}
+                            </li>
+                        )}
+                        renderInput={(params) => (<TextField
+                            {...params}
+                            label="Seleccione aliado"
+                            error={!!aliadoValid && formSubmitted}
+                            helperText={formSubmitted ? aliadoValid : null}
+                            size="small"
+                            fullWidth
+                        />
+                        )}
+                    />
                 </Grid>
                 <Grid item xs={6}>
                     <Button

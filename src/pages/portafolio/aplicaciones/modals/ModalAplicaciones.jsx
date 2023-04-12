@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Add } from '@mui/icons-material';
-import { MenuItem, TextField, Typography } from '@mui/material';
+import { Autocomplete, MenuItem, TextField, Typography } from '@mui/material';
 
 import { useCrudAliados, useCrudAplicaciones, useCrudServicios, useForm } from '../../../../hooks';
 import { ModalForm } from '../../../layout';
@@ -44,7 +44,7 @@ export const ModalAplicaciones = () => {
     const { aliados } = useCrudAliados();
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const agregarAplicacion = () => {
+    const agregarAplicacion = (data) => {
         setFormSubmitted(true);
 
         if (!isFormValid) return;
@@ -116,51 +116,54 @@ export const ModalAplicaciones = () => {
                 sx={{ mb: 2 }}
 
             />
-            <TextField
-                label="Servicio"
-                name="servicio"
-                value={servicio}
-                onChange={onInputChange}
-                error={!!servicioValid && formSubmitted}
-                helperText={formSubmitted ? servicioValid : null}
-                size="small"
-                fullWidth
-                sx={{ mb: 2 }}
-                select
-            >
-                {
-                    servicios.map((servicio) => (
-                        <MenuItem
-                            key={servicio.idServicio}
-                            value={servicio.idServicio}
-                        >
-                            {servicio.nombreServicio}
-                        </MenuItem>
-                    ))
-                }
-            </TextField>
-            <TextField
-                label="Aliado"
-                name="aliado"
-                value={aliado}
-                onChange={onInputChange}
-                error={!!aliadoValid && formSubmitted}
-                helperText={formSubmitted ? aliadoValid : null}
-                size="small"
-                fullWidth
-                select
-            >
-                {
-                    aliados.map((aliado) => (
-                        <MenuItem
-                            key={aliado.idAliado}
-                            value={aliado.idAliado}
-                        >
-                            {aliado.nombreAliado}
-                        </MenuItem>
-                    ))
-                }
-            </TextField>
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo-servicios"
+                options={servicios}
+                getOptionLabel={(option) => String(option.nombreServicio)}
+                onChange={(event, newValue) => {
+                    onInputChange({ target: { name: "servicio", value: newValue?.idServicio } })
+                }}
+                renderOption={(props, option) => (
+                    <li {...props} key={option.idServicio}>
+                        {option.nombreServicio}
+                    </li>
+                )}
+                renderInput={(params) => (<TextField
+                    {...params}
+                    label="Servicio"
+                    error={!!servicioValid && formSubmitted}
+                    helperText={formSubmitted ? servicioValid : null}
+                    size="small"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                />
+                )}
+            />
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo-aliados"
+                options={aliados}
+                getOptionLabel={(option) => String(option.nombreAliado)}
+                onChange={(event, newValue) => {
+                    onInputChange({ target: { name: "aliado", value: newValue?.idAliado } })
+                }}
+                renderOption={(props, option) => (
+                    <li {...props} key={option.idAliado}>
+                        {option.nombreAliado}
+                    </li>
+                )}
+                renderInput={(params) => (<TextField
+                    {...params}
+                    label="Aliado"
+                    error={!!aliadoValid && formSubmitted}
+                    helperText={formSubmitted ? aliadoValid : null}
+                    size="small"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                />
+                )}
+            />
         </ModalForm>
     )
 }

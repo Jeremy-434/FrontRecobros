@@ -3,17 +3,23 @@ import { makeStyles } from '@mui/styles';
 import { StyledTableCell } from '../../../layout';
 import { Box, Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
 import { loadingConsolidados } from '../../../../store/apis/consolidados/thunks';
+import { theme } from '../../../../theme/theme';
+import { ImportExport } from '@mui/icons-material';
 
 const useStyles = makeStyles({
   buttonExportExcel: {
-    background: 'orange',
-    border: '2px blue',
-    borderRadius: 3,
-    color: 'primary',
+    backgroundColor: 'white',
+    border: `2px solid ${theme.palette.primary.main}`, /* Green */
+    borderRadius: 4,
+    color: theme.palette.primary.main,
+    fontWeight: 600,
     height: 36,
     width: '100%',
     padding: '0',
     cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main + '30',
+    },
   },
   table: {
     display: 'none'
@@ -84,7 +90,12 @@ export const ExportExcelFile = () => {
         table="tableConsolidado"
         filename="Consolidado"
         sheet="Informe Final"
-        buttonText="Exportar excel"
+        buttonText={
+          <Box display="flex" justifyContent="center" alignItems="center" >
+            Exportar excel
+            <ImportExport sx={{ fontSize: 20, ml: 1 }} />
+          </Box>
+        }
         className={classes.buttonExportExcel}
       />
       <Box className={classes.table}>
