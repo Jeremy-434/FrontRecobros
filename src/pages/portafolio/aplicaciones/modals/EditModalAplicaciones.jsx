@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Edit } from '@mui/icons-material';
-import { MenuItem, TextField, Typography } from '@mui/material';
+import { Autocomplete, MenuItem, TextField, Typography } from '@mui/material';
 
 import { ModalForm } from '../../../layout';
 
@@ -21,10 +21,8 @@ export const EditModalAplicaciones = ({
     estado,
     nombreSegmento,
     idAliado,
-    idServicio,
+    idServicio
 }) => {
-
-
     const {
         nombreDeAplicacionInput, estadoDeAplicacionInput, nombreDeSegmentoInput, aliadoResponsableInput, servicioInput,
         nombreDeAplicacionInputValid, estadoDeAplicacionInputValid, nombreDeSegmentoInputValid, aliadoResponsableInputValid, servicioInputValid,
@@ -63,6 +61,9 @@ export const EditModalAplicaciones = ({
         onResetForm();
         setFormSubmitted(false);
     }
+
+    const defaultValueAliado = aliados.find(option => option.idAliado === idAliado);
+    const defaultValueServicio = servicios.find(option => option.idServicio === idServicio);
 
     return (
         <ModalForm
@@ -115,51 +116,57 @@ export const EditModalAplicaciones = ({
                 sx={{ mb: 2 }}
 
             />
-            <TextField
-                label="Servicio"
-                name="servicioInput"
-                value={servicioInput}
-                onChange={onInputChange}
-                error={!!servicioInputValid && formSubmitted}
-                helperText={formSubmitted ? servicioInputValid : null}
-                size="small"
-                fullWidth
-                sx={{ mb: 2 }}
-                select
-            >
-                {
-                    servicios.map((servicio) => (
-                        <MenuItem
-                            key={servicio.idServicio}
-                            value={servicio.idServicio}
-                        >
-                            {servicio.nombreServicio}
-                        </MenuItem>
-                    ))
-                }
-            </TextField>
-            <TextField
-                name="aliadoResponsableInput"
-                label="Aliado Responsable"
-                value={aliadoResponsableInput}
-                onChange={onInputChange}
-                error={!!aliadoResponsableInputValid && formSubmitted}
-                helperText={formSubmitted ? aliadoResponsableInputValid : null}
-                size="small"
-                fullWidth
-                select
-            >
-                {
-                    aliados.map((aliado) => (
-                        <MenuItem
-                            key={aliado.idAliado}
-                            value={aliado.idAliado}
-                        >
-                            {aliado.nombreAliado}
-                        </MenuItem>
-                    ))
-                }
-            </TextField>
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo-aliados"
+                options={aliados}
+                defaultValue={defaultValueAliado}
+                getOptionLabel={(option) => String(option.nombreAliado)}
+                isOptionEqualToValue={(option, value) => option.idAliado === value.idAliado}
+                onChange={(event, newValue) => {
+                    onInputChange({ target: { name: "aliadoResponsableInput", value: newValue?.idAliado } })
+                }}
+                renderOption={(props, option) => (
+                    <MenuItem {...props} key={option.idAliado}>
+                        {option.nombreAliado}
+                    </MenuItem>
+                )}
+                renderInput={(params) => (<TextField
+                    {...params}
+                    label="Aliado responsable"
+                    error={!!aliadoResponsableInputValid && formSubmitted}
+                    helperText={formSubmitted ? aliadoResponsableInputValid : null}
+                    size="small"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                />
+                )}
+            />
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo-servicios"
+                options={servicios}
+                defaultValue={defaultValueServicio}
+                getOptionLabel={(option) => String(option.nombreServicio)}
+                isOptionEqualToValue={(option, value) => option.idServicio === value.idServicio}
+                onChange={(event, newValue) => {
+                    onInputChange({ target: { name: "servicioInput", value: newValue?.idServicio } })
+                }}
+                renderOption={(props, option) => (
+                    <MenuItem {...props} key={option.idServicio}>
+                        {option.nombreServicio}
+                    </MenuItem>
+                )}
+                renderInput={(params) => (<TextField
+                    {...params}
+                    label="Servicio"
+                    error={!!servicioInputValid && formSubmitted}
+                    helperText={formSubmitted ? servicioInputValid : null}
+                    size="small"
+                    fullWidth
+                />
+                )}
+            />
         </ModalForm>
     )
 }
