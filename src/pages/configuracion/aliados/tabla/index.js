@@ -1,1 +1,1 @@
-export * from './TablaAliados';
+export * from './TableAliados';

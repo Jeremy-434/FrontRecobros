@@ -11,7 +11,7 @@ const formValidations = {
     usuarioInput: [(value) => value.length >= 1, 'El usuario es obligatorio.'],
     estadoInput: [(value) => value.length >= 1, 'El estado es obligatorio.'],
     correoResponsableInput: [(value) => value.length >= 1, 'El correo del responsable es obligatorio'],
-    // fechaInput: [(value) => value.length >= 1, 'Selecciona algun aliado'],
+    // fechaModificacionInput: [(value) => value.length >= 1, ' x '],
 }
 
 export const EditModalAliados = ({
@@ -21,18 +21,19 @@ export const EditModalAliados = ({
     estado,
     correoResponsable,
     fecha,
+    fechaModificacion
 }) => {
 
     const {
-        nombreAliadoInput, usuarioInput, estadoInput, correoResponsableInput, fechaInput,
-        nombreAliadoInputValid, usuarioInputValid, estadoInputValid, correoResponsableInputValid, fechaInputValid,
+        nombreAliadoInput, usuarioInput, estadoInput, correoResponsableInput, fechaModificacionInput,
+        nombreAliadoInputValid, usuarioInputValid, estadoInputValid, correoResponsableInputValid, fechaModificacionInputValid,
         onInputChange, onResetForm, isFormValid
     } = useForm({
         'nombreAliadoInput': nombreAliado,
         'usuarioInput': usuario,
         'estadoInput': estado,
         'correoResponsableInput': correoResponsable,
-        'fechaInput': fecha,
+        'fechaModificacionInput': fechaModificacion,
     }, formValidations);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -49,7 +50,8 @@ export const EditModalAliados = ({
             usuarioInput,
             estadoInput,
             correoResponsableInput,
-            fechaInput,
+            fecha,
+            fechaModificacionInput,
         )
         setFormSubmitted(false);
         return true;
@@ -132,17 +134,17 @@ export const EditModalAliados = ({
                 fullWidth
                 sx={{ mb: 2 }}
             />
-            {/* <TextField
-                // label="Fecha"
-                name="fechaInput"
-                value={fechaInput}
+            <TextField
+                label="Fecha de modificacion"
+                name="fechaModificacionInput"
+                value={fechaModificacionInput}
                 onChange={onInputChange}
-                error={!!fechaInputValid && formSubmitted}
-                helperText={formSubmitted ? fechaInputValid : null}
+                error={!!fechaModificacionInputValid && formSubmitted}
+                helperText={formSubmitted ? fechaModificacionInputValid : null}
                 size="small"
-                // type="date"
+                type="datetime-local"
                 fullWidth
-            /> */}
+            />
         </ModalForm>
     )
 }

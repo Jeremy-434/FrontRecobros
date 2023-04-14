@@ -43,7 +43,9 @@ export const TableCierreMes = () => {
                       <StyledTableCell>{mes.mes}</StyledTableCell>
                       <StyledTableCell>{mes.anio}</StyledTableCell>
                       <StyledTableCell>{mes.usuario}</StyledTableCell>
-                      <StyledTableCell>{mes.fechaServidor}</StyledTableCell>
+                      <StyledTableCell>
+                        {new Date(mes.fechaServidor).toLocaleDateString() + ' ' + new Date(mes.fechaServidor).toLocaleTimeString()}
+                      </StyledTableCell>
                       <StyledTableCell>{mes.estado}</StyledTableCell>
                       <StyledTableCell sxbody={{
                         textAlign: 'center',

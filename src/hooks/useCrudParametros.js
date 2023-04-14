@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useGetParametrosByIdQuery, useUpdateParametroMutation } from '../store/apis';
+import { useGetFirstParametroQuery, useUpdateParametroMutation } from '../store/apis';
 
 import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
@@ -9,12 +9,12 @@ export const useCrudParametros = () => {
     const dispatch = useDispatch();
 
     // * OBTENER EL DATO DE LA PRIMERA FILA Y GUARDARLO EN "parametros"
-    const { data, error, isLoading, refetch, isFetching } = useGetParametrosByIdQuery(1);
+    const { data, error, isLoading, refetch, isFetching } = useGetFirstParametroQuery();
     const parametros = data ?? [];
 
     // * GUARDAR UN PARAMETRO
     const [updateParametro] = useUpdateParametroMutation();
-    const editarParametro = async({
+    const editarParametro = async ({
         idParametro,
         rutaArchivosProcesar,
         numMesesEliminacionHistorico,
@@ -22,7 +22,7 @@ export const useCrudParametros = () => {
         bytesMaxArchivo,
     }) => {
 
-        dispatch( checkingProgress() );
+        dispatch(checkingProgress());
 
         await updateParametro({
             "idParametro": idParametro,

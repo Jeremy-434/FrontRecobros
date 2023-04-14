@@ -20,7 +20,7 @@ const formData = {
     'estadoDeAplicacion': 'Activo',
     'nombreDeSegmento': '',
     'servicio': '',
-    'aliado': ''
+    // 'aliado': ''
 }
 
 const formValidations = {
@@ -54,7 +54,7 @@ export const ModalAplicaciones = () => {
             estadoDeAplicacion,
             nombreDeSegmento,
             servicio,
-            aliado
+            // aliado
         )
         onResetForm();
         setFormSubmitted(false);
@@ -140,7 +140,7 @@ export const ModalAplicaciones = () => {
                 />
                 )}
             />
-            <Autocomplete
+            {/* <Autocomplete
                 disablePortal
                 id="combo-box-demo-aliados"
                 options={aliados}
@@ -163,7 +163,7 @@ export const ModalAplicaciones = () => {
                     sx={{ mb: 2 }}
                 />
                 )}
-            />
+            /> */}
         </ModalForm>
     )
 }

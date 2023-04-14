@@ -106,7 +106,9 @@ export const TableConsolidacion = () => {
                         <StyledTableCell>{consolidado.driver}</StyledTableCell>
                         <StyledTableCell>{consolidado.centroCostoReceptor}</StyledTableCell>
                         <StyledTableCell>{consolidado.cantidad}</StyledTableCell>
-                        <StyledTableCell>{consolidado.fecha}</StyledTableCell>
+                        <StyledTableCell>
+                          {new Date(consolidado.fecha).toLocaleDateString() + ' ' + new Date(consolidado.fecha).toLocaleTimeString()}
+                        </StyledTableCell>
                         <StyledTableCell>{consolidado.idAplicacionNavigation.nombreAplicacion}</StyledTableCell>
                         <StyledTableCell>{consolidado.idServicioNavigation.nombreServicio}</StyledTableCell>
                         <StyledTableCell>{consolidado.idAliadoNavigation.nombreAliado}</StyledTableCell>

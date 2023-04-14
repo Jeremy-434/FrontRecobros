@@ -14,12 +14,19 @@ import { EditModalAliados } from '../modals';
 const encabezadoDeTabla = [
   {
     title: 'Aliado',
-    sxhead: {textAlign: 'left', paddingLeft: 20}
+    sxhead: { textAlign: 'left', paddingLeft: 20 }
   },
   { title: 'Usuario' },
   { title: 'Estado' },
-  { title: 'Correo responsable' },
+  {
+    title: 'Responsable',
+    sxhead: { textAlign: 'center', paddingLeft: 20 }
+  },
   { title: 'Fecha' },
+  {
+    title: 'Modificacion',
+    sxhead: { textAlign: 'center', minWidth: '120px' }
+  },
   { title: 'Acciones' }
 ]
 
@@ -31,7 +38,7 @@ const titlePrimaryInList = [
   "Fecha",
 ]
 
-export const TablaAliados = () => {
+export const TableAliados = () => {
 
   const { aliados, error, borrarAliado } = useCrudAliados();
   const { dataFilters } = useFiltrosAliados(aliados);
@@ -55,10 +62,19 @@ export const TablaAliados = () => {
                         key={aliado.idAliado}
                       >
                         <StyledTableCell>{aliado.nombreAliado.slice(0, 20)}</StyledTableCell>
-                        <StyledTableCell>{aliado.usuario}</StyledTableCell>
-                        <StyledTableCell>{aliado.estado}</StyledTableCell>
-                        <StyledTableCell>{aliado.correoResponsable}</StyledTableCell>
-                        <StyledTableCell>{aliado.fecha}</StyledTableCell>
+                        <StyledTableCell>{aliado.usuario.slice(0, 20)}</StyledTableCell>
+                        <StyledTableCell>{aliado.estado.slice(0, 20)}</StyledTableCell>
+                        <StyledTableCell>{aliado.correoResponsable.slice(0, 20)}</StyledTableCell>
+                        <StyledTableCell>
+                          {new Date(aliado.fecha).toLocaleDateString() + ' ' + new Date(aliado.fecha).toLocaleTimeString()}
+                        </StyledTableCell>
+                        <StyledTableCell>
+                          {
+                            (aliado.fechaModificacion != null)
+                              ? new Date(aliado.fechaModificacion).toLocaleDateString() + ' ' + new Date(aliado.fechaModificacion).toLocaleTimeString()
+                              : "Sin modificaciones"
+                          }
+                        </StyledTableCell>
                         <StyledTableCell sxbody={{
                           textAlign: 'center',
                           padding: 'auto',

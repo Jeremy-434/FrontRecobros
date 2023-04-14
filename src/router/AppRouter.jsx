@@ -14,7 +14,7 @@ import {
   LogErroresPage,
   ParametrosPage,
   ServiciosPage,
-  VisualizacionPage
+  // VisualizacionPage
 } from '../pages';
 
 export const AppRouter = () => {
@@ -42,7 +42,7 @@ export const AppRouter = () => {
 
           {/* //*Uso de datos */}
           <Route path="carga" element={<CargueArchivosPage />} />
-          <Route path="visualización" element={<VisualizacionPage />} />
+          {/* <Route path="visualización" element={<VisualizacionPage />} /> */}
 
           {/* //* Informes */}
           <Route path="consolidación" element={<ConsolidacionPage />} />

@@ -34,12 +34,12 @@ export const MoreInfoModalApliaciones = ({ data }) => {
                         secondary={data.nombreSegmento}
                     />
                 </ListItem>
-                <ListItem >
+                {/* <ListItem >
                     <ListItemText
                         primary="Aliado"
                         secondary={data.idAliadoNavigation.nombreAliado}
                     />
-                </ListItem>
+                </ListItem> */}
                 <ListItem >
                     <ListItemText
                         primary="Servicio"

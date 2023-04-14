@@ -21,6 +21,7 @@ export const useCrudAliados = () => {
         estado,
         correoResponsable,
         fecha,
+        fechaModificacion,
     ) => {
 
         dispatch( checkingProgress() );
@@ -31,6 +32,7 @@ export const useCrudAliados = () => {
             "estado": estado,
             "correoResponsable": correoResponsable,
             "fecha": fecha ? fecha : null,
+            "fechaMoficacion": fechaModificacion ? fechaModificacion : null
         })
             .then((res) => {
                 dispatch(setMessage({
@@ -50,8 +52,10 @@ export const useCrudAliados = () => {
         usuario,
         estado,
         correoResponsable,
-        fecha
+        fecha,
+        fechaModificacion
     ) => {
+        console.log("🚀 ~ fechaModificacion:", fechaModificacion)
 
         dispatch( checkingProgress() );
 
@@ -61,7 +65,8 @@ export const useCrudAliados = () => {
             "usuario": usuario,
             "estado": estado,
             "correoResponsable": correoResponsable,
-            "fecha": fecha
+            "fecha": fecha,
+            "fechaModificacion": fechaModificacion ? fechaModificacion : null
         })
             .then((res) => {
                 dispatch(setMessage({

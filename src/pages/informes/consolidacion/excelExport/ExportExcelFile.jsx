@@ -4,12 +4,12 @@ import { StyledTableCell } from '../../../layout';
 import { Box, Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
 import { loadingConsolidados } from '../../../../store/apis/consolidados/thunks';
 import { theme } from '../../../../theme/theme';
-import { ImportExport } from '@mui/icons-material';
+import { FileDownload } from '@mui/icons-material';
 
 const useStyles = makeStyles({
   buttonExportExcel: {
     backgroundColor: 'white',
-    border: `2px solid ${theme.palette.primary.main}`, /* Green */
+    border: `1px solid ${theme.palette.primary.main}`, /* Green */
     borderRadius: 4,
     color: theme.palette.primary.main,
     fontWeight: 600,
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     padding: '0',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: theme.palette.primary.main + '30',
+      backgroundColor: theme.palette.primary.main + '10',
     },
   },
   table: {
@@ -92,8 +92,8 @@ export const ExportExcelFile = () => {
         sheet="Informe Final"
         buttonText={
           <Box display="flex" justifyContent="center" alignItems="center" >
-            Exportar excel
-            <ImportExport sx={{ fontSize: 20, ml: 1 }} />
+            <FileDownload sx={{ fontSize: 20, mr: 0.5 }} />
+            Descargar excel
           </Box>
         }
         className={classes.buttonExportExcel}

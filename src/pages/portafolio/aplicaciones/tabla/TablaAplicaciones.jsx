@@ -10,7 +10,6 @@ import { EditModalAplicaciones, MoreInfoModalApliaciones } from '../modals';
 
 import { useFiltrosAplicaciones } from '../../../filters/hooks';
 import { useCrudAplicaciones } from '../../../../hooks/useCrudAplicaciones';
-import { MoreInfoModal } from '../../servicios';
 
 const encabezadoDeTabla = [
   {
@@ -19,7 +18,7 @@ const encabezadoDeTabla = [
   },
   { title: 'Estado' },
   { title: 'Segmento' },
-  { title: 'Aliado' },
+  // { title: 'Aliado' },
   { title: 'Servicio' },
   { title: 'Acciones' }
 ]
@@ -50,7 +49,7 @@ export const TablaAplicaciones = () => {
                         <StyledTableCell>{aplicacion.nombreAplicacion.slice(0, 20)}</StyledTableCell>
                         <StyledTableCell >{aplicacion.estado}</StyledTableCell>
                         <StyledTableCell >{aplicacion.nombreSegmento.slice(0, 20)}</StyledTableCell>
-                        <StyledTableCell >{aplicacion.idAliadoNavigation.nombreAliado.slice(0, 20)}</StyledTableCell>
+                        {/* <StyledTableCell >{aplicacion.idAliadoNavigation.nombreAliado.slice(0, 20)}</StyledTableCell> */}
                         <StyledTableCell >{aplicacion.idServicioNavigation.nombreServicio.slice(0, 20)}</StyledTableCell>
                         <StyledTableCell sxbody={{
                           textAlign: 'center',

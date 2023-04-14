@@ -53,7 +53,9 @@ export const LoadFileTable = () => {
                           <StyledTableCell>{data.idAliadoNavigation.nombreAliado}</StyledTableCell>
                           <StyledTableCell>{data.mes}</StyledTableCell>
                           <StyledTableCell>{data.anio}</StyledTableCell>
-                          <StyledTableCell>{data.fechaServidor}</StyledTableCell>
+                          <StyledTableCell>
+                          {new Date(data.fechaServidor).toLocaleDateString() + ' ' + new Date(data.fechaServidor).toLocaleTimeString()}
+                          </StyledTableCell>
                           <StyledTableCell>{data.estado}</StyledTableCell>
                         </TableRow>
                       )

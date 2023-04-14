@@ -1,6 +1,6 @@
-import { Alert, Button, Container, Grid, Input, TextField, Typography } from '@mui/material';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { FirstContext } from '../../../context/first/FirstContext';
+import { Alert, Button, Container, Grid, Input, TextField, Typography } from '@mui/material';
 import { useCrudCierreMes, useCrudControlArchivos, useForm } from '../../../hooks';
 
 const dateDate = new Date();
@@ -12,7 +12,7 @@ const formData = {
   anio: dateYear,
 }
 
-export const GridCerrarMes = () => {
+export const GridCierreMes = () => {
 
   const { mesCerrado, setMesCerrado } = useContext(FirstContext);
   const { mes, anio, onInputChange } = useForm(formData);
@@ -20,8 +20,9 @@ export const GridCerrarMes = () => {
   const { addCierreMes, borrarCierreMes, cierreMes } = useCrudCierreMes();
   const { controlArchivos } = useCrudControlArchivos();
 
-  const lastControlArchivo = controlArchivos?.slice(-1)[0] ? controlArchivos?.slice(-1)[0].mes : null;
-  const boolControlArchivo = lastControlArchivo == mes;
+  // ? En caso de usar estado="Procesando" se revisa si el ultimo archivo cargado es del mes actual
+  // const lastControlArchivo = controlArchivos?.slice(-1)[0] ? controlArchivos?.slice(-1)[0].mes : null;
+  // const boolControlArchivo = lastControlArchivo == mes;
 
   const onCerrarMes = () => {
     addCierreMes({
@@ -29,7 +30,7 @@ export const GridCerrarMes = () => {
       anio: anio,
       usuario: "Ama Gwatterson",
       fechaServidor: null,
-      estado: "Finalizado"
+      estado: "Cerrado"
     });
     setMesCerrado(true);
   }
@@ -90,7 +91,7 @@ export const GridCerrarMes = () => {
         </Grid>
         <Grid item xs={6}>
           <Alert
-            severity={mesCerrado ? 'error' : boolControlArchivo ? 'info' : 'warning'}
+            severity={mesCerrado ? 'error' : 'warning'}
             variant="standard"
             sx={{
               display: 'flex',
@@ -99,7 +100,7 @@ export const GridCerrarMes = () => {
               padding: 0,
             }}
           >
-            {mesCerrado ? 'Cerrado' : boolControlArchivo ? 'Procesando' : 'Pendiente'}
+            {mesCerrado ? 'Cerrado' : 'Pendiente'}
           </Alert>
         </Grid>
         <Grid item xs={6}>

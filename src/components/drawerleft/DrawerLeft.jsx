@@ -1,7 +1,7 @@
 // 
-import { DataObject, ImportContacts, Info, Science, Settings } from "@mui/icons-material";
-import { Box, Button, Divider, Drawer, Grid } from "@mui/material"
-import { AcordionPortafolio } from "./";
+import { DataObject, ImportContacts, Info, Settings } from '@mui/icons-material';
+import { Box, Divider, Drawer } from '@mui/material'
+import { AcordionPortafolio } from './';
 
 const drawerWidth = 240;
 const fontIcon = { fontSize: '20px' }
@@ -39,7 +39,8 @@ export const DrawerLeft = () => {
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}
                     text="Uso de datos"
-                    linksAcordion={['Carga', 'Visualización']}
+                    linksAcordion={['Carga']}
+                    // linksAcordion={['Carga', 'Visualización']}
                 />
                 <AcordionPortafolio
                     Icon={<Info sx={fontIcon} />}

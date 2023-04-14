@@ -1,12 +1,12 @@
 import { FiltrosAliados } from '../../filters';
 import { PageLayout } from '../../layout';
-import { TablaAliados } from './tabla';
+import { TableAliados } from './tabla';
 
 export const AliadosPage = () => {
     return (
         <PageLayout>
             <FiltrosAliados />
-            <TablaAliados />
+            <TableAliados />
         </PageLayout>
     )
 }

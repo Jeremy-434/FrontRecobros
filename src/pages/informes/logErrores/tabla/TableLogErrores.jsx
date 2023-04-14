@@ -39,7 +39,9 @@ export const TableLogErrores = () => {
                       <TableRow
                         key={logError.idLogError}
                       >
-                        <StyledTableCell>{logError.fechaServidor}</StyledTableCell>
+                        <StyledTableCell>
+                          {new Date(logError.fechaServidor).toLocaleDateString() + ' ' + new Date(logError.fechaServidor).toLocaleTimeString()}
+                        </StyledTableCell>
                         <StyledTableCell>{logError.descripcionError}</StyledTableCell>
                         <StyledTableCell>{logError.anio}</StyledTableCell>
                         <StyledTableCell>{logError.mes}</StyledTableCell>

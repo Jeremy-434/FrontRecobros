@@ -1,12 +1,12 @@
 import { PageLayout } from '../../layout';
-import { GridCerrarMes } from './GridCerrarMes';
+import { GridCierreMes } from './GridCierreMes';
 import { TableCierreMes } from './TableCierreMes';
 
 export const CierreMesPage = () => {
     return (
         <PageLayout>
-            <GridCerrarMes />
-            <TableCierreMes/>
+            <GridCierreMes />
+            <TableCierreMes />
         </PageLayout>
     )
 }

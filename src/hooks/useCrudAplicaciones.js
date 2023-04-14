@@ -19,7 +19,7 @@ export const useCrudAplicaciones = () => {
         estadoDeAplicacion,
         nombreDeSegmento,
         servicio,
-        aliado
+        // aliado
     ) => {
 
         dispatch(checkingProgress());
@@ -29,7 +29,7 @@ export const useCrudAplicaciones = () => {
             "estado": estadoDeAplicacion,
             "nombreSegmento": nombreDeSegmento,
             "idServicio": servicio,
-            "idAliado": aliado
+            // "idAliado": aliado
         }).then((res) => {
             dispatch(setMessage({
                 text: `Aplicacion creada correctamente`,

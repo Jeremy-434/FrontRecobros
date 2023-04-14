@@ -79,7 +79,7 @@ export const FiltrosLogErrores = () => {
                         Consultar
                     </Button>
                 </Grid>
-                <Grid item xs={3}>
+                {/* <Grid item xs={3}>
                     <TextField
                         label={`Buscar por servicio`}
                         name="servicio"
@@ -96,12 +96,12 @@ export const FiltrosLogErrores = () => {
                         fullWidth
                         disabled
                     />
-                </Grid>
-                <Grid item xs={6}>
+                </Grid> */}
+                {/* <Grid item xs={6}>
                     <Button variant="contained" fullWidth color="info">
                         Exportar excel
                     </Button>
-                </Grid>
+                </Grid> */}
             </Grid>
         </Container>
     )

@@ -10,10 +10,10 @@ export const parametrosApi = createApi({
     }),
     endpoints: (builder) => ({
 
-        getParametrosById: builder.query({
+        getFirstParametro: builder.query({
             query: (id) => {
                 return {
-                    url: `/listar/${id}`,
+                    url: `/obtener-parametro`,
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result, arg)
@@ -32,6 +32,6 @@ export const parametrosApi = createApi({
 })
 
 export const {
-    useGetParametrosByIdQuery,
+    useGetFirstParametroQuery,
     useUpdateParametroMutation
 } = parametrosApi;
