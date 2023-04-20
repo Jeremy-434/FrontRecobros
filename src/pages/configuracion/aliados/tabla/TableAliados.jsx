@@ -10,6 +10,7 @@ import { useFiltrosAliados } from '../../../filters/hooks';
 import { StyledTableCell, TablaLayout } from '../../../layout';
 import { AlertDelete, ComTablePagination, MoreInfoModal } from '../../../components';
 import { EditModalAliados } from '../modals';
+import './MyDataGrid.css';
 
 const encabezadoDeTabla = [
   {

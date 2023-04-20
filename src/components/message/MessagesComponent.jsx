@@ -29,7 +29,16 @@ export const MessagesComponent = () => {
                                 width: '100%'
                             }}
                         >
-                            {message}
+                            {
+                                (message.split(",") != null)
+                                    ? message.split(",").map(me => (
+                                        <div key={me}>
+                                            {me}
+                                            <br />
+                                        </div>
+                                    ))
+                                    : message
+                            }
                         </Alert>
                     </Snackbar> : null
             }

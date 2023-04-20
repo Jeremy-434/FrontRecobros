@@ -64,7 +64,6 @@ export const LoadGridInputs = () => {
         }
         readFile(fileSelected, dataForCreate, nameFile, mes);
 
-        onResetForm();
         setNameFile("");
         selectFileRef.current.value = "";
         setFormSubmitted(false);

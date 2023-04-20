@@ -17,23 +17,22 @@ export const useLoadFile = () => {
 
     if (!valueFile) return;
 
-    //* Verificar que no se cargue un archivo con el mismo nombre
-    const sameNameValidation = controlArchivos.some(
-      (item) => {
-        item.mes == mes
-          && item.nombreArchivo.toLowerCase().includes(nameFile.toLowerCase())
-      }
-    );
+    // //* Verificar que no se cargue un archivo con el mismo nombre
+    // const sameNameValidation = controlArchivos.some(
+    //   (item) => {
+    //     return item.mes == mes
+    //       && item.nombreArchivo.toLowerCase().includes(nameFile.toLowerCase())
+    //   }
+    // );
 
-
-    if (sameNameValidation) {
-      dispatch(setMessage({
-        text: `El archivo de nombre ${nameFile} ya se encuentra cargado`,
-        severity: 'error'
-      }))
-      dispatch(handleMessageOpen());
-      return;
-    }
+    // if (sameNameValidation) {
+    //   dispatch(setMessage({
+    //     text: `El archivo de nombre ${nameFile} ya se encuentra cargado`,
+    //     severity: 'error'
+    //   }))
+    //   dispatch(handleMessageOpen());
+    //   return;
+    // }
 
     //* Constante formData para enviar el archivo por la funcion "uploadArchivo"
     const fileFormData = new FormData();
@@ -41,14 +40,10 @@ export const useLoadFile = () => {
 
     await uploadArchivo(fileFormData)
       .then((res) => {
-        if (res.error) {
+        if ((Array.isArray(res?.data) && res?.data[0] === 'True') || res.error) {
           //* Mensajes de error
           dispatch(setMessage({
-            text: (res.error.data
-              ? (res.error.data.includes('The network path was not found.')
-                ? `No se ha encontrado la ruta de red. ${res.error.data.slice(31)}`
-                : res.error.data)
-              : `Lo sentimos, el archivo no puede superar los 30MB`),
+            text: res?.data.slice(1) ?? "Hubo algun error con el servidor",
             severity: 'error'
           }));
           dispatch(handleMessageOpen());

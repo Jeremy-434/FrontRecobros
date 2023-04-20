@@ -14,5 +14,14 @@ export const theme = createTheme({
       main: red.A400,
     },
   },
+  components: {
+    MuiDataGrid: {
+      styleOverrides: {
+        header: {
+          backgroundColor: 'blue',
+        },
+      },
+    },
+  },
 });
 

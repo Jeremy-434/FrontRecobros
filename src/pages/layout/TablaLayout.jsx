@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 
 import { ModalAplicaciones, ModalServicios } from '../portafolio';
 import { ModalAliados } from '../configuracion';
+import { FiltrosAliados } from '../filters';
 
 export const StyledTableCell = styled(TableCell)(({ sxhead, sxbody }) => {
   return {
@@ -35,8 +36,8 @@ export const StyledTableCell = styled(TableCell)(({ sxhead, sxbody }) => {
 export const TablaLayout = ({ children, encabezadoDeTabla, modal }) => {
 
   return (
-    <Paper sx={{ width: '100%'}}>
-      <TableContainer>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow align="left" colSpan={3}>
