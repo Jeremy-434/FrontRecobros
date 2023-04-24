@@ -55,7 +55,6 @@ export const useCrudAliados = () => {
         fecha,
         fechaModificacion
     ) => {
-        console.log("🚀 ~ fechaModificacion:", fechaModificacion)
 
         dispatch( checkingProgress() );
 

@@ -136,17 +136,6 @@ export const ModalAliados = () => {
                 fullWidth
                 sx={{ mb: 2 }}
             />
-            {/* <TextField
-                // label="Fecha"
-                name="fecha"
-                value={fecha}
-                onChange={onInputChange}
-                error={!!fechaValid && formSubmitted}
-                helperText={formSubmitted ? fechaValid : null}
-                size="small"
-                type="date"
-                fullWidth
-            /> */}
         </ModalForm>
     )
 }
