@@ -11,7 +11,7 @@ export const LinksAcordion = ({linkText, text}) => {
                 color: 'inherit'
             }}
         >
-            <MenuItem sx={{ fontSize: '12px' }} >{linkText}</MenuItem>
+            <MenuItem sx={{ fontSize: '12px' }} >{text}</MenuItem>
         </Link>
     )
 }

@@ -38,7 +38,7 @@ export const InicioPage = () => {
                     fontSize={12}
                     position="absolute"
                     bottom={0}
-                > Recobros @Ecopetrol - 2023 </Typography>
+                > @ 2023 | Ecopetrol S.A.</Typography>
             </Container>
         </PageLayout>
     )

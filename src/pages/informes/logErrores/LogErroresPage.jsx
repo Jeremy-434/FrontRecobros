@@ -1,12 +1,13 @@
 import { FiltrosLogErrores } from '../../filters';
 import { PageLayout } from '../../layout';
-import { TableLogErrores } from './tabla';
+import { TableLogErrores, TableLogErroresJoinConsolidados } from './tabla';
 
 export const LogErroresPage = () => {
     return (
         <PageLayout>
             <FiltrosLogErrores />
-            <TableLogErrores />
+            {/* <TableLogErrores /> */}
+            <TableLogErroresJoinConsolidados />
         </PageLayout>
     )
 }

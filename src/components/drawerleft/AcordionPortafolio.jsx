@@ -2,7 +2,7 @@ import { ExpandMore } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import { LinksAcordion } from '..';
 
-export const AcordionPortafolio = ({ text, linksAcordion, Icon }) => {
+export const AcordionPortafolio = ({ text, linksAcordion, Icon, namesAcordion }) => {
     return (
         <Accordion sx={{ bgcolor: 'transparent', color: 'inherit'}} >
             <AccordionSummary
@@ -17,8 +17,8 @@ export const AcordionPortafolio = ({ text, linksAcordion, Icon }) => {
             </AccordionSummary>
             <AccordionDetails>
                 {
-                    linksAcordion.map(linkText => (
-                        <LinksAcordion key={linkText} linkText={linkText} text={text} />
+                    linksAcordion.map((linkText, i) => (
+                        <LinksAcordion key={linkText} linkText={linkText} text={namesAcordion[i]} />
                     ))
                 }
             </AccordionDetails>

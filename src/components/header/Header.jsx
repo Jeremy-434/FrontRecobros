@@ -5,7 +5,7 @@ import { LoadingComponent } from './LoadingComponent';
 export const Header = () => {
 
   return (
-    <Box sx={{ flexGrow: 1 }} position='fixed' width='100%' zIndex={10}>
+    <Box sx={{ flexGrow: 1 }} position='fixed' width='100%' zIndex={-2}>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton

@@ -4,6 +4,7 @@ import { dataFileSlice } from './slices/dataFile.js/index.js';
 import { filteredDataSlice } from './slices/filteredData';
 import { messageCreatedSlice } from './slices/messageCreated';
 import { logErroresApi } from './apis/logErrores/logErroresApi';
+import { authSlice } from './auth';
 
 export const store = configureStore({
     reducer: {
@@ -22,6 +23,8 @@ export const store = configureStore({
         messageCreated: messageCreatedSlice.reducer,
         filteredData: filteredDataSlice.reducer,
         dataFile: dataFileSlice.reducer,
+        // * Authentication
+        auth: authSlice.reducer,
     },
 
     middleware: getDefaultMiddleware => getDefaultMiddleware()

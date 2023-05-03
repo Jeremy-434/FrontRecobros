@@ -12,23 +12,30 @@ import {
   ConsolidacionPage,
   InicioPage,
   LogErroresPage,
+  LoginPage,
   ParametrosPage,
   ServiciosPage,
   // VisualizacionPage
 } from '../pages';
 
 export const AppRouter = () => {
+
   return (
     <FirstProvider>
 
       <Header />
       <DrawerLeft />
 
+      <Routes>
+        {/* //* Autenticación */}
+        <Route path="auth/login" element={<LoginPage />} />
+      </Routes>
+
       <ContainerLayout>
 
         <Routes>
 
-          {/* // * Inicio */}
+          {/* //* Inicio */}
           <Route path="inicio" element={<InicioPage />} />
 
           {/* //* Configuracion */}
@@ -40,17 +47,17 @@ export const AppRouter = () => {
           <Route path="servicios" element={<ServiciosPage />} />
           <Route path="aplicaciones" element={<AplicacionesPage />} />
 
-          {/* //*Uso de datos */}
+          {/* //* Uso de datos */}
           <Route path="carga" element={<CargueArchivosPage />} />
           {/* <Route path="visualización" element={<VisualizacionPage />} /> */}
 
           {/* //* Informes */}
-          <Route path="consolidación" element={<ConsolidacionPage />} />
-          <Route path="comparación" element={<ComparacionPage />} />
-          <Route path="log de errores" element={<LogErroresPage />} />
+          <Route path="consolidacion" element={<ConsolidacionPage />} />
+          <Route path="comparacion" element={<ComparacionPage />} />
+          <Route path="log-de-errores" element={<LogErroresPage />} />
 
 
-          <Route path="/*" element={<Navigate to="inicio" />} />
+          <Route path="/*" element={<Navigate to="auth/login" />} />
 
         </Routes>
 

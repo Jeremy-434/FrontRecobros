@@ -4,3 +4,4 @@ export * from './portafolio';
 export * from './usoDeDatos';
 export * from './filters';
 export * from './inicio';
+export * from './auth';
