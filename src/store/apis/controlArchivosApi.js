@@ -13,7 +13,7 @@ export const controlArchivosApi = createApi({
         getControlArchivos: builder.query({
             query: () => {
                 return {
-                    url: '/listar',
+                    url: '/GetAll',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result)
@@ -23,14 +23,14 @@ export const controlArchivosApi = createApi({
         }),
         createControlArchivos: builder.mutation({
             query: (body) => ({
-                url: '/guardar',
+                url: '/Create',
                 method: 'POST',
                 body,
             }),
         }),
         updateControlArchivos: builder.mutation({
             query: (body) => ({
-                url: '/editar',
+                url: '/Update',
                 method: 'PUT',
                 body,
             }),

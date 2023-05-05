@@ -13,7 +13,7 @@ export const logErroresApi = createApi({
         getLogErrores: builder.query({
             query: () => {
                 return {
-                    url: '/listar',
+                    url: '/GetAll',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result, arg)

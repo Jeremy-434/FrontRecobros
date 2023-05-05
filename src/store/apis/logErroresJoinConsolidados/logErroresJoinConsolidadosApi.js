@@ -13,7 +13,7 @@ export const logErroresJoinConsolidadosApi = createApi({
         getLogErroresJoinConsolidado: builder.query({
             query: () => {
                 return {
-                    url: '/listar/consolidados-and-logErrores',
+                    url: '/GetAll/ConsolidatedAndLogErrors',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result, arg)

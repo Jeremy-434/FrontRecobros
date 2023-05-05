@@ -13,7 +13,7 @@ export const aplicacionesApi = createApi({
         getAplicaciones: builder.query({
             query: () => {
                 return {
-                    url: '/listar',
+                    url: '/GetAll',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result)
@@ -22,25 +22,25 @@ export const aplicacionesApi = createApi({
             }
         }),
         getAplicacionById: builder.query({
-            query: (id) => `/obtener/${id}`
+            query: (id) => `/GetById/${id}`
         }),
         createAplicacion: builder.mutation({
             query: (body) => ({
-                url: '/guardar',
+                url: '/Create',
                 method: 'POST',
                 body,
             }),
         }),
         updateAplicacion: builder.mutation({
             query: ({ id, ...rest }) => ({
-                url: '/editar',
+                url: '/Update',
                 method: 'PUT',
                 body: rest
             })
         }),
         deleteAplicacion: builder.mutation({
             query: (id) => ({
-                url: `/eliminar/${id}`,
+                url: `/Delete/${id}`,
                 method: 'DELETE',
             })
         })

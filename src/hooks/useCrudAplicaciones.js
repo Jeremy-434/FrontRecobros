@@ -28,7 +28,7 @@ export const useCrudAplicaciones = () => {
             "nombreAplicacion": nombreDeAplicacion,
             "estado": estadoDeAplicacion,
             "nombreSegmento": nombreDeSegmento,
-            "idServicio": servicio,
+            "idServicio": servicio
             // "idAliado": aliado
         }).then((res) => {
             dispatch(setMessage({
@@ -47,7 +47,6 @@ export const useCrudAplicaciones = () => {
         nombreDeAplicacionInput,
         estadoDeAplicacionInput,
         nombreDeSegmentoInput,
-        aliadoResponsableInput,
         servicioInput,
     ) => {
 
@@ -59,7 +58,6 @@ export const useCrudAplicaciones = () => {
             estado: estadoDeAplicacionInput,
             nombreSegmento: nombreDeSegmentoInput,
             idServicio: servicioInput,
-            idAliado: aliadoResponsableInput,
         }).then((res) => {
             dispatch(setMessage({
                 text: `Aplicacion actualizada correctamente`,

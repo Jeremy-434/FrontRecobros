@@ -13,7 +13,7 @@ export const parametrosApi = createApi({
         getFirstParametro: builder.query({
             query: (id) => {
                 return {
-                    url: `/obtener-parametro`,
+                    url: `/GetParameter`,
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result, arg)
@@ -23,7 +23,7 @@ export const parametrosApi = createApi({
         }),
         updateParametro: builder.mutation({
             query: (body) => ({
-                url: '/editar',
+                url: '/Update',
                 method: 'PUT',
                 body,
             }),

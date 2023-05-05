@@ -116,7 +116,7 @@ export const EditModalAplicaciones = ({
                 sx={{ mb: 2 }}
 
             />
-            <Autocomplete
+            {/* <Autocomplete
                 disablePortal
                 id="combo-box-demo-aliados"
                 options={aliados}
@@ -141,7 +141,7 @@ export const EditModalAplicaciones = ({
                     sx={{ mb: 2 }}
                 />
                 )}
-            />
+            /> */}
             <Autocomplete
                 disablePortal
                 id="combo-box-demo-servicios"

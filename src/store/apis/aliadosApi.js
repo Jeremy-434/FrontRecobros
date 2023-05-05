@@ -13,7 +13,7 @@ export const aliadosApi = createApi({
         getAliados: builder.query({
             query: () => {
                 return {
-                    url: '/listar',
+                    url: '/GetAll',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result)
@@ -22,25 +22,25 @@ export const aliadosApi = createApi({
             }
         }),
         getAliadoById: builder.query({
-            query: (id) => `/listar/${id}`
+            query: (id) => `/GetById/${id}`
         }),
         createAliado: builder.mutation({
             query: (body) => ({
-                url: '/guardar',
+                url: '/Create',
                 method: 'POST',
                 body,
             }),
         }),
         updateAliado: builder.mutation({
             query: ({ id, ...rest }) => ({
-                url: '/editar',
+                url: '/Update',
                 method: 'PUT',
                 body: rest
             })
         }),
         deleteAliado: builder.mutation({
             query: (id) => ({
-                url: `/eliminar/${id}`,
+                url: `/Delete/${id}`,
                 method: 'DELETE',
             })
         })

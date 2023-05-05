@@ -13,7 +13,7 @@ export const consolidadosApi = createApi({
         getConsolidados: builder.query({
             query: () => {
                 return {
-                    url: '/listar',
+                    url: '/GetAll',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result)

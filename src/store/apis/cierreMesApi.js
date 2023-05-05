@@ -13,7 +13,7 @@ export const cierreMesApi = createApi({
         getCierreMes: builder.query({
             query: () => {
                 return {
-                    url: '/listar',
+                    url: '/GetAll',
                     providesTags: (result, error, arg) =>
                         result
                             ? console.log(result)
@@ -23,14 +23,14 @@ export const cierreMesApi = createApi({
         }),
         createCierreMes: builder.mutation({
             query: (body) => ({
-                url: '/guardar',
+                url: '/Create',
                 method: 'POST',
                 body
             })
         }),
         deleteCierreMes: builder.mutation({
             query: (id) => ({
-                url: `/eliminar/${id}`,
+                url: `/Delete/${id}`,
                 method: 'DELETE',
             })
         })
