@@ -1,1 +1,1 @@
-export * from './logErroresJoinConsolidados';
+export * from './logErroresJoinConsolidadosApi';

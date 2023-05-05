@@ -36,25 +36,25 @@ export const AppRouter = () => {
         <Routes>
 
           {/* //* Inicio */}
-          <Route path="inicio" element={<InicioPage />} />
+          <Route path="/inicio" element={<InicioPage />} />
 
           {/* //* Configuracion */}
-          <Route path="aliados" element={<AliadosPage />} />
-          <Route path="parametros" element={<ParametrosPage />} />
-          <Route path="cierre mes" element={<CierreMesPage />} />
+          <Route path="/aliados" element={<AliadosPage />} />
+          <Route path="/parametros" element={<ParametrosPage />} />
+          <Route path="/cierre-mes" element={<CierreMesPage />} />
 
           {/* //* Portafolio */}
-          <Route path="servicios" element={<ServiciosPage />} />
-          <Route path="aplicaciones" element={<AplicacionesPage />} />
+          <Route path="/servicios" element={<ServiciosPage />} />
+          <Route path="/aplicaciones" element={<AplicacionesPage />} />
 
           {/* //* Uso de datos */}
-          <Route path="carga" element={<CargueArchivosPage />} />
+          <Route path="/cargue-archivo" element={<CargueArchivosPage />} />
           {/* <Route path="visualización" element={<VisualizacionPage />} /> */}
 
           {/* //* Informes */}
-          <Route path="consolidacion" element={<ConsolidacionPage />} />
-          <Route path="comparacion" element={<ComparacionPage />} />
-          <Route path="log-de-errores" element={<LogErroresPage />} />
+          <Route path="/consolidacion" element={<ConsolidacionPage />} />
+          <Route path="/comparacion" element={<ComparacionPage />} />
+          <Route path="/log-de-errores" element={<LogErroresPage />} />
 
 
           <Route path="/*" element={<Navigate to="auth/login" />} />

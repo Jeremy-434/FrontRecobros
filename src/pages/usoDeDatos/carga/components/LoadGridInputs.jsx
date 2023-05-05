@@ -13,6 +13,7 @@ import { FirstContext } from '../../../../context';
 const dateDate = new Date();
 const dateYear = dateDate.getFullYear();
 const dateMonth = dateDate.getUTCMonth() + 1;
+const isoDateString = dateDate.toISOString();
 
 const formData = {
     aliado: '',
@@ -62,7 +63,8 @@ export const LoadGridInputs = () => {
             "aliado": aliado,
             "fechaServidor": null,
         }
-        readFile(fileSelected, dataForCreate, nameFile, mes);
+
+        readFile(fileSelected, dataForCreate, nameFile, mes, isoDateString);
 
         setNameFile("");
         selectFileRef.current.value = "";

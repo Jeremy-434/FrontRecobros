@@ -8,23 +8,25 @@ export const useLoadFile = () => {
   //* Dispatch de los mensajes correspondientes
   const dispatch = useDispatch();
   //* Hook que llama al rtk.query que proveer una funcion "addControlArchivo" para agregar 
-  const { addControlArchivo, controlArchivos } = useCrudControlArchivos();
+  const { addControlArchivo, controlArchivos, editControlArchivo } = useCrudControlArchivos();
   //* Rtk-Query que provee una funcion "uploadArchivo" para cargar el archivo en la ruta
   const [uploadArchivo] = useUploadArchivoMutation();
 
   //* Funcion que lee todo el txt
-  const readFile = async (valueFile, dataForCreate, nameFile, mes) => {
+  const readFile = async (valueFile, dataForCreate, nameFile, mes, isoDateString) => {
 
     if (!valueFile) return;
 
-    // //* Verificar que no se cargue un archivo con el mismo nombre
-    // const sameNameValidation = controlArchivos.some(
-    //   (item) => {
-    //     return item.mes == mes
-    //       && item.nombreArchivo.toLowerCase().includes(nameFile.toLowerCase())
-    //   }
-    // );
+    //* Buscar archivo con del mes con el mismo nombre y en estado "Pendiente" y retornar su id
+    const pendingControlArchivoIds = controlArchivos.filter(
+      (item) => {
+        return item.mes == mes
+          && item.nombreArchivo.toLowerCase().includes(nameFile.toLowerCase())
+          && item.estado === "Pendiente"
+      }
+    ).map(item => item.idControlArchivo);
 
+    //* Verificar que no se cargue un archivo con el mismo nombre
     // if (sameNameValidation) {
     //   dispatch(setMessage({
     //     text: `El archivo de nombre ${nameFile} ya se encuentra cargado`,
@@ -48,11 +50,24 @@ export const useLoadFile = () => {
           }));
           dispatch(handleMessageOpen());
         } else {
-          // //* Se añade la data pasada por parametro para agregar una fila a tbControlArchivo a la base de datos
-          addControlArchivo(dataForCreate);
-          //* Mensaje de confirmacion
-          dispatch(setMessage({ text: "El archivo se cargo correctamente", severity: 'success' }))
-          dispatch(handleMessageOpen());
+          if (pendingControlArchivoIds.length !== 0) {
+            //* Se actualiza la fecha del registro con el mismo nombre y en estado pendiente
+            editControlArchivo({
+              "idControlArchivo": pendingControlArchivoIds[0],
+              "fechaServidor": isoDateString
+            })
+
+            //* Mensaje de confirmación
+            dispatch(setMessage({ text: "El archivo se actualizo correctamente", severity: 'success' }))
+            dispatch(handleMessageOpen());
+          } else {
+            //* Se añade la data pasada por parametro y se agrega registro en ControlArchivo
+            addControlArchivo(dataForCreate);
+
+            //* Mensaje de confirmacion
+            dispatch(setMessage({ text: "El archivo se cargo correctamente", severity: 'success' }))
+            dispatch(handleMessageOpen());
+          }
         }
       });
   };

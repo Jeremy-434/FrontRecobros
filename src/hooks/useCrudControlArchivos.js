@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { useCreateControlArchivosMutation, useGetControlArchivosQuery } from '../store/apis/controlArchivosApi';
+import { useCreateControlArchivosMutation, useGetControlArchivosQuery, useUpdateControlArchivosMutation } from '../store/apis/controlArchivosApi';
 import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useCrudControlArchivos = () => {
@@ -14,7 +14,7 @@ export const useCrudControlArchivos = () => {
 
     // * GUARDAR UN CONTROL DE ARCHIVO
     const [createControlArchivo] = useCreateControlArchivosMutation();
-    const addControlArchivo = async({
+    const addControlArchivo = async ({
         nombreArchivo,
         usuario,
         estado,
@@ -24,7 +24,7 @@ export const useCrudControlArchivos = () => {
         fechaServidor
     }) => {
 
-        dispatch( checkingProgress() );
+        dispatch(checkingProgress());
 
         await createControlArchivo({
             "nombreArchivo": nombreArchivo,
@@ -45,10 +45,50 @@ export const useCrudControlArchivos = () => {
             });
     }
 
+    const [updateControlArchivo] = useUpdateControlArchivosMutation();
+    const editControlArchivo = async ({
+        idControlArchivo,
+        nombreArchivo,
+        usuario,
+        estado,
+        mes,
+        anio,
+        aliado,
+        fechaServidor
+    }) => {
+        console.log("🚀 ~ nombreArchivo:", nombreArchivo)
+        console.log("🚀 ~ mes:", mes)
+        console.log("🚀 ~ fechaServidor:", fechaServidor)
+        console.log("🚀 ~ idControlArchivo:", idControlArchivo)
+
+        dispatch(checkingProgress());
+
+        await updateControlArchivo({
+            "idControlArchivo": idControlArchivo,
+            "nombreArchivo": nombreArchivo,
+            "usuario": usuario,
+            "estado": estado,
+            "mes": mes,
+            "anio": anio,
+            "idAliado": aliado,
+            "fechaServidor": fechaServidor,
+        })
+            .then((res) => {
+                dispatch(setMessage({
+                    text: `Control de archivo actualizado correctamente`,
+                    severity: 'success'
+                }));
+                dispatch(handleMessageOpen());
+                refetch();
+            });
+
+    }
+
     return {
         error,
         controlArchivos,
         isLoading,
-        addControlArchivo
+        addControlArchivo,
+        editControlArchivo
     }
 }

@@ -93,7 +93,7 @@ export const ExportExcelFile = () => {
         buttonText={
           <Box display="flex" justifyContent="center" alignItems="center" >
             <FileDownload sx={{ fontSize: 20, mr: 0.5 }} />
-            Descargar excel
+            EXPORTAR ARCHIVO
           </Box>
         }
         className={classes.buttonExportExcel}

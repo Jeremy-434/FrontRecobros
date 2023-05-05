@@ -24,7 +24,7 @@ export const InicioPage = () => {
                     <Typography variant='h1' color="primary" fontSize={32} align="center">¡BIENVENIDO!</Typography>
                     <Divider sx={{ my: 1 }} />
                     <Typography fontSize={14}>
-                        <Typography fontSize={16}>
+                        <Typography component="span" fontSize={16}>
                             ¡Bienvenido a nuestra aplicación de consolidación y automatización de recobros!<br />
                         </Typography>
                         Nuestra aplicación está diseñada para ayudarte a consolidar información de varias fuentes y realizar cruces de datos para facilitar la automatización de recobros en varias aplicaciones. Con nuestra tecnología avanzada, puedes ahorrar tiempo y esfuerzo al tener toda la información en un solo lugar y automatizar el proceso de recobro. <br />

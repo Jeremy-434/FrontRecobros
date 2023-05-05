@@ -28,10 +28,18 @@ export const controlArchivosApi = createApi({
                 body,
             }),
         }),
+        updateControlArchivos: builder.mutation({
+            query: (body) => ({
+                url: '/editar',
+                method: 'PUT',
+                body,
+            }),
+        }),
     })
 })
 
 export const {
     useGetControlArchivosQuery,
-    useCreateControlArchivosMutation
+    useCreateControlArchivosMutation,
+    useUpdateControlArchivosMutation
 } = controlArchivosApi;

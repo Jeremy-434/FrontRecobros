@@ -29,25 +29,25 @@ export const DrawerLeft = () => {
                     Icon={<Settings sx={fontIcon} />}
                     text="Configuración"
                     namesAcordion={['Parametros', 'Aliados', 'Cierre mes']}
-                    linksAcordion={['Parametros', 'Aliados', 'Cierre-mes']}
+                    linksAcordion={['parametros', 'aliados', 'cierre-mes']}
                 />
                 <AcordionPortafolio
                     Icon={<ImportContacts sx={fontIcon} />}
                     text="Portafolio"
                     namesAcordion={['Aplicaciones', 'Servicios']}
-                    linksAcordion={['Aplicaciones', 'Servicios']}
+                    linksAcordion={['aplicaciones', 'servicios']}
                 />
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}
                     text="Uso de datos"
-                    namesAcordion={['Carga']}
-                    linksAcordion={['Carga']}
+                    namesAcordion={['Cargue archivo']}
+                    linksAcordion={['cargue-archivo']}
                 />
                 <AcordionPortafolio
                     Icon={<Info sx={fontIcon} />}
                     text="Informes"
                     namesAcordion={['Consolidación', 'Comparación', 'Log de errores']}
-                    linksAcordion={['Consolidacion', 'Comparacion', 'Log-de-errores']}
+                    linksAcordion={['consolidacion', 'comparacion', 'log-de-errores']}
                 />
                 <Divider />
             </Box>

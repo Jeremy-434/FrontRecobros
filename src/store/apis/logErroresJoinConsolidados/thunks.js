@@ -1,4 +1,4 @@
-import { useGetLogErroresJoinConsolidadoQuery } from './logErroresJoinConsolidados';
+import { useGetLogErroresJoinConsolidadoQuery } from './logErroresJoinConsolidadosApi';
 
 export const loadingLogErroresJoinConsolidados = () => {
     const { data, error, isLoading } = useGetLogErroresJoinConsolidadoQuery();
