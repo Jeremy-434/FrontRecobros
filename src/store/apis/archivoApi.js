@@ -6,7 +6,7 @@ export const archivoApi = createApi({
     reducerPath: 'archivo',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Archivo'
+        baseUrl: 'http://localhost:5054/api/File'
     }),
     endpoints: (builder) => ({
 

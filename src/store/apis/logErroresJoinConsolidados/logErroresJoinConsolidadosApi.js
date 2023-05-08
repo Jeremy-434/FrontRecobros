@@ -6,7 +6,7 @@ export const logErroresJoinConsolidadosApi = createApi({
     reducerPath: 'logErroresJoinConsolidado',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Consultas'
+        baseUrl: 'http://localhost:5054/api/Querys'
     }),
     endpoints: (builder) => ({
 
