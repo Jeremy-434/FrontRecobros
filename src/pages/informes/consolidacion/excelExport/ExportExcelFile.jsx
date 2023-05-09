@@ -129,7 +129,7 @@ export const ExportExcelFile = () => {
                             <StyledTableCell>{consolidado.anio}</StyledTableCell>
                             <StyledTableCell>{consolidado.registro}</StyledTableCell>
                             <StyledTableCell>{consolidado.nombre}</StyledTableCell>
-                            <StyledTableCell>{consolidado.nombreServicio}</StyledTableCell>
+                            {/* <StyledTableCell>{consolidado.nombreServicio}</StyledTableCell> */}
                             <StyledTableCell>{consolidado.subServicio}</StyledTableCell>
                             <StyledTableCell>{consolidado.claseActividad}</StyledTableCell>
                             <StyledTableCell>{consolidado.claseCosto}</StyledTableCell>

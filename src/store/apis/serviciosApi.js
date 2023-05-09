@@ -6,7 +6,7 @@ export const serviciosApi = createApi({
     reducerPath: 'servicios',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Servicios'
+        baseUrl: 'http://localhost:5054/api/Services'
     }),
     endpoints: (builder) => ({
 

@@ -1,13 +1,10 @@
 import { useContext } from 'react';
-
 import { TableBody, TableRow } from '@mui/material';
-
 import { StyledTableCell, TablaLayout } from '../../../layout/TablaLayout';
 import { AlertDelete } from '../../../components/table/AlertDelete';
 import { ComTablePagination } from '../../../components/table/ComTablePagination';
 import { FirstContext } from '../../../../context';
 import { EditModalAplicaciones, MoreInfoModalApliaciones } from '../modals';
-
 import { useFiltrosAplicaciones } from '../../../filters/hooks';
 import { useCrudAplicaciones } from '../../../../hooks/useCrudAplicaciones';
 
@@ -16,9 +13,6 @@ const encabezadoDeTabla = [
     title: 'Aplicación',
     sxhead: { textAlign: 'left', paddingLeft: 20 }
   },
-  { title: 'Estado' },
-  { title: 'Segmento' },
-  // { title: 'Aliado' },
   { title: 'Servicio' },
   { title: 'Acciones' }
 ]
@@ -47,9 +41,6 @@ export const TablaAplicaciones = () => {
                         key={aplicacion.idAplicacion}
                       >
                         <StyledTableCell>{aplicacion.nombreAplicacion.slice(0, 20)}</StyledTableCell>
-                        <StyledTableCell >{aplicacion.estado}</StyledTableCell>
-                        <StyledTableCell >{aplicacion.nombreSegmento.slice(0, 20)}</StyledTableCell>
-                        {/* <StyledTableCell >{aplicacion.idAliadoNavigation.nombreAliado.slice(0, 20)}</StyledTableCell> */}
                         <StyledTableCell >{aplicacion.idServicioNavigation.nombreServicio.slice(0, 20)}</StyledTableCell>
                         <StyledTableCell sxbody={{
                           textAlign: 'center',

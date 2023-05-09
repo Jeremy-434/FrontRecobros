@@ -56,10 +56,6 @@ export const useCrudControlArchivos = () => {
         aliado,
         fechaServidor
     }) => {
-        console.log("🚀 ~ nombreArchivo:", nombreArchivo)
-        console.log("🚀 ~ mes:", mes)
-        console.log("🚀 ~ fechaServidor:", fechaServidor)
-        console.log("🚀 ~ idControlArchivo:", idControlArchivo)
 
         dispatch(checkingProgress());
 

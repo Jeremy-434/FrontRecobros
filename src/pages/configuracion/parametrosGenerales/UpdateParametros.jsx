@@ -11,7 +11,7 @@ export const UpdateParametros = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         defaultValues: {
-            "Ruta": "",
+            // "Ruta": "",
             "Historico": "",
             "Columnas": "",
             "TamanioArchivo": "",
@@ -51,7 +51,7 @@ export const UpdateParametros = () => {
                 marginY={2}
             >
                 <List>
-                    <ListItem>
+                    {/* <ListItem>
                         <ListItemText
                             primary="Ruta"
                             secondary="Ruta de parada para el archivo cargado"
@@ -66,7 +66,7 @@ export const UpdateParametros = () => {
                                 helperText={errors.Ruta?.message}
                             />
                         </Box>
-                    </ListItem>
+                    </ListItem> */}
                     <ListItem>
                         <ListItemText
                             primary="Eliminacion de historio"
@@ -104,7 +104,7 @@ export const UpdateParametros = () => {
                             size="small"
                             type="number"
                             sx={{ width: '200px' }}
-                            {...register("TamanioArchivo", { required: "Escriba el tamaño del archivo" })}
+                            {...register("TamanioArchivo", { required: "Escriba el tamaño del archivo en bytes" })}
                             error={!!errors.TamanioArchivo}
                             helperText={errors.TamanioArchivo?.message}
                         />

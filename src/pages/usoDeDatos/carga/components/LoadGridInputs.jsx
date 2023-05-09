@@ -10,9 +10,10 @@ import { useCrudAliados, useForm } from '../../../../hooks';
 import { checkingProgress } from '../../../../store/slices/messageCreated';
 import { FirstContext } from '../../../../context';
 
-const dateDate = new Date();
+var dateDate = new Date();
 const dateYear = dateDate.getFullYear();
 const dateMonth = dateDate.getUTCMonth() + 1;
+dateDate.setMinutes(dateDate.getMinutes() - dateDate.getTimezoneOffset());
 const isoDateString = dateDate.toISOString();
 
 const formData = {
@@ -36,7 +37,7 @@ export const LoadGridInputs = () => {
 
     const selectFileRef = useRef();
 
-    const { readFile } = useLoadFile();
+    const { uploadFile } = useLoadFile();
     const { aliados } = useCrudAliados();
 
     const aliadosActivos = aliados.filter(aliado => aliado.estado == "Activo");
@@ -64,7 +65,7 @@ export const LoadGridInputs = () => {
             "fechaServidor": null,
         }
 
-        readFile(fileSelected, dataForCreate, nameFile, mes, isoDateString);
+        uploadFile(fileSelected, dataForCreate, nameFile, mes, isoDateString);
 
         setNameFile("");
         selectFileRef.current.value = "";

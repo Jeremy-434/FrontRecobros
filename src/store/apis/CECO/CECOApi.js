@@ -2,15 +2,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Define a service using a base URL and expected endpoints
-export const logErroresApi = createApi({
-    reducerPath: 'logErrores',
+export const CECOApi = createApi({
+    reducerPath: 'CECO',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/LogErrors'
+        baseUrl: 'http://localhost:5054/api/CECO'
     }),
     endpoints: (builder) => ({
 
-        getLogErrores: builder.query({
+        getAllCECOs: builder.query({
             query: () => {
                 return {
                     url: '/GetAll',
@@ -22,8 +22,8 @@ export const logErroresApi = createApi({
             }
         })
     })
-});
+})
 
 export const {
-    useGetLogErroresQuery,
-} = logErroresApi;
+    useGetAllCECOsQuery
+} = CECOApi;

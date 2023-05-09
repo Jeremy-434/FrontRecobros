@@ -40,8 +40,8 @@ export const DrawerLeft = () => {
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}
                     text="Uso de datos"
-                    namesAcordion={['Cargue archivo']}
-                    linksAcordion={['cargue-archivo']}
+                    namesAcordion={['Cargue archivo', 'Cargue Archivo CECO']}
+                    linksAcordion={['cargue-archivo', 'upload-ceco']}
                 />
                 <AcordionPortafolio
                     Icon={<Info sx={fontIcon} />}

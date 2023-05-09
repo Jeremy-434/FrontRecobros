@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
+    CECOApi,
+    CECOFileApi,
     aliadosApi,
     aplicacionesApi,
     archivoApi,
@@ -29,6 +31,8 @@ export const store = configureStore({
         [consolidadosApi.reducerPath]: consolidadosApi.reducer,
         [logErroresApi.reducerPath]: logErroresApi.reducer,
         [logErroresJoinConsolidadosApi.reducerPath]: logErroresJoinConsolidadosApi.reducer,
+        [CECOFileApi.reducerPath]: CECOFileApi.reducer,
+        [CECOApi.reducerPath]: CECOApi.reducer,
 
         // * other states
         messageCreated: messageCreatedSlice.reducer,
@@ -49,4 +53,6 @@ export const store = configureStore({
         .concat(consolidadosApi.middleware)
         .concat(logErroresApi.middleware)
         .concat(logErroresJoinConsolidadosApi.middleware)
+        .concat(CECOFileApi.middleware)
+        .concat(CECOApi.middleware)
 })

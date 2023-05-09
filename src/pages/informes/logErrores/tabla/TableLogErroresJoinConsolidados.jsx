@@ -80,7 +80,7 @@ const encabezadoDeTabla = [
 
 export const TableLogErroresJoinConsolidados = () => {
 
-    const { logErroresJoinConsolidado, error, isLoading } = loadingLogErroresJoinConsolidados();
+    const { logErroresJoinConsolidado, error } = loadingLogErroresJoinConsolidados();
     console.log("🚀 ~ logErroresJoinConsolidado:", logErroresJoinConsolidado);
 
     const { page, rowsPerPage } = useContext(FirstContext);

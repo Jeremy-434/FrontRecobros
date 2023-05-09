@@ -1,37 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Edit } from '@mui/icons-material';
 import { Autocomplete, MenuItem, TextField, Typography } from '@mui/material';
-
 import { ModalForm } from '../../../layout';
-
 import { useCrudAliados, useCrudAplicaciones, useCrudServicios, useForm } from '../../../../hooks';
-
 
 const formValidations = {
     nombreDeAplicacionInput: [(value) => value.length >= 2, 'El nombre de la aplicacion es obligatorio'],
-    estadoDeAplicacionInput: [(value) => value.length >= 1, 'El estado es obligatorio.'],
-    // nombreDeSegmento: [(value) => value.length >= 1, 'El nombre del segmento es obligatorio.'],
     servicioInput: [(value) => value >= 1, 'Selecciona algun servicio'],
-    aliadoResponsableInput: [(value) => value >= 1, 'Selecciona algun aliado'],
 }
 
 export const EditModalAplicaciones = ({
     idAplicacion,
     nombreAplicacion,
-    estado,
-    nombreSegmento,
-    idAliado,
     idServicio
 }) => {
     const {
-        nombreDeAplicacionInput, estadoDeAplicacionInput, nombreDeSegmentoInput, aliadoResponsableInput, servicioInput,
-        nombreDeAplicacionInputValid, estadoDeAplicacionInputValid, nombreDeSegmentoInputValid, aliadoResponsableInputValid, servicioInputValid,
+        nombreDeAplicacionInput, servicioInput,
+        nombreDeAplicacionInputValid, servicioInputValid,
         onInputChange, onResetForm, isFormValid, reset
     } = useForm({
         'nombreDeAplicacionInput': nombreAplicacion,
-        'estadoDeAplicacionInput': estado,
-        'nombreDeSegmentoInput': nombreSegmento,
-        'aliadoResponsableInput': idAliado,
         'servicioInput': idServicio,
     }, formValidations);
 
@@ -48,9 +36,6 @@ export const EditModalAplicaciones = ({
         editAplicaciones(
             idAplicacion,
             nombreDeAplicacionInput,
-            estadoDeAplicacionInput,
-            nombreDeSegmentoInput,
-            aliadoResponsableInput,
             servicioInput,
         )
         setFormSubmitted(false);
@@ -62,7 +47,6 @@ export const EditModalAplicaciones = ({
         setFormSubmitted(false);
     }
 
-    const defaultValueAliado = aliados.find(option => option.idAliado === idAliado);
     const defaultValueServicio = servicios.find(option => option.idServicio === idServicio);
 
     return (
@@ -88,60 +72,6 @@ export const EditModalAplicaciones = ({
                 fullWidth
                 sx={{ mb: 2 }}
             />
-            <TextField
-                label="Estado de aplicacion"
-                name='estadoDeAplicacionInput'
-                value={estadoDeAplicacionInput}
-                onChange={onInputChange}
-                error={!!estadoDeAplicacionInputValid && formSubmitted}
-                helperText={formSubmitted ? estadoDeAplicacionInputValid : null}
-                size="small"
-                fullWidth
-                select
-                sx={{ mb: 2 }}
-
-            >
-                <MenuItem value={"Activo"} >Activo</MenuItem>
-                <MenuItem value={"Inactivo"} >Inactivo</MenuItem>
-            </TextField>
-            <TextField
-                label="Nombre de segmento"
-                name='nombreDeSegmentoInput'
-                value={nombreDeSegmentoInput}
-                onChange={onInputChange}
-                error={!!nombreDeSegmentoInputValid && formSubmitted}
-                helperText={formSubmitted ? nombreDeSegmentoInputValid : null}
-                size="small"
-                fullWidth
-                sx={{ mb: 2 }}
-
-            />
-            {/* <Autocomplete
-                disablePortal
-                id="combo-box-demo-aliados"
-                options={aliados}
-                defaultValue={defaultValueAliado}
-                getOptionLabel={(option) => String(option.nombreAliado)}
-                isOptionEqualToValue={(option, value) => option.idAliado === value.idAliado}
-                onChange={(event, newValue) => {
-                    onInputChange({ target: { name: "aliadoResponsableInput", value: newValue?.idAliado } })
-                }}
-                renderOption={(props, option) => (
-                    <MenuItem {...props} key={option.idAliado}>
-                        {option.nombreAliado}
-                    </MenuItem>
-                )}
-                renderInput={(params) => (<TextField
-                    {...params}
-                    label="Aliado responsable"
-                    error={!!aliadoResponsableInputValid && formSubmitted}
-                    helperText={formSubmitted ? aliadoResponsableInputValid : null}
-                    size="small"
-                    fullWidth
-                    sx={{ mb: 2 }}
-                />
-                )}
-            /> */}
             <Autocomplete
                 disablePortal
                 id="combo-box-demo-servicios"

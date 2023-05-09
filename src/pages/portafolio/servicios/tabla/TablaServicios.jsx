@@ -65,7 +65,7 @@ export const TablaServicios = () => {
                             <StyledTableCell >{servicio.driver.slice(0, 20)}</StyledTableCell>
                             <StyledTableCell >{servicio.claseActividad.slice(0, 20)}</StyledTableCell>
                             <StyledTableCell >{servicio.claseCosto.slice(0, 20)}</StyledTableCell>
-                            <StyledTableCell >{servicio.responsableReporte.slice(0, 20)}</StyledTableCell>
+                            <StyledTableCell >{servicio.responsableReporte.slice(0, 10)}</StyledTableCell>
                             <StyledTableCell >{servicio.porcentajeComparacion}%</StyledTableCell>
                             <StyledTableCell> {servicio.descripcion.slice(0, 10)}... </StyledTableCell>
                             <StyledTableCell

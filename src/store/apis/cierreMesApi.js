@@ -6,7 +6,7 @@ export const cierreMesApi = createApi({
     reducerPath: 'cierreMes',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/CierreMes'
+        baseUrl: 'http://localhost:5054/api/ClosingMonth'
     }),
     endpoints: (builder) => ({
 

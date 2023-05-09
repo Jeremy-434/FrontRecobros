@@ -7,12 +7,13 @@ export const LayoutLogin = ({ children, title = '' }) => {
             direction="column"
             alignItems="center"
             justifyContent="center"
+            position="absolute"
             zIndex={100}
             sx={{
                 minHeight: '100vh',
                 backgroundColor: 'primary.main',
                 padding: 4,
-                opacity: 1
+                opacity: 1,
             }}
         >
 

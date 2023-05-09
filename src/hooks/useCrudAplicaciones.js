@@ -16,20 +16,14 @@ export const useCrudAplicaciones = () => {
     const [createAplicacion] = useCreateAplicacionMutation();
     const addAplicacion = async (
         nombreDeAplicacion,
-        estadoDeAplicacion,
-        nombreDeSegmento,
         servicio,
-        // aliado
     ) => {
 
         dispatch(checkingProgress());
 
         await createAplicacion({
             "nombreAplicacion": nombreDeAplicacion,
-            "estado": estadoDeAplicacion,
-            "nombreSegmento": nombreDeSegmento,
             "idServicio": servicio
-            // "idAliado": aliado
         }).then((res) => {
             dispatch(setMessage({
                 text: `Aplicacion creada correctamente`,
@@ -45,8 +39,6 @@ export const useCrudAplicaciones = () => {
     const editAplicaciones = async (
         idAplicacion,
         nombreDeAplicacionInput,
-        estadoDeAplicacionInput,
-        nombreDeSegmentoInput,
         servicioInput,
     ) => {
 
@@ -55,8 +47,6 @@ export const useCrudAplicaciones = () => {
         await updateAplicacion({
             idAplicacion: idAplicacion,
             nombreAplicacion: nombreDeAplicacionInput,
-            estado: estadoDeAplicacionInput,
-            nombreSegmento: nombreDeSegmentoInput,
             idServicio: servicioInput,
         }).then((res) => {
             dispatch(setMessage({

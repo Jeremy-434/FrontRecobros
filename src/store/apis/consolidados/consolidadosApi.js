@@ -6,7 +6,7 @@ export const consolidadosApi = createApi({
     reducerPath: 'consolidados',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Consolidados'
+        baseUrl: 'http://localhost:5054/api/Consolidated'
     }),
     endpoints: (builder) => ({
 

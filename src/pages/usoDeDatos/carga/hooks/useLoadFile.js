@@ -13,11 +13,11 @@ export const useLoadFile = () => {
   const [uploadArchivo] = useUploadArchivoMutation();
 
   //* Funcion que lee todo el txt
-  const readFile = async (valueFile, dataForCreate, nameFile, mes, isoDateString) => {
+  const uploadFile = async (valueFile, dataForCreate, nameFile, mes, isoDateString) => {
 
     if (!valueFile) return;
 
-    //* Buscar archivo con del mes con el mismo nombre y en estado "Pendiente" y retornar su id
+    //* Buscar archivo con mismo mes, mismo nombre, en estado "Pendiente" dentro de controlArchivos y retornar su id
     const pendingControlArchivoIds = controlArchivos.filter(
       (item) => {
         return item.mes == mes
@@ -73,6 +73,6 @@ export const useLoadFile = () => {
   };
 
   return {
-    readFile
+    uploadFile
   }
 }

@@ -6,7 +6,7 @@ export const parametrosApi = createApi({
     reducerPath: 'parametros',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Parametros'
+        baseUrl: 'http://localhost:5054/api/Parameters'
     }),
     endpoints: (builder) => ({
 

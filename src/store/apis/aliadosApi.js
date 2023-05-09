@@ -6,7 +6,7 @@ export const aliadosApi = createApi({
     reducerPath: 'aliados',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Aliados'
+        baseUrl: 'http://localhost:5054/api/Ally'
     }),
     endpoints: (builder) => ({
 

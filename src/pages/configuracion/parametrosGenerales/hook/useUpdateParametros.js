@@ -20,7 +20,7 @@ export const useUpdateParametros = (reset) => {
     const onSubmit = (data) => {
         editarParametro({
             idParametro: parametros.idParametro,
-            rutaArchivosProcesar: data.Ruta.length == 0 ? parametros.rutaArchivosProcesar : `${data.Ruta}\\`,
+            // rutaArchivosProcesar: data.Ruta.length == 0 ? parametros.rutaArchivosProcesar : `${data.Ruta}\\`,
             numMesesEliminacionHistorico: Number(data.Historico) == 0 ? parametros.numMesesEliminacionHistorico : Number(data.Historico),
             numColumnasArchivo: Number(data.Columnas) == 0 ? parametros.numColumnasArchivo : Number(data.Columnas),
             bytesMaxArchivo: Number(data.TamanioArchivo) == 0 ? parametros.bytesMaxArchivo : Number(data.TamanioArchivo),

@@ -15,6 +15,7 @@ import {
   LoginPage,
   ParametrosPage,
   ServiciosPage,
+  UploadCECOPage,
   // VisualizacionPage
 } from '../pages';
 
@@ -49,6 +50,7 @@ export const AppRouter = () => {
 
           {/* //* Uso de datos */}
           <Route path="/cargue-archivo" element={<CargueArchivosPage />} />
+          <Route path="/upload-ceco" element={ <UploadCECOPage/> } />
           {/* <Route path="visualización" element={<VisualizacionPage />} /> */}
 
           {/* //* Informes */}
