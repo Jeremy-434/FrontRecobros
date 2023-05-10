@@ -1,13 +1,16 @@
 import ReactHTMLTableToExcel from 'react-html-table-to-excel-3';
 import { makeStyles } from '@mui/styles';
 import { StyledTableCell } from '../../../layout';
-import { Box, Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Box, Button, Paper, Table, TableBody, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { loadingConsolidados } from '../../../../store/apis/consolidados/thunks';
 import { theme } from '../../../../theme/theme';
 import { FileDownload } from '@mui/icons-material';
 
 const useStyles = makeStyles({
   buttonExportExcel: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'white',
     border: `1px solid ${theme.palette.primary.main}`, /* Green */
     borderRadius: 4,
@@ -90,14 +93,12 @@ export const ExportExcelFile = () => {
         table="tableConsolidado"
         filename="Consolidado"
         sheet="Informe Final"
-        buttonText={
-          <Box display="flex" justifyContent="center" alignItems="center" >
-            <FileDownload sx={{ fontSize: 20, mr: 0.5 }} />
-            EXPORTAR ARCHIVO
-          </Box>
-        }
         className={classes.buttonExportExcel}
-      />
+        renderAsHidden={true}
+      >
+        <FileDownload sx={{ fontSize: 20, mr: 0.5 }} />
+        EXPORTAR ARCHIVO
+      </ReactHTMLTableToExcel>
       <Box className={classes.table}>
         <Paper sx={{ width: '100%' }}>
           <TableContainer>

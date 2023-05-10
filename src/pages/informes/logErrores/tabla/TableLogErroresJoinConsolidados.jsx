@@ -5,6 +5,7 @@ import { StyledTableCell, TablaLayout } from '../../../layout';
 import { TableBody, TableRow } from '@mui/material';
 import { ComTablePagination } from '../../../components';
 import { MoreInfoLogsAndCons } from './MoreInfoLogsAndCons';
+import { useFiltrosLogErroresJoinConsolidados } from '../../../filters/hooks';
 
 const encabezadoDeTabla = [
     {
@@ -62,7 +63,7 @@ const encabezadoDeTabla = [
         sxhead: { minWidth: '160px' }
     },
     { title: "Cantidad" },
-    { title: "Fecha" },
+    // { title: "Fecha" },
     {
         title: "Aplicacion",
         sxhead: { minWidth: '120px' }
@@ -71,17 +72,17 @@ const encabezadoDeTabla = [
         title: "Servicio",
         sxhead: { minWidth: '120px' }
     },
-    {
-        title: "Aliado",
-        sxhead: { minWidth: '120px' }
-    },
+    // {
+    //     title: "Aliado",
+    //     sxhead: { minWidth: '120px' }
+    // },
     { title: "Acciones" },
 ]
 
 export const TableLogErroresJoinConsolidados = () => {
 
     const { logErroresJoinConsolidado, error } = loadingLogErroresJoinConsolidados();
-    console.log("🚀 ~ logErroresJoinConsolidado:", logErroresJoinConsolidado);
+    const { dataFilters } = useFiltrosLogErroresJoinConsolidados(logErroresJoinConsolidado);
 
     const { page, rowsPerPage } = useContext(FirstContext);
 
@@ -94,7 +95,7 @@ export const TableLogErroresJoinConsolidados = () => {
                         : logErroresJoinConsolidado ?
                             <TableBody>
                                 {
-                                    logErroresJoinConsolidado
+                                    dataFilters
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         .map((logError) => (
                                             <TableRow
@@ -115,12 +116,12 @@ export const TableLogErroresJoinConsolidados = () => {
                                                 <StyledTableCell>{logError.consolidado.driver}</StyledTableCell>
                                                 <StyledTableCell>{logError.consolidado.centroCostoReceptor}</StyledTableCell>
                                                 <StyledTableCell>{logError.consolidado.cantidad}</StyledTableCell>
-                                                <StyledTableCell>
+                                                {/* <StyledTableCell>
                                                     {new Date(logError.consolidado.fecha).toLocaleDateString() + ' ' + new Date(logError.consolidado.fecha).toLocaleTimeString()}
-                                                </StyledTableCell>
+                                                </StyledTableCell> */}
                                                 <StyledTableCell>{logError.consolidado.idAplicacionNavigation.nombreAplicacion}</StyledTableCell>
                                                 <StyledTableCell>{logError.consolidado.idServicioNavigation.nombreServicio}</StyledTableCell>
-                                                <StyledTableCell>{logError.consolidado.idAliadoNavigation.nombreAliado}</StyledTableCell>
+                                                {/* <StyledTableCell>{logError.consolidado.idServicioNavigation.nombreAliado}</StyledTableCell> */}
                                                 <StyledTableCell sxbody={{
                                                     textAlign: 'center',
                                                     padding: 'auto',
@@ -138,7 +139,7 @@ export const TableLogErroresJoinConsolidados = () => {
                 }
             </TablaLayout>
             <ComTablePagination
-                dataFilters={logErroresJoinConsolidado}
+                dataFilters={dataFilters}
             />
         </>
     )

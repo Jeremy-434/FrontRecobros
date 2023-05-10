@@ -16,20 +16,20 @@ export const useCrudParametros = () => {
     const [updateParametro] = useUpdateParametroMutation();
     const editarParametro = async ({
         idParametro,
-        rutaArchivosProcesar,
         numMesesEliminacionHistorico,
         numColumnasArchivo,
         bytesMaxArchivo,
+        numColumnasCECO,
     }) => {
 
         dispatch(checkingProgress());
 
         await updateParametro({
             "idParametro": idParametro,
-            "rutaArchivosProcesar": rutaArchivosProcesar ?? null,
             "numMesesEliminacionHistorico": numMesesEliminacionHistorico,
             "numColumnasArchivo": numColumnasArchivo,
             "bytesMaxArchivo": bytesMaxArchivo,
+            "numColumnasCECO": numColumnasCECO,
         })
             .then((res) => {
                 dispatch(setMessage({
@@ -45,6 +45,7 @@ export const useCrudParametros = () => {
         error,
         parametros,
         isLoading,
-        editarParametro
+        editarParametro,
+        refetch
     }
 }

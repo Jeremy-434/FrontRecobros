@@ -78,13 +78,13 @@ export const FiltrosConsolidaciones = () => {
                     </Button>
                 </Grid>
                 <Grid item xs={4}>
+                    <ExportExcelFile />
+                </Grid>
+                <Grid item xs={4}>
                     <Button variant="contained" onClick={handleCleanSearch} fullWidth>
                         Limpiar
                         <Clear sx={{ fontSize: 18, ml: 1 }} />
                     </Button>
-                </Grid>
-                <Grid item xs={4}>
-                    <ExportExcelFile data={consolidados} />
                 </Grid>
             </Grid>
         </Container>

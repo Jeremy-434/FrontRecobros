@@ -13,7 +13,7 @@ export const useFiltrosLogErrores = (data) => {
   const clickSearch = (dataToSearch) => {
     const results = data.filter(
       item => {
-        if (item.mes == dataToSearch.mes && item.anio == dataToSearch.anio)
+        if (item.mes == dataToSearch.mes || item.anio == dataToSearch.anio)
           return item;
       }
     )

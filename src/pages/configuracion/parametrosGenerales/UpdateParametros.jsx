@@ -2,19 +2,14 @@ import { Box, Container, List, ListItem, Typography, TextField, Button, ListItem
 import { useForm } from 'react-hook-form';
 import { useUpdateParametros } from './hook';
 
-const textFieldRutaValidations = {
-    required: "Escribe una ruta",
-    // validate: (value, formValues) => value.slice(-1) === '\\' ? true : 'Agregue un "\\" al final de la ruta'
-}
-
 export const UpdateParametros = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         defaultValues: {
-            // "Ruta": "",
             "Historico": "",
             "Columnas": "",
             "TamanioArchivo": "",
+            "ColumnasCECO": "",
         }
     });
 
@@ -51,22 +46,6 @@ export const UpdateParametros = () => {
                 marginY={2}
             >
                 <List>
-                    {/* <ListItem>
-                        <ListItemText
-                            primary="Ruta"
-                            secondary="Ruta de parada para el archivo cargado"
-                        />
-                        <Box display="flex" flexDirection="column">
-                            <TextField
-                                size="small"
-                                type="text"
-                                sx={{ width: '400px' }}
-                                {...register("Ruta", textFieldRutaValidations)}
-                                error={!!errors.Ruta}
-                                helperText={errors.Ruta?.message}
-                            />
-                        </Box>
-                    </ListItem> */}
                     <ListItem>
                         <ListItemText
                             primary="Eliminacion de historio"
@@ -75,6 +54,9 @@ export const UpdateParametros = () => {
                         <TextField
                             size="small"
                             type="number"
+                            inputProps={{
+                                min: 0
+                            }}
                             sx={{ width: '200px' }}
                             {...register("Historico", { required: "Escriba el numero de meses" })}
                             error={!!errors.Historico}
@@ -89,6 +71,9 @@ export const UpdateParametros = () => {
                         <TextField
                             size="small"
                             type="number"
+                            inputProps={{
+                                min: 0
+                            }}
                             sx={{ width: '200px' }}
                             {...register("Columnas", { required: "Escriba el numero de columnas" })}
                             error={!!errors.Columnas}
@@ -103,10 +88,30 @@ export const UpdateParametros = () => {
                         <TextField
                             size="small"
                             type="number"
+                            inputProps={{
+                                min: 10000000
+                            }}
                             sx={{ width: '200px' }}
                             {...register("TamanioArchivo", { required: "Escriba el tamaño del archivo en bytes" })}
                             error={!!errors.TamanioArchivo}
                             helperText={errors.TamanioArchivo?.message}
+                        />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText
+                            primary="Columnas CECO"
+                            secondary="Numero de columnas del archivo a cargar"
+                        />
+                        <TextField
+                            size="small"
+                            type="number"
+                            inputProps={{
+                                min: 0
+                            }}
+                            sx={{ width: '200px' }}
+                            {...register("ColumnasCECO", { required: "Escriba un numero de columnas" })}
+                            error={!!errors.ColumnasCECO}
+                            helperText={errors.ColumnasCECO?.message}
                         />
                     </ListItem>
                 </List>

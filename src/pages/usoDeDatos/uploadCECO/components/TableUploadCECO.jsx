@@ -21,7 +21,7 @@ export const TableUploadCECO = () => {
             <TablaLayout encabezadoDeTabla={encabezadoDeTabla}>
                 {
                     error
-                        ? <>Oh no! algo ocurrio, contactate con el servidor</>
+                        ? console.error("Oh no! algo ocurrio, contactate con el servidor")
                         : CECOs ?
                             <TableBody>
                                 {

@@ -2,6 +2,10 @@ import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { loadingLogErrores } from '../../store/apis/logErrores/thunks';
 import { useFiltrosLogErrores } from './hooks/useFiltrosLogErrores';
+import { ExportExcelFileLogs } from '../informes';
+import { Clear, Search } from '@mui/icons-material';
+import { loadingLogErroresJoinConsolidados } from '../../store/apis/logErroresJoinConsolidados/thunks';
+import { useFiltrosLogErroresJoinConsolidados } from './hooks';
 
 const date = new Date();
 
@@ -15,9 +19,11 @@ export const FiltrosLogErrores = () => {
             "aplicacion": "",
         }
     });
-    const { logErrores } = loadingLogErrores();
+    // const { logErrores } = loadingLogErrores();
+    const { logErroresJoinConsolidado } = loadingLogErroresJoinConsolidados();
 
-    const { handleDeleteFilters, clickSearch } = useFiltrosLogErrores(logErrores);
+    // const { handleDeleteFilters, clickSearch } = useFiltrosLogErrores(logErrores);
+    const { handleDeleteFilters, clickSearch } = useFiltrosLogErroresJoinConsolidados(logErroresJoinConsolidado);
 
     const handleCleanSearch = () => {
         handleDeleteFilters();
@@ -55,53 +61,37 @@ export const FiltrosLogErrores = () => {
                 boxShadow="2px 4px 12px -4px rgba(0,0,0,0.75)"
                 alignItems="center"
             >
-                <Grid item xs={3}>
+                <Grid item xs={12} display="flex" justifyContent="center" >
                     <TextField
                         label={`Mes`}
                         name="mes"
                         size="small"
                         {...register("mes")}
-                        fullWidth
                     />
-                </Grid>
-                <Grid item xs={3}>
                     <TextField
                         label={`Año`}
                         name="anio"
                         size="small"
                         {...register("anio")}
-                        fullWidth
                     />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <Button variant="contained" fullWidth type="submit">
                         Consultar
+                        <Search sx={{ fontSize: 16, ml: 1 }} />
                     </Button>
                 </Grid>
-                {/* <Grid item xs={3}>
-                    <TextField
-                        label={`Buscar por servicio`}
-                        name="servicio"
-                        size="small"
-                        fullWidth
-                        disabled
-                    />
+                {/* //* BOTON EXPORTAR */}
+                <Grid item xs={4}>
+                    <ExportExcelFileLogs />
                 </Grid>
-                <Grid item xs={3}>
-                    <TextField
-                        label={`Buscar por aplicación`}
-                        name="aplicación"
-                        size="small"
-                        fullWidth
-                        disabled
-                    />
-                </Grid> */}
-                {/* <Grid item xs={6}>
-                    <Button variant="contained" fullWidth color="info">
-                        Exportar excel
+                <Grid item xs={4}>
+                    <Button variant="contained" fullWidth onClick={handleCleanSearch}>
+                        Limpiar
+                        <Clear sx={{ fontSize: 18, ml: 1 }} />
                     </Button>
-                </Grid> */}
+                </Grid>
             </Grid>
         </Container>
     )

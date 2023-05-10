@@ -42,6 +42,13 @@ export const useLoadFile = () => {
 
     await uploadArchivo(fileFormData)
       .then((res) => {
+        if(res?.error?.error){
+          dispatch(setMessage({
+            text: "Verifica que el archivo no supere el máximo de bytes configurado, Si no es así ponte en contacto con el administrador.",
+            severity: "error"
+          }));
+          dispatch(handleMessageOpen());
+        }
         if ((Array.isArray(res?.data) && res?.data[0] === 'True') || res.error) {
           //* Mensajes de error
           dispatch(setMessage({

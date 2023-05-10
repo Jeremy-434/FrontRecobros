@@ -8,10 +8,10 @@ export const useUpdateParametros = (reset) => {
     useEffect(() => {
         if (parametros) {
             const dataDefaultValues = {
-                "Ruta": parametros.rutaArchivosProcesar,
                 "Historico": parametros.numMesesEliminacionHistorico,
                 "Columnas": parametros.numColumnasArchivo,
                 "TamanioArchivo": parametros.bytesMaxArchivo,
+                "ColumnasCECO": parametros.numColumnasCECO,
             }
             reset(dataDefaultValues)
         }
@@ -20,11 +20,11 @@ export const useUpdateParametros = (reset) => {
     const onSubmit = (data) => {
         editarParametro({
             idParametro: parametros.idParametro,
-            // rutaArchivosProcesar: data.Ruta.length == 0 ? parametros.rutaArchivosProcesar : `${data.Ruta}\\`,
-            numMesesEliminacionHistorico: Number(data.Historico) == 0 ? parametros.numMesesEliminacionHistorico : Number(data.Historico),
-            numColumnasArchivo: Number(data.Columnas) == 0 ? parametros.numColumnasArchivo : Number(data.Columnas),
-            bytesMaxArchivo: Number(data.TamanioArchivo) == 0 ? parametros.bytesMaxArchivo : Number(data.TamanioArchivo),
-        })
+            numMesesEliminacionHistorico: Number(data.Historico) <= 0 ? parametros.numMesesEliminacionHistorico : Number(data.Historico),
+            numColumnasArchivo: Number(data.Columnas) <= 0 ? parametros.numColumnasArchivo : Number(data.Columnas),
+            bytesMaxArchivo: Number(data.TamanioArchivo) <= 0 ? parametros.bytesMaxArchivo : Number(data.TamanioArchivo),
+            numColumnasCECO: Number(data.ColumnasCECO) <= 0 ? parametros.numColumnasCECO : Number(data.ColumnasCECO),
+        });
     }
     return {
         onSubmit
