@@ -1,11 +1,8 @@
 import { useState } from 'react';
-
 import { Add } from '@mui/icons-material';
 import { MenuItem, TextField, Typography } from '@mui/material';
-
 import { ModalForm } from '../../../layout';
-
-import { useCrudAliados, useForm } from '../../../../hooks';
+import { useAuthStore, useCrudAliados, useForm } from '../../../../hooks';
 
 const styleIconButton = {
     color: 'primary.main',
@@ -16,17 +13,9 @@ const styleIconButton = {
     mr: 2,
 }
 
-const formData = {
-    'nombreAliado': '',
-    'usuario': 'Ama Gwatterson',
-    'estado': 'Activo',
-    'correoResponsable': '',
-    'fecha': ''
-}
-
 const formValidations = {
     nombreAliado: [(value) => value.length >= 1, 'El nombre del aliado es obligatorio'],
-    usuario: [(value) => value.length >= 1, 'El usuario es obligatorio.'],
+    // usuario: [(value) => value.length >= 1, 'El usuario es obligatorio.'],
     estado: [(value) => value.length >= 1, 'El estado es obligatorio.'],
     correoResponsable: [(value) => value.length >= 1, 'El correo del responsable es obligatorio'],
     // fecha: [(value) => value >= 1, 'La fecha es obligatoria'],
@@ -34,14 +23,22 @@ const formValidations = {
 
 export const ModalAliados = () => {
 
+    const { addAliado } = useCrudAliados();
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const { user } = useAuthStore();
+
     const {
         nombreAliado, usuario, estado, correoResponsable, fecha,
         nombreAliadoValid, usuarioValid, estadoValid, correoResponsableValid, fechaValid,
         onInputChange, onResetForm, isFormValid
-    } = useForm(formData, formValidations);
+    } = useForm({
+        'nombreAliado': '',
+        'usuario': user?.nombreUsuario,
+        'estado': 'Activo',
+        'correoResponsable': '',
+        'fecha': ''
+    }, formValidations);
 
-    const { addAliado } = useCrudAliados();
-    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const agregarAliado = () => {
         setFormSubmitted(true);

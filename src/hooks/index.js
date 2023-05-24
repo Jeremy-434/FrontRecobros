@@ -1,3 +1,4 @@
+export * from './useAuthStore';
 export * from './useCrudAliados';
 export * from './useCrudAplicaciones';
 export * from './useCrudCierreMes';

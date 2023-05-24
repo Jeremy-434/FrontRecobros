@@ -1,12 +1,14 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getEnvVariables } from '../../helpers/getEnvVariables';
+const { VITE_API_URL } = getEnvVariables();
 
 // Define a service using a base URL and expected endpoints
 export const parametrosApi = createApi({
     reducerPath: 'parametros',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Parameters'
+        baseUrl: `${VITE_API_URL}/Parameters`
     }),
     endpoints: (builder) => ({
 

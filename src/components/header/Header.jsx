@@ -1,8 +1,11 @@
 import { Logout } from '@mui/icons-material';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { LoadingComponent } from './LoadingComponent';
+import { useAuthStore } from '../../hooks';
 
 export const Header = () => {
+
+  const { startLogout, user } = useAuthStore();
 
   return (
     <Box sx={{ flexGrow: 1 }} position='fixed' width='100%' zIndex={10}>
@@ -36,9 +39,9 @@ export const Header = () => {
             fontSize={16}
             fontWeight={500}
           >
-            Ama Gwatterson
+            {user?.nombreUsuario}
           </Typography>
-          <Button color="inherit">
+          <Button onClick={startLogout} color="inherit">
             <Logout color='error' />
           </Button>
         </Toolbar>

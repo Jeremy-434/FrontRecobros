@@ -7,12 +7,11 @@ export const AlertDelete = ({ funtionDelete, title }) => {
     return (
         <ModalForm
             nameButton={"Borrar"}
-            styleButton={<Delete />}
+            styleButton={<Delete color="error" />}
             hiddenStyle={{ display: 'none' }}
             // hiddenStyleCancelar={{ width: '100%', mt: 0 }}
             styleIconButton={{ width: 20, padding: 0 }}
-            colorStyleIconButton={"error"}
-            buttonBorrar={
+            customButton={
                 <Button
                     color="error"
                     variant="contained"

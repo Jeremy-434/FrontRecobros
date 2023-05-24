@@ -1,9 +1,10 @@
 import { IconButton, Modal, Box, Button } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const styleBoxForm = {
     borderRadius: '10px',
     position: 'absolute',
+    zIndex: 500,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -18,36 +19,40 @@ export const ModalForm = ({
     funtion,
     nameButton,
     styleButton,
-    handleCloseModal,
     styleIconButton,
     hiddenStyle,
     title,
-    hiddenStyleCancelar,
-    colorStyleIconButton,
-    buttonBorrar
+    customButton,
+    forCloseModal,
+    setForCloseModal = () => {},
 }) => {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => {
-        setOpen(false);
-        handleCloseModal ? handleCloseModal() : null;
-    };
+    const handleClose = () => setOpen(false);
 
     const handleButton = (event) => {
         event.preventDefault();
         const call = funtion();
+        if (typeof call === 'object') return;
         call && handleClose();
     }
-    const colorButtonStyle = colorStyleIconButton != undefined ? colorStyleIconButton : 'primary';
+
+    useEffect(() => {
+        if (forCloseModal == true) {
+            handleClose();
+        }
+        setForCloseModal(false);
+    }, [forCloseModal])
+
 
     return (
         <>
             <IconButton
                 onClick={handleOpen}
                 title={title}
-                color={colorButtonStyle}
                 sx={styleIconButton}
+                color='primary'
             >
                 {styleButton}
             </IconButton>
@@ -68,7 +73,6 @@ export const ModalForm = ({
                             variant="contained"
                             color="primary"
                             onClick={handleClose}
-                            sx={hiddenStyleCancelar}
                         >
                             Cancelar
                         </Button>
@@ -80,7 +84,7 @@ export const ModalForm = ({
                         >
                             {nameButton}
                         </Button>
-                        {buttonBorrar}
+                        {customButton}
                     </Box>
                 </Box>
             </Modal>

@@ -1,11 +1,15 @@
-import { DataObject, ImportContacts, Info, Settings } from '@mui/icons-material';
+import { AdminPanelSettings, DataObject, ImportContacts, Info, Settings } from '@mui/icons-material';
 import { Box, Divider, Drawer } from '@mui/material'
 import { AcordionPortafolio } from './';
+import { useAuthStore } from '../../hooks';
 
 const drawerWidth = 240;
 const fontIcon = { fontSize: '20px' }
 
 export const DrawerLeft = () => {
+
+    const { user } = useAuthStore();
+
     return (
         <Drawer
             variant="persistent"
@@ -40,7 +44,7 @@ export const DrawerLeft = () => {
                 <AcordionPortafolio
                     Icon={<DataObject sx={fontIcon} />}
                     text="Uso de datos"
-                    namesAcordion={['Cargue archivo', 'Cargue Archivo CECO']}
+                    namesAcordion={['Cargue archivo', 'Cargue centro de costo']}
                     linksAcordion={['cargue-archivo', 'upload-ceco']}
                 />
                 <AcordionPortafolio
@@ -49,6 +53,18 @@ export const DrawerLeft = () => {
                     namesAcordion={['Consolidación', 'Comparación', 'Log de errores']}
                     linksAcordion={['consolidacion', 'comparacion', 'log-de-errores']}
                 />
+                {
+                    user?.administrador == 'True'
+                        ?
+                        <AcordionPortafolio
+                            Icon={<AdminPanelSettings sx={fontIcon} />}
+                            text="Administrador"
+                            namesAcordion={['Usuarios']}
+                            linksAcordion={['usuarios']}
+                        />
+                        : null
+                }
+
                 <Divider />
             </Box>
         </Drawer>

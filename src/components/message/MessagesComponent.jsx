@@ -1,4 +1,4 @@
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, Box, Snackbar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleMessageClose } from '../../store/slices/messageCreated';
 
@@ -12,7 +12,10 @@ export const MessagesComponent = () => {
     }
 
     return (
-        <>
+        <Box
+            position="absolute"
+            zIndex={1000}
+        >
             {
                 (message != "") ?
                     <Snackbar
@@ -26,7 +29,7 @@ export const MessagesComponent = () => {
                             severity={severity}
                             variant="filled"
                             sx={{
-                                width: '100%'
+                                width: '100%',
                             }}
                         >
                             {
@@ -42,6 +45,6 @@ export const MessagesComponent = () => {
                         </Alert>
                     </Snackbar> : null
             }
-        </>
+        </Box>
     )
 }

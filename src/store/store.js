@@ -16,7 +16,7 @@ import { dataFileSlice } from './slices/dataFile.js/index.js';
 import { filteredDataSlice } from './slices/filteredData';
 import { messageCreatedSlice } from './slices/messageCreated';
 import { logErroresApi } from './apis/logErrores/logErroresApi';
-import { authSlice } from './auth';
+import { accountApi, authSlice } from './auth';
 
 export const store = configureStore({
     reducer: {
@@ -33,6 +33,7 @@ export const store = configureStore({
         [logErroresJoinConsolidadosApi.reducerPath]: logErroresJoinConsolidadosApi.reducer,
         [CECOFileApi.reducerPath]: CECOFileApi.reducer,
         [CECOApi.reducerPath]: CECOApi.reducer,
+        [accountApi.reducerPath]: accountApi.reducer,
 
         // * other states
         messageCreated: messageCreatedSlice.reducer,
@@ -55,4 +56,5 @@ export const store = configureStore({
         .concat(logErroresJoinConsolidadosApi.middleware)
         .concat(CECOFileApi.middleware)
         .concat(CECOApi.middleware)
+        .concat(accountApi.middleware)
 })

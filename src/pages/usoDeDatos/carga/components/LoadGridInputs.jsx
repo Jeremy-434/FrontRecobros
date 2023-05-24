@@ -6,7 +6,7 @@ import { Container } from '@mui/system';
 import { Upload } from '@mui/icons-material';
 
 import { useLoadFile } from '../hooks';
-import { useCrudAliados, useForm } from '../../../../hooks';
+import { useAuthStore, useCrudAliados, useForm } from '../../../../hooks';
 import { checkingProgress } from '../../../../store/slices/messageCreated';
 import { FirstContext } from '../../../../context';
 
@@ -39,6 +39,7 @@ export const LoadGridInputs = () => {
 
     const { uploadFile } = useLoadFile();
     const { aliados } = useCrudAliados();
+    const { user } = useAuthStore();
 
     const aliadosActivos = aliados.filter(aliado => aliado.estado == "Activo");
 
@@ -57,7 +58,7 @@ export const LoadGridInputs = () => {
 
         const dataForCreate = {
             "nombreArchivo": nameFile,
-            "usuario": "Ama Gwatterson",
+            "usuario": user?.nombreUsuario,
             "estado": "Pendiente",
             "mes": mes,
             "anio": anio,

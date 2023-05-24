@@ -46,7 +46,6 @@ export const ModalAplicaciones = () => {
         )
         onResetForm();
         setFormSubmitted(false);
-        console.log('ARREGLAR ESTO!!');
         return true;
     }
 

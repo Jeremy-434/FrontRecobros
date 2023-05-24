@@ -1,12 +1,14 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getEnvVariables } from '../../../helpers/getEnvVariables';
+const { VITE_API_URL } = getEnvVariables();
 
 // Define a service using a base URL and expected endpoints
 export const logErroresJoinConsolidadosApi = createApi({
     reducerPath: 'logErroresJoinConsolidado',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5054/api/Querys'
+        baseUrl: `${VITE_API_URL}/Querys`
     }),
     endpoints: (builder) => ({
 
