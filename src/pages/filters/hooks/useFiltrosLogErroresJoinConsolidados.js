@@ -11,12 +11,18 @@ export const useFiltrosLogErroresJoinConsolidados = (data) => {
     };
 
     const clickSearch = (dataToSearch) => {
-        const results = data.filter(
-            item => {
-                if (item.logError.mes == dataToSearch.mes || item.logError.anio == dataToSearch.anio)
-                    return item;
+        const results = data.filter(item => {
+            if (!dataToSearch.mes) {
+              // If the month is empty, return items that match the year
+              return item.logError.anio == dataToSearch.anio;
+            } else if (!dataToSearch.anio) {
+              // If the year is empty, return items that match the month
+              return item.logError.mes == dataToSearch.mes;
+            } else {
+              // If neither the month nor the year is empty, return items that match both
+              return item.logError.mes == dataToSearch.mes && item.logError.anio == dataToSearch.anio;
             }
-        )
+          });
         setFilterLogErroresJoinConsolidados(results);
     };
 

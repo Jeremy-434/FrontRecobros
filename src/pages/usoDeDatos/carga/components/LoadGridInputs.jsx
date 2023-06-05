@@ -10,11 +10,9 @@ import { useAuthStore, useCrudAliados, useForm } from '../../../../hooks';
 import { checkingProgress } from '../../../../store/slices/messageCreated';
 import { FirstContext } from '../../../../context';
 
-var dateDate = new Date();
-const dateYear = dateDate.getFullYear();
-const dateMonth = dateDate.getUTCMonth() + 1;
-dateDate.setMinutes(dateDate.getMinutes() - dateDate.getTimezoneOffset());
-const isoDateString = dateDate.toISOString();
+let date = new Date();
+const dateYear = date.getFullYear();
+const dateMonth = date.getUTCMonth() + 1;
 
 const formData = {
     aliado: '',
@@ -66,7 +64,7 @@ export const LoadGridInputs = () => {
             "fechaServidor": null,
         }
 
-        uploadFile(fileSelected, dataForCreate, nameFile, mes, isoDateString);
+        uploadFile(fileSelected, dataForCreate, nameFile, mes);
 
         setNameFile("");
         selectFileRef.current.value = "";
@@ -104,7 +102,7 @@ export const LoadGridInputs = () => {
                 >
                     {
                         `No se puede cargar archivo ya que el mes 
-                        ${dateDate.toLocaleString('es-ES', { month: 'long' })}(${mes})
+                        ${date.toLocaleString('es-ES', { month: 'long' })}(${mes})
                         del año ${anio} se encuentra en estado: CERRADO`
                     }
                 </Alert>

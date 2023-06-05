@@ -10,7 +10,6 @@ export const TableAdmin = () => {
   const [rowId, setRowId] = useState(null);
 
   const { users } = loadingUsers();
-  // console.log("🚀 ~ users:", users);
 
   const columns = useMemo(() => [
     { field: 'nombreUsuario', headerName: 'Usuario', width: 150, editable: true, },

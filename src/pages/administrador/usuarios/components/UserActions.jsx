@@ -1,4 +1,4 @@
-import { Delete, Save } from '@mui/icons-material';
+import { Check, Delete, Save } from '@mui/icons-material';
 import { Box, CircularProgress, Fab } from '@mui/material';
 import { green } from '@mui/material/colors';
 import { useState } from 'react';
@@ -8,25 +8,33 @@ import { useDispatch } from 'react-redux';
 export const UserActions = ({ params, rowId, setRowId }) => {
 
   const dispatch = useDispatch();
+  const { update } = updateUserAccount();
 
   const [loading, setLoading] = useState(false);
   const [succes, setSucces] = useState(false);
 
-
   const handleSubmit = () => {
+    console.log("🚀 ~ params:", params.row)
+
     setLoading(true);
     const { id, administrador, nombreUsuario, correo } = params.row;
-    // console.log("🚀 ~ id, administrador, nombreUsuario, correo:", id, administrador, nombreUsuario, correo)
-    dispatch(updateUserAccount({
+    // console.log("🚀 ~ id, administrador, nombreUsuario, correo:", id, administrador, nombreUsuario, correo);
+
+    update({
       id,
       nombreUsuario,
       correo,
       administrador,
-    }));
-
-    console.log("Se actualizo");
+      "contraseña": "987654321"
+    }).then(res => {
+      setSucces(true);
+    });
 
     setLoading(false);
+  }
+
+  const handleDelete = () => {
+    //todo: hacer el delete de usuario
   }
 
   return (
@@ -82,6 +90,7 @@ export const UserActions = ({ params, rowId, setRowId }) => {
           height: 40,
           ml: 1
         }}
+        onClick={handleDelete}
       >
         <Delete />
       </Fab>

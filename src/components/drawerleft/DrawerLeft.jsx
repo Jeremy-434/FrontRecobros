@@ -54,7 +54,7 @@ export const DrawerLeft = () => {
                     linksAcordion={['consolidacion', 'comparacion', 'log-de-errores']}
                 />
                 {
-                    user?.administrador == 'True'
+                    user?.administrador === true
                         ?
                         <AcordionPortafolio
                             Icon={<AdminPanelSettings sx={fontIcon} />}

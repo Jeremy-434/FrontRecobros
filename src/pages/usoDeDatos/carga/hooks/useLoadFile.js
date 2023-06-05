@@ -13,7 +13,7 @@ export const useLoadFile = () => {
   const [uploadArchivo] = useUploadArchivoMutation();
 
   //* Funcion que lee todo el txt
-  const uploadFile = async (valueFile, dataForCreate, nameFile, mes, isoDateString) => {
+  const uploadFile = async (valueFile, dataForCreate, nameFile, mes) => {
 
     if (!valueFile) return;
 
@@ -61,7 +61,7 @@ export const useLoadFile = () => {
             //* Se actualiza la fecha del registro con el mismo nombre y en estado pendiente
             editControlArchivo({
               "idControlArchivo": pendingControlArchivoIds[0],
-              "fechaServidor": isoDateString
+              "fechaServidor": new Date(new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())).toISOString()
             })
 
             //* Mensaje de confirmación
