@@ -2,7 +2,7 @@ import { Delete } from '@mui/icons-material';
 import { Alert, Button, Typography } from '@mui/material';
 import { ModalForm } from '../../layout/ModalForm';
 
-export const AlertDelete = ({ funtionDelete, title }) => {
+export const AlertDelete = ({ functionDelete, title }) => {
 
     return (
         <ModalForm
@@ -16,7 +16,7 @@ export const AlertDelete = ({ funtionDelete, title }) => {
                     color="error"
                     variant="contained"
                     fullWidth
-                    onClick={funtionDelete}
+                    onClick={functionDelete}
                     sx={{ maxWidth: '112px' }}
                 >
                     Borrar

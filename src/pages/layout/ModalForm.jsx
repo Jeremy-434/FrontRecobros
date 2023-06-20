@@ -16,7 +16,7 @@ const styleBoxForm = {
 
 export const ModalForm = ({
     children,
-    funtion,
+    function: functionProp = () => {},
     nameButton,
     styleButton,
     styleIconButton,
@@ -24,7 +24,8 @@ export const ModalForm = ({
     title,
     customButton,
     forCloseModal,
-    setForCloseModal = () => {},
+    setForCloseModal = () => { },
+    styleBoxButtons
 }) => {
 
     const [open, setOpen] = useState(false);
@@ -33,9 +34,10 @@ export const ModalForm = ({
 
     const handleButton = (event) => {
         event.preventDefault();
-        const call = funtion();
-        if (typeof call === 'object') return;
-        call && handleClose();
+        const call = functionProp();
+        // if (typeof call === 'object') return;
+        // call && handleClose();
+        if (call) handleClose();
     }
 
     useEffect(() => {
@@ -68,7 +70,7 @@ export const ModalForm = ({
                     onSubmit={handleButton}
                 >
                     {children}
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3, ...styleBoxButtons }}>
                         <Button
                             variant="contained"
                             color="primary"

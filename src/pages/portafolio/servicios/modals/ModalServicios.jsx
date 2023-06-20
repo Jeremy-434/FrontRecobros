@@ -72,7 +72,7 @@ export const ModalServicios = () => {
 
     return (
         <ModalForm
-            funtion={agregarServicio}
+            function={agregarServicio}
             nameButton={"agregar"}
             styleButton={<Add />}
             handleCloseModal={handleCloseModal}

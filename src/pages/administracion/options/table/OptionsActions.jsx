@@ -1,40 +1,42 @@
 import { Check, Delete, Save } from '@mui/icons-material';
-import { Box, CircularProgress, Fab } from '@mui/material';
+import { Box, CircularProgress, Fab, IconButton } from '@mui/material';
 import { green } from '@mui/material/colors';
 import { useState } from 'react';
-import { updateUserAccount } from '../../../../store/auth/UserAccount/thunks';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useCrudOptions } from '../../../../hooks';
 
-export const UserActions = ({ params, rowId, setRowId }) => {
+export const OptionsActions = ({ params, rowId, setRowId }) => {
 
-  const dispatch = useDispatch();
-  const { update } = updateUserAccount();
+  const { editOption, removeOption } = useCrudOptions();
 
   const [loading, setLoading] = useState(false);
-  const [succes, setSucces] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = () => {
-    console.log("🚀 ~ params:", params.row)
-
     setLoading(true);
-    const { id, administrador, nombreUsuario, correo } = params.row;
-    // console.log("🚀 ~ id, administrador, nombreUsuario, correo:", id, administrador, nombreUsuario, correo);
 
-    update({
-      id,
-      nombreUsuario,
-      correo,
-      administrador,
-      "contraseña": "987654321"
+    const { idOpcion, opcion, descripcion } = params.row;
+    console.log("🚀 ~ params.row:", params.row)
+
+    editOption({
+      idOption: idOpcion,
+      option: opcion,
+      description: descripcion,
     }).then(res => {
-      setSucces(true);
+      setSuccess(true);
+      setRowId(null);
     });
 
     setLoading(false);
-  }
+  };
+
+  useEffect(() => {
+    if (rowId === params.id && success) setSuccess(false);
+  }, [rowId])
+
 
   const handleDelete = () => {
-    //todo: hacer el delete de usuario
+    removeOption(params.row.idOpcion);
   }
 
   return (
@@ -44,8 +46,8 @@ export const UserActions = ({ params, rowId, setRowId }) => {
         position: 'relative'
       }}
     >
-      {succes ? (
-        <Fab
+      {success ? (
+        <IconButton
           color='primary'
           sx={{
             width: 40,
@@ -55,9 +57,9 @@ export const UserActions = ({ params, rowId, setRowId }) => {
           }}
         >
           <Check />
-        </Fab>
+        </IconButton>
       ) : (
-        <Fab
+        <IconButton
           color='primary'
           sx={{
             width: 40,
@@ -67,7 +69,7 @@ export const UserActions = ({ params, rowId, setRowId }) => {
           onClick={handleSubmit}
         >
           <Save />
-        </Fab>
+        </IconButton>
       )}
       {
         loading && (
@@ -83,7 +85,7 @@ export const UserActions = ({ params, rowId, setRowId }) => {
           />
         )
       }
-      <Fab
+      <IconButton
         color='error'
         sx={{
           width: 40,
@@ -93,7 +95,7 @@ export const UserActions = ({ params, rowId, setRowId }) => {
         onClick={handleDelete}
       >
         <Delete />
-      </Fab>
+      </IconButton>
     </Box>
   )
 }

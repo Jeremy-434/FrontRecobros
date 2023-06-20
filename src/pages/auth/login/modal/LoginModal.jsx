@@ -37,7 +37,7 @@ export const LoginModal = () => {
     return (
         <ModalForm
             nameButton={"Iniciar sesion"}
-            funtion={handleSubmit(onSubmit)}
+            function={handleSubmit(onSubmit)}
             styleIconButton={{
                 variant: 'contained'
             }}
@@ -77,7 +77,6 @@ export const LoginModal = () => {
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 size="small"
-                sx={{ mb: 2 }}
                 fullWidth
             />
         </ModalForm>

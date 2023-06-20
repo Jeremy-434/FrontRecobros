@@ -81,7 +81,7 @@ export const TableAliados = () => {
                         >
                           <EditModalAliados {...aliado} />
                           <AlertDelete
-                            funtionDelete={() => { borrarAliado(aliado.idAliado) }}
+                            functionDelete={() => { borrarAliado(aliado.idAliado) }}
                             title={"Borrar aliado"}
                           />
                           <MoreInfoModal data={aliado} titlePrimaryInList={titlePrimaryInList} />

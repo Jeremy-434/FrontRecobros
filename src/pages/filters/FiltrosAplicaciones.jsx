@@ -40,9 +40,6 @@ export const FiltrosAplicaciones = () => {
           sx={{ mb: 2 }}
         >
           <MenuItem value="aplicacion">Aplicacion</MenuItem>
-          <MenuItem value="estado">Estado</MenuItem>
-          <MenuItem value="segmento">Segmento</MenuItem>
-          <MenuItem value="aliado">Aliado</MenuItem>
           <MenuItem value="servicio">Servicio</MenuItem>
         </TextField>
       }

@@ -5,6 +5,7 @@ export const PageLayout = ({children}) => {
         <Grid
             display="flex"
             flexDirection="column"
+            alignItems="center"
             marginX="auto"
             width={{ xs: '100%', xl: '200%' }}
             marginTop="71px"

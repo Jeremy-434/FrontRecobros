@@ -9,7 +9,11 @@ import {
     consolidadosApi,
     controlArchivosApi,
     logErroresJoinConsolidadosApi,
+    optionsApi,
     parametrosApi,
+    permissionsApi,
+    rolesApi,
+    rolesUsersApi,
     serviciosApi
 } from './apis';
 import { dataFileSlice } from './slices/dataFile.js/index.js';
@@ -34,6 +38,10 @@ export const store = configureStore({
         [CECOFileApi.reducerPath]: CECOFileApi.reducer,
         [CECOApi.reducerPath]: CECOApi.reducer,
         [accountApi.reducerPath]: accountApi.reducer,
+        [rolesApi.reducerPath]: rolesApi.reducer,
+        [optionsApi.reducerPath]: optionsApi.reducer,
+        [permissionsApi.reducerPath]: permissionsApi.reducer,
+        [rolesUsersApi.reducerPath]: rolesUsersApi.reducer,
 
         // * other states
         messageCreated: messageCreatedSlice.reducer,
@@ -57,4 +65,8 @@ export const store = configureStore({
         .concat(CECOFileApi.middleware)
         .concat(CECOApi.middleware)
         .concat(accountApi.middleware)
+        .concat(rolesApi.middleware)
+        .concat(optionsApi.middleware)
+        .concat(permissionsApi.middleware)
+        .concat(rolesUsersApi.middleware)
 })

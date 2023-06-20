@@ -33,7 +33,7 @@ export const ModalAliados = () => {
         onInputChange, onResetForm, isFormValid
     } = useForm({
         'nombreAliado': '',
-        'usuario': user?.nombreUsuario,
+        'usuario': user?.usuario,
         'estado': 'Activo',
         'correoResponsable': '',
         'fecha': ''
@@ -64,7 +64,7 @@ export const ModalAliados = () => {
 
     return (
         <ModalForm
-            funtion={agregarAliado}
+            function={agregarAliado}
             nameButton={"agregar"}
             styleButton={<Add />}
             handleCloseModal={handleCloseModal}

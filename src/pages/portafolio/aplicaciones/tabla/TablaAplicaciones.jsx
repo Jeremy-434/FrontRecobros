@@ -13,8 +13,14 @@ const encabezadoDeTabla = [
     title: 'Aplicación',
     sxhead: { textAlign: 'left', paddingLeft: 20 }
   },
-  { title: 'Servicio' },
-  { title: 'Acciones' }
+  {
+    title: 'Servicio',
+    sxhead: { textAlign: 'left', paddingLeft: 20 }
+  },
+  {
+    title: 'Acciones',
+    sxhead: { textAlign: 'center', paddingLeft: 20 }
+  }
 ]
 
 export const TablaAplicaciones = () => {
@@ -51,7 +57,7 @@ export const TablaAplicaciones = () => {
                           <EditModalAplicaciones idAplicacion={aplicacion.idAplicacion} {...aplicacion} />
                           <AlertDelete
                             title={"Borrar aplicación"}
-                            funtionDelete={() => { borrarAplicacion(aplicacion.idAplicacion) }}
+                            functionDelete={() => { borrarAplicacion(aplicacion.idAplicacion) }}
                           />
                           <MoreInfoModalApliaciones data={aplicacion} />
                         </StyledTableCell>

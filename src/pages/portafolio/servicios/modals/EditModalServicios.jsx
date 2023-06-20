@@ -73,7 +73,7 @@ export const EditModalServicios = ({
 
     return (
         <ModalForm
-            funtion={editarServicios}
+            function={editarServicios}
             nameButton={"Actualizar"}
             styleButton={<Edit />}
             handleCloseModal={handleCloseModal}

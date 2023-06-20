@@ -11,12 +11,16 @@ import {
     ConsolidacionPage,
     InicioPage,
     LogErroresPage,
+    OptionsPage,
     ParametrosPage,
+    PermissionsPage,
+    RolesPage,
     ServiciosPage,
     UploadCECOPage
 } from '..';
 
 export const RecobrosRoutes = () => {
+
     return (
         <>
             <Header />
@@ -50,6 +54,9 @@ export const RecobrosRoutes = () => {
 
                     {/* //* Administrador */}
                     <Route path="/usuarios" element={<AdminPage />} />
+                    <Route path="/roles" element={<RolesPage />} />
+                    <Route path="/opciones" element={<OptionsPage />} />
+                    <Route path="/permisos" element={<PermissionsPage />} />
 
 
                     <Route path="/*" element={<Navigate to="/inicio" />} />

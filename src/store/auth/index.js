@@ -1,2 +1,2 @@
 export * from './authSlice';
-export * from './UserAccount';
+export * from './userAccount';

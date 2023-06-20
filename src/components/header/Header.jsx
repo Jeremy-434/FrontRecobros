@@ -39,7 +39,8 @@ export const Header = () => {
             fontSize={16}
             fontWeight={500}
           >
-            {user?.nombreUsuario}
+            {user?.usuario}
+            <Typography fontSize={10} fontWeight={100}>{user?.correo}</Typography>
           </Typography>
           <Button onClick={startLogout} color="inherit">
             <Logout color='error' />

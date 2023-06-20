@@ -56,7 +56,7 @@ export const LoadGridInputs = () => {
 
         const dataForCreate = {
             "nombreArchivo": nameFile,
-            "usuario": user?.nombreUsuario,
+            "usuario": user?.usuario,
             "estado": "Pendiente",
             "mes": mes,
             "anio": anio,

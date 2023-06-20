@@ -64,7 +64,7 @@ export const EditModalAliados = ({
 
     return (
         <ModalForm
-            funtion={editarAliado}
+            function={editarAliado}
             nameButton={"Actualizar"}
             styleButton={<Edit />}
             styleIconButton={{ width: 20, padding: 0 }}

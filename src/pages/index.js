@@ -1,4 +1,4 @@
-export * from './administrador';
+export * from './administracion';
 export * from './auth';
 export * from './configuracion';
 export * from './filters';

@@ -1,13 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useLoginUserMutation, useRegisterUserMutation, useRenewTokenQuery } from '../store/auth/UserAccount/accountApi';
+import { useGetUsersQuery, useLoginUserMutation, useRegisterUserMutation, useRenewTokenQuery } from '../store/auth/UserAccount/accountApi';
 import { clearErrorMessage, onCheckingCredentials, onLogin, onLogout } from '../store/auth/authSlice';
-import { handleMessageOpen, setMessage } from '../store/slices/messageCreated';
+import { checkingProgress, handleMessageOpen, setMessage } from '../store/slices/messageCreated';
 
 export const useAuthStore = () => {
 
-    const [loginUser] = useLoginUserMutation();
-    const [registerUser] = useRegisterUserMutation();
+    const { refetch } = useGetUsersQuery();
     const { data, isFetching, error } = useRenewTokenQuery();
     const renew = data ?? {};
 
@@ -15,6 +14,7 @@ export const useAuthStore = () => {
     const dispatch = useDispatch();
 
     //* LOGIN
+    const [loginUser] = useLoginUserMutation();
     const startLogin = async ({ user, password }) => {
 
         dispatch(onCheckingCredentials());
@@ -22,7 +22,7 @@ export const useAuthStore = () => {
         try {
 
             await loginUser({
-                "nombreUsuario": user,
+                "usuario": user,
                 "correo": "",
                 "contraseña": password
             })
@@ -57,24 +57,25 @@ export const useAuthStore = () => {
         }
     }
 
-    const starRegister = async ({ user, admin, password }) => {
+    //* Register or Create User
+    const [registerUser] = useRegisterUserMutation();
+    const starRegister = async ({ user, email, password }) => {
 
-        dispatch(onCheckingCredentials());
+        dispatch(checkingProgress());
 
-        try {
-            await registerUser({
-                "nombreUsuario": user,
-                "administrador": admin,
-                "correo": "",
-                "contraseña": password
-            })
-                .then((res) => {
-                    console.log("🚀 ~ res:", res);
-
-                });
-        } catch (error) {
-            console.error("🚀 ~ error:", error);
-        }
+        await registerUser({
+            "usuario": user,
+            "correo": email,
+            "contraseña": password
+        })
+            .then((res) => {
+                dispatch(setMessage({
+                    text: 'Usuario creado corretamente',
+                    severity: 'success'
+                }));
+                dispatch(handleMessageOpen());
+                refetch();
+            });
     }
 
     const checkAuthToken = async () => {

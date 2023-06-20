@@ -8,7 +8,7 @@ export const logErroresApi = createApi({
     reducerPath: 'logErrores',
 
     baseQuery: fetchBaseQuery({
-        baseUrl: '${VITE_API_URL}/LogErrors'
+        baseUrl: `${VITE_API_URL}/LogErrors`
     }),
     endpoints: (builder) => ({
 

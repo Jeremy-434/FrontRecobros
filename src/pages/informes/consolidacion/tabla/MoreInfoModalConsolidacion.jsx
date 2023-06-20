@@ -60,7 +60,7 @@ export const MoreInfoModalConsolidacion = ({ data }) => {
                         />
                     </ListItem>
                 </List>
-                <List>
+                <List dense>
                     <ListItem>
                         <ListItemText
                             primary="Clase de costo"

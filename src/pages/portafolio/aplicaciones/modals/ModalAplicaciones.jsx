@@ -56,7 +56,7 @@ export const ModalAplicaciones = () => {
 
     return (
         <ModalForm
-            funtion={agregarAplicacion}
+            function={agregarAplicacion}
             nameButton={"agregar"}
             styleButton={<Add />}
             handleCloseModal={handleCloseModal}
