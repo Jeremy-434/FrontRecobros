@@ -1,5 +1,5 @@
 import { AdminPanelSettings, DataObject, ImportContacts, Info, Settings } from '@mui/icons-material';
-import { Box, Divider, Drawer } from '@mui/material'
+import { Box, Divider, Drawer, LinearProgress } from '@mui/material'
 import { AcordionPortafolio } from './';
 import { useAuthStore, useCrudRolesUsers } from '../../hooks';
 
@@ -8,6 +8,7 @@ const fontIcon = { fontSize: '20px' }
 
 const acordionData = [
     {
+        id: 1,
         roles: ['Administrador'],
         icon: <AdminPanelSettings sx={fontIcon} />,
         text: 'Administración',
@@ -15,6 +16,7 @@ const acordionData = [
         linksAcordion: ['usuarios', 'roles', 'opciones', 'permisos']
     },
     {
+        id: 2,
         roles: ['Administrador'],
         icon: <Settings sx={fontIcon} />,
         text: 'Configuración',
@@ -22,6 +24,7 @@ const acordionData = [
         linksAcordion: ['parametros', 'aliados', 'cierre-mes']
     },
     {
+        id: 3,
         roles: ['Administrador'],
         icon: <ImportContacts sx={fontIcon} />,
         text: 'Portafolio',
@@ -29,6 +32,7 @@ const acordionData = [
         linksAcordion: ['aplicaciones', 'servicios']
     },
     {
+        id: 4,
         roles: ['Administrador', 'Gestor de archivos'],
         icon: <DataObject sx={fontIcon} />,
         text: 'Uso de datos',
@@ -36,6 +40,7 @@ const acordionData = [
         linksAcordion: ['cargue-archivo', 'upload-ceco']
     },
     {
+        id: 5,
         roles: ['Administrador', 'Consultor'],
         icon: <Info sx={fontIcon} />,
         text: 'Informes',
@@ -47,11 +52,14 @@ const acordionData = [
 export const DrawerLeft = () => {
 
     const { user } = useAuthStore();
-    const { rolesUsers } = useCrudRolesUsers();
-    const rolUser = rolesUsers.find(ru => ru.idUsuarioNavigation.usuario === user.usuario);
-    const { rol } = rolUser.idRolNavigation;
+    const { rolesUsers, isLoading } = useCrudRolesUsers();
 
-    // * 'Gestor de archivos' 'Consultor' 'Administrador'
+    if (isLoading) {
+        return <LinearProgress />
+    }
+
+    const rolUser = rolesUsers?.find(ru => ru.idUsuarioNavigation.usuario === user.usuario);
+    const { rol } = rolUser.idRolNavigation;
 
     return (
         <Drawer
@@ -77,6 +85,7 @@ export const DrawerLeft = () => {
                         if (item.roles.includes(rol)) {
                             return (
                                 <AcordionPortafolio
+                                    key={item.id}
                                     Icon={item.icon}
                                     text={item.text}
                                     namesAcordion={item.namesAcordion}
